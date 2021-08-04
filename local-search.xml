@@ -4,6 +4,137 @@
   
   
   <entry>
+    <title>arc116E</title>
+    <link href="/2021/08/04/arc116E/"/>
+    <url>/2021/08/04/arc116E/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://atcoder.jp/contests/arc116/tasks/arc116_e">Link</a></p><hr /><h3 id="题解">题解</h3><p>答案显然具有单调性。</p><p>二分，对于 <span class="math inline">\(mid\)</span> 我们计算最少需要几个点使得可以全部覆盖整个树。</p><p>我们有一个显然的贪心，对于以 <span class="math inline">\(u\)</span> 为跟的子树，我们选 <span class="math inline">\(u\)</span> 当且仅当子树内最深的到 <span class="math inline">\(u\)</span> 的距离恰好为 <span class="math inline">\(mid\)</span>。</p><p>如何证明？</p><p>考虑如果不是这样，我们找到最深的一个选的 <span class="math inline">\(u\)</span> 不满足上述贪心策略。</p><p>跳 <span class="math inline">\(u\)</span> 父亲，显然 <span class="math inline">\(fa_u\)</span> 不劣于 <span class="math inline">\(u\)</span>。</p><p>考虑 <span class="math inline">\(fa_u\)</span> 能更多照顾到 <span class="math inline">\(u\)</span> 子树外的点，而且此时 <span class="math inline">\(u\)</span> 子树内依旧合法。</p><hr /><p>有了贪心策略就很简单了。</p><p>我们维护 <span class="math inline">\(a_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内所选的点还能支持多远。</p><p><span class="math inline">\(b_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内不能被覆盖到的点距离 <span class="math inline">\(u\)</span> 的距离。注意 <span class="math inline">\(u\)</span> 距离 <span class="math inline">\(u\)</span> 0个距离。</p><p>考虑 <span class="math inline">\(\min_{(u,v)}{a_v-1}\)</span> 和 <span class="math inline">\(\min_{(u,v)}b_v+1\)</span> 关系即可。</p><p>记 <span class="math inline">\(p=\min_{(u,v)}a_v-1,q=\min_{(u,v)}b_v+1\)</span></p><ol type="1"><li><p>如果 <span class="math inline">\(p&gt;=q\)</span> 证明 <span class="math inline">\(u\)</span> 子树内不能被覆盖的点可以通过其他所选点覆盖。</p><p>此时 <span class="math inline">\(b_u=-1\)</span>,<span class="math inline">\(a_u=p\)</span></p></li><li><p>否则如果 <span class="math inline">\(p=mid\)</span> 代表必须采取行动选 <span class="math inline">\(u\)</span> 覆盖，此时 <span class="math inline">\(b_u=-1,a_u=mid\)</span>。</p></li><li><p>否则，我们不覆盖，但是此时所选点也不会在产生贡献，所以我们可以直接 <span class="math inline">\(a_u=0,b_u=q\)</span>。</p></li></ol><p><a href="https://atcoder.jp/contests/arc116/submissions/24770350">code</a></p><h3 id="吐槽">吐槽</h3><p>at 的题解很奇怪，不是很懂为什么要提到 <code>dynamic programming</code>,也不解释 贪心策略。</p><p>这个贪心策略还是很明显的，但是正确性确实需要考虑，而我已经想到这个贪心，但是看到题解没提到贪心，而是放了一个 <code>dynamic programming</code> 就觉得自己错了。</p><p>希望这篇博客能帮到你吧。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>贪心</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>idea题</tag>
+      
+      <tag>binary search</tag>
+      
+      <tag>greedy</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>arc116D</title>
+    <link href="/2021/08/04/arc116D/"/>
+    <url>/2021/08/04/arc116D/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/arc116/tasks/arc116_d">题意</a>很简洁。</p><p>让你求有多少个长度为 <span class="math inline">\(N\)</span> 的序列 <span class="math inline">\(A\)</span>，使得 <span class="math inline">\(\sum_{i=1}^{n}A_i=m,\sum_{\oplus}A_i=0\)</span>.</p><span id="more"></span><hr /><p>暴力 dp 效率不高。</p><p>考虑异或的性质，我们本质上时在填一个 <span class="math inline">\(n\)</span> 行，<span class="math inline">\(\lceil\log_2 m\rceil\)</span> 列的表。</p><p>只需要保证 每一列的 1 的个数符合题意，并且和是正确的即可。</p><p>那么很容易得到 dp: <span class="math display">\[\text{dp}_n(x)=\sum_{k=0,2\mid k}\binom{n}{k}\text{dp}_{n-1}(x-2^nk)\]</span></p><p>假设 <span class="math inline">\(n,m\)</span> 同阶复杂度 <span class="math inline">\(\mathcal{O(n^2)}\)</span>。</p><p>可以考虑运算次数：</p><p><span class="math display">\[\sum_{j=1}^{\log_2 m}\sum_{i=1}^{m}\min(\frac{i}{2^j},n)\]</span></p><p>若 <span class="math inline">\(n&gt;m\)</span> 那么 <span class="math inline">\(\dfrac{i}{2^j}\leq n\)</span>。</p><p>所以原式小于等于</p><p><span class="math display">\[\sum_{j=1}^{\log_2 m}\sum_{i=1}^{m}\frac{i}{2^j}=\sum_{j=1}^{\log_2 m}\frac{1}{2^j}\sum_{i=1}^{m}i=\sum_{j=1}^{\log_2 m}\frac{1}{2^j}m^2=\mathcal{O(m^2)}\]</span></p><p>即 <span class="math inline">\(\mathcal{O(n^2)}\)</span></p><p>代码可见 <a href="https://atcoder.jp/contests/arc116/submissions/24764368">code</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>dp</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>小idea</tag>
+      
+      <tag>dp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>slope trick/arc123d</title>
+    <link href="/2021/08/03/slope-tricks/"/>
+    <url>/2021/08/03/slope-tricks/</url>
+    
+    <content type="html"><![CDATA[<p>通过 arc123D 讨论一下 <span class="math inline">\(\texttt{slope trick}\)</span>。</p><span id="more"></span><h3 id="part--1">part -1</h3><p><span class="math inline">\(\text{slope trick}\)</span> 顾名思义，并不是斜率优化 dp。</p><h3 id="part-0">part 0</h3><p>我并没有对 <span class="math inline">\(\text{slope trick}\)</span> 很深入的理解不具体介绍，只是讲一下 arc123D 的优化技巧。</p><p>待填坑。</p><hr /><h3 id="arc123d">arc123D</h3><p><a href="https://atcoder.jp/contests/arc123/tasks/arc123_d">link</a></p><p>考虑 <span class="math inline">\(B,C\)</span> 两个序列不好一起维护，而且 <span class="math inline">\(B_i+C_i=A_i\)</span>，所以直接只维护一个 <span class="math inline">\(B\)</span>。</p><p>那么 <span class="math inline">\(B_i\leq B_{i+1}\)</span> 且 <span class="math inline">\(C_i=A_i-B_i\geq C_{i+1}=A_{i+1}-B_{i+1}\)</span>.</p><p>所以 <span class="math inline">\(B_i\leq B_{i+1},B_{i}\leq B_{i+1}-(A_{i+1}-A_{i})\)</span>.</p><p>设 <span class="math inline">\(B_i\leq B_{i+1}-D_{i+1}\)</span>。</p><p>那么我们可以进行dp。</p><p><span class="math inline">\(\text{dp}_n(x)\)</span> 表示 <span class="math inline">\(B_n=x\)</span> 最小答案。</p><p>枚举上一个显然有转移：</p><p><span class="math display">\[\text{dp}_{n}(x)=\min _{j\leq x-D_{n}}\text{dp}_{n-1}(j)+\mid x\mid+\mid A_n-x\mid\]</span></p><p>发现这本质上是一个前缀最小，加上一个下凸函数 <span class="math inline">\(\mid x\mid+\mid A_n-x\mid\)</span>。</p><p>所以 <span class="math inline">\(\text{dp}_n(x)\)</span> 的函数图像也为下凸。</p><p>关键的来了每次加上的 <span class="math inline">\(\mid x\mid+\mid A_n-x\mid\)</span> 的斜率仅仅为 <span class="math inline">\(2\)</span>。</p><p>这给我们提供了一个有利条件，最终函数图像是下凸，函数图像被一些整点分割成一段段直线，分割点个数级别是 <span class="math inline">\(n\)</span> 的。</p><p>考虑每一次转移可以被拆分成：平移x坐标，推平最后斜率大于0的，转移即添加4个斜率变化关键点（考虑斜率为2，保证斜率连续）。</p><p>具体实现注意，<span class="math inline">\(x\)</span> 坐标和 <span class="math inline">\(slope\)</span> 都是单调的，所以只需要维护 <span class="math inline">\(x\)</span> 坐标即可，剩下的就是一个全局加，单点插入的经典题。</p><p>答案即为最后函数 <span class="math inline">\(slope=0\)</span> 的那段函数值。</p><figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> int long long</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">2e5</span>+<span class="hljs-number">1000</span>;<br><span class="hljs-keyword">int</span> a[N],n;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> inf=<span class="hljs-number">1e10</span>;<br><span class="hljs-built_in">priority_queue</span>&lt;<span class="hljs-keyword">int</span>&gt; q;<br><span class="hljs-function"><span class="hljs-keyword">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>),<span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-built_in">cin</span>&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) <span class="hljs-built_in">cin</span>&gt;&gt;a[i];<br>    <span class="hljs-keyword">int</span> lv=<span class="hljs-number">0</span>,ls=<span class="hljs-number">0</span>,add=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        <span class="hljs-keyword">int</span> pre=-inf;<br>        ls=<span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">while</span>(!q.empty()&amp;&amp;ls&gt;<span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span>(pre!=-inf)&#123;<br>                lv-=(pre-q.top())*ls;<br>            &#125;<br>            pre=q.top();<br>            ls--;q.pop();<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">1</span>) add+=max(<span class="hljs-number">0ll</span>,a[i]-a[i<span class="hljs-number">-1</span>]);<br>        <span class="hljs-keyword">int</span> x1=-add,x2=a[i]-add;<br>        q.push(x1),q.push(x1);<br>        q.push(x2),q.push(x2);<br>        <span class="hljs-keyword">int</span> x=q.top()+add;<br>        lv=lv+<span class="hljs-built_in">abs</span>(x)+<span class="hljs-built_in">abs</span>(x-a[i]);<br>    &#125;    <br>    <span class="hljs-keyword">int</span> pre=-inf;<br>    ls=<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">while</span>(!q.empty()&amp;&amp;ls&gt;<span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span>(pre!=-inf)&#123;<br>            lv-=(pre-q.top())*ls;<br>        &#125;<br>       pre=q.top();<br>        ls--;q.pop();<br>    &#125;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;lv;<br>&#125;<br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>dp</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>idea题</tag>
+      
+      <tag>dp</tag>
+      
+      <tag>slope trick</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>edu112/codeforces round 1555</title>
+    <link href="/2021/07/31/edu112/"/>
+    <url>/2021/07/31/edu112/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1555">Links</a></p><span id="more"></span><h3 id="a"><a href="https://codeforces.com/contest/1555/problem/A">A</a></h3><p>憨憨题，6,8,10的性价比都一样，奇数铁不行，只能用偶数。</p><p>偶数就直接除2。随便组合就行。特判 2,4即可。</p><hr /><h3 id="b"><a href="https://codeforces.com/contest/1555/problem/B">B</a></h3><p>憨憨题，发现直接沿着 x 轴，y 轴平移即可。</p><p>新的矩形只能放在四角，判一判平移会不会出界即可。</p><hr /><h3 id="c"><a href="https://codeforces.com/contest/1555/problem/C">C</a></h3><p>憨憨题，Alice只能选择一个 <span class="math inline">\((1,y)\)</span> 向下走到 <span class="math inline">\((2,y)\)</span>。</p><p>所以 Bob 能走的是 <span class="math inline">\(\max(suf_{y+1},pre_{y-1})\)</span>。</p><p>模拟即可。</p><hr /><h3 id="d"><a href="https://codeforces.com/contest/1555/problem/D">D</a></h3><p>憨憨题，发现因为字符集大小为 3，合法串只可能长成 <span class="math inline">\(\texttt{abcabcabc}\cdots\texttt{abc}\)</span> 的样子，所以直接就枚举字符集全排列，判一判就好了。</p><p>前缀和模拟即可，复杂度 <span class="math inline">\(\mathcal{O(6n)}\)</span></p><hr /><h3 id="e"><a href="https://codeforces.com/contest/1555/problem/E">E</a></h3><p>发现这个1与n联通等价于把选出的 segment +1，看是不是全大于0.</p><p>然后最大减最小尽可能小？</p><p>我会 <span class="math inline">\(\texttt{binary search}\)</span>​​ 发现 <span class="math inline">\(m\leq 10^6\)</span> 好像不大行。</p><p>那我会 <span class="math inline">\(\texttt{two pointers}\)</span>​ 。</p><p>先按 <span class="math inline">\(w\)</span> 排序，显然，枚举右端点，看此时合法到哪里，移动左端点。</p><p>正确性显然。</p><p>复杂度：<span class="math inline">\(\mathcal{O(n\log m)}\)</span>。</p><p><del>憨憨题考试都做不对，呜呜呜</del></p><hr /><h3 id="f"><a href="https://codeforces.com/contest/1555/problem/F">F</a></h3><p>憨憨DS，睡了一觉就会了。（其实考试时都没看到，充分说明自己菜）</p><p>如何快速看一个边合不合法？</p><p>如果存在套环的情况，考虑对于对于环 <span class="math inline">\(c_1,c_2\)</span> 。</p><p>一个最大的边的子集 <span class="math inline">\(s\)</span>​​ ，如果<span class="math inline">\(s\subset c_1,s\subset c_2\)</span>​。那么 <span class="math inline">\(c_1,c_2\)</span>​​ 的异或都为一，并且<span class="math inline">\(c_1\)</span>​​ 并 <span class="math inline">\(c_2\)</span>​​ 去除 <span class="math inline">\(s\)</span>​​ 的简单回路异或就为 <span class="math inline">\(0\)</span> 不合法。</p><p>所以不可能存在套环的情况。</p><p>这就提示我们这玩意是个边仙人掌。</p><p>直接考虑树。</p><p>如果是一条连接一颗树上的两个节点的边，那么首先判断是否路径上的边都不在任意一个连通块内。</p><p>然后再看新形成的一个环的 <span class="math inline">\(\texttt{xor}\)</span> 是否为1。</p><p>如果是一条连接两个连通块的边，一定行。</p><p>LCT （le ci te) 不好写，嘤嘤嘤。</p><p>离线把最终的树建出，考虑对树的形态产生影响的边只有连接连通块的边，用并查集维护即可。</p><p>然后随便剖一剖就好了。</p><p>复杂度 <span class="math inline">\(\mathcal{O(q\log^2n)}\)</span> 大概率比 LCT 快吧（（（（。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>whole round</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>cf1550D excellent arrays</title>
+    <link href="/2021/07/31/cf1550D/"/>
+    <url>/2021/07/31/cf1550D/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://codeforces.com/contest/1550/problem/D">Link</a></p><span id="more"></span><hr /><h3 id="题解">题解</h3><p>首先我们观察如果 <span class="math inline">\(a_i+a_j=i+j\)</span>,那么 <span class="math inline">\(a_i-i=-(a_j-j)\)</span>。</p><p>那么我么定义一个属性值 <span class="math inline">\(v_i=a_i-i\)</span>。</p><p>那么 <span class="math inline">\(v_i\in\{d,-d\}\)</span>,肯定是最优的。</p><p>问题转化为我们选 <span class="math inline">\(\lfloor{\dfrac{n}{2}}\rfloor\)</span> 个 <span class="math inline">\(d\)</span>，选 <span class="math inline">\(\lceil{\dfrac{n}{2}}\rceil\)</span> 个 <span class="math inline">\(-d\)</span> 作为 <span class="math inline">\(v_i\)</span>。</p><p>然后 <span class="math inline">\(l\leq a_i=i+v_i\leq r\)</span>。</p><p>然后我们肯定可以确定出最小的的可以 <span class="math inline">\(-d\)</span> 的，记作 <span class="math inline">\(a\)</span>；最大的可以 <span class="math inline">\(+d\)</span> 的，记作 <span class="math inline">\(b\)</span>。</p><p>接下来我找到了两种方法。</p><ol type="1"><li><p>这个是我翻<a href="https://codeforces.com/profile/jiangly"><span class="math inline">\(\color{black}j\color{red}iangly\)</span></a>的代码，得出的答案。</p><p>我们直接枚举 <span class="math inline">\(d\in[1,\infty]\)</span>,然后确定出 <span class="math inline">\(a,b\)</span> 的区间范围。</p><p><span class="math inline">\(a=l+d,b=r-d\)</span>。</p><p>然后我们可以确定出 <span class="math inline">\(i\in[1,a)\)</span> 必须要 <span class="math inline">\(+d\)</span> , <span class="math inline">\(i\in(b,n]\)</span>，必须要 <span class="math inline">\(-d\)</span>。</p><p>然后可以选的区间为 <span class="math inline">\([a,b]\)</span> ，然后需要 <span class="math inline">\(\lfloor\frac{n}{2}\rfloor\)</span>,<span class="math inline">\(\lceil\frac{n}{2}\rceil\)</span> <span class="math inline">\(-a\)</span> 个 <span class="math inline">\(+d\)</span> 的。</p><p>考虑这个 <span class="math inline">\(d\)</span>​ 枚举状态高达 <span class="math inline">\(2\times 10^9\)</span>​ ,<span class="math inline">\(\mathcal{\color{gold}TLE}\)</span>​。</p><p>发现当 <span class="math inline">\(d\in[1,\min(1-l,r-n)]\)</span> 时，可以取满 <span class="math inline">\(\binom{n}{n/2}\)</span>。</p><p>然后就剩 <span class="math inline">\(d\in(\min(1-l,r-n),\min(1-l,r-n)+n]\)</span>。</p><p>显然复杂度为 <span class="math inline">\(\mathcal{O(n)}\)</span></p></li><li><p>这个是我的做法</p><p>我们可以枚举 <span class="math inline">\(a,b\)</span>,即上文提到的 <span class="math inline">\(a,b\)</span>。</p><p>现在我们可以反向确定 <span class="math inline">\(d\)</span>。</p><p><span class="math inline">\(d\in[1,\min(a-l,r-b)\)</span>]。</p><p><span class="math display">\[ans\leftarrow \binom{b-a-1}{\lfloor\frac{n}{2}\rfloor-a}\]</span>​​</p><p>也就是枚举 <span class="math inline">\(a,b\)</span>​。</p><p><span class="math display">\[ans=\sum_{a=1}^{n}\sum_{b=a+1}^{n}\min(a-l,r-b)\binom{b-a-1}{\lfloor\frac{n}{2}\rfloor-a}\]</span></p><p>拆 <span class="math inline">\(\min\)</span>​,直接看后面。 <span class="math display">\[ans=\sum_{a}\sum_{b}(a-l)\binom{b-a-1}{\lfloor\frac{n}{2}\rfloor-a}+\sum_{a}\sum_{b}(r-b)\binom{b-a-1}{\lfloor\frac{n}{2}\rfloor-a}\]</span> <span class="math inline">\(a,b\)</span> 范围不写了，没什么必要了。</p><p>现在只需要我们能快速求出 <span class="math inline">\(\sum_{i}\binom{i}{n}\)</span> 和 <span class="math inline">\(\sum_{i}i\binom{i}{n}\)</span> 即可。</p><p><span class="math inline">\(\sum_{i}\binom{i}{n}\)</span> 是个经典问题。</p><p><span class="math inline">\(\sum_{i}i\binom{i}{n}\)</span> 等价于求 <span class="math inline">\(\sum_{i}(i+1)\binom{i}{n}=\sum_{i}\frac{1}{n+1}\binom{i+1}{n+1}=\frac{1}{n+1}\sum_{i}\binom{i+1}{n+1}\)</span>​。​​也是经典问题。</p><p>done.</p><p><a href="https://codeforces.com/contest/1550/submission/122579785">code</a></p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数论</tag>
+      
+      <tag>combination</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CF IO交互 学习</title>
     <link href="/2021/07/31/pre-CF-Interaction/"/>
     <url>/2021/07/31/pre-CF-Interaction/</url>
@@ -21,33 +152,6 @@
     <tags>
       
       <tag>interaction</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>cf1550C excellent arrays</title>
-    <link href="/2021/07/31/cf1550C/"/>
-    <url>/2021/07/31/cf1550C/</url>
-    
-    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://codeforces.com/contest/1550/problem/D"></a></p><hr /><h3 id="题解">题解</h3><p>首先我们观察如果 <span class="math inline">\(a_i+a_j=i+j\)</span>,那么 <span class="math inline">\(a_i-i=-(a_j-j)\)</span>。</p><p>那么我么定义一个属性值 <span class="math inline">\(v_i=a_i-i\)</span>。</p><p>那么 <span class="math inline">\(v_i\in\{d,-d\}\)</span>,肯定是最优的。</p><p>问题转化为我们选 <span class="math inline">\(\lfloor{\dfrac{n}{2}}\rfloor\)</span> 个 <span class="math inline">\(d\)</span>，选 <span class="math inline">\(\lceil{\dfrac{n}{2}}\rceil\)</span> 个 <span class="math inline">\(-d\)</span> 作为 <span class="math inline">\(v_i\)</span>。</p><p>然后 <span class="math inline">\(l\leq a_i=i+v_i\leq r\)</span>。</p><p>然后我们肯定可以确定出最小的的可以 <span class="math inline">\(-d\)</span> 的，记作 <span class="math inline">\(a\)</span>；最大的可以 <span class="math inline">\(+d\)</span> 的，记作 <span class="math inline">\(b\)</span>。</p><p>接下来我找到了两种方法。</p><ol type="1"><li><p>这个是我翻<a href="https://codeforces.com/profile/jiangly"><span class="math inline">\(\color{black}j\color{red}iangly\)</span></a>的代码，得出的答案。</p><p>我们直接枚举 <span class="math inline">\(d\in[1,\infty]\)</span>,然后确定出 <span class="math inline">\(a,b\)</span> 的区间范围。</p><p><span class="math inline">\(a=l+d,b=r-d\)</span>。</p><p>然后我们可以确定出 <span class="math inline">\(i\in[1,a)\)</span> 必须要 <span class="math inline">\(+d\)</span> , <span class="math inline">\(i\in(b,n]\)</span>，必须要 <span class="math inline">\(-d\)</span>。</p><p>然后可以选的区间为 <span class="math inline">\([a,b]\)</span> ，然后需要 <span class="math inline">\(\lfloor\frac{n}{2}\rfloor\)</span>,<span class="math inline">\(\lceil\frac{n}{2}\rceil\)</span> <span class="math inline">\(-a\)</span> 个 <span class="math inline">\(+d\)</span> 的。</p><p>考虑这个 <span class="math inline">\(d\)</span> 枚举状态高达 <span class="math inline">\(2\times 10^9\)</span> ,<span class="math inline">\(\mathcal\color{gold}TLE\)</span>。</p><p>发现当 <span class="math inline">\(d\in[1,\min(1-l,r-n)]\)</span> 时，可以取满 <span class="math inline">\(\binom{n}{n/2}\)</span>。</p><p>然后就剩 <span class="math inline">\(d\in(\min(1-l,r-n),\min(1-l,r-n)+n]\)</span>。</p><p>显然复杂度为 <span class="math inline">\(\mathcal{O(n)}\)</span></p></li><li><p>这个是我的做法</p><p>我们可以枚举 <span class="math inline">\(a,b\)</span>,即上文提到的 <span class="math inline">\(a,b\)</span>。</p><p>现在我们可以反向确定 <span class="math inline">\(d\)</span>。</p><p><span class="math inline">\(d\in[1,\min(a-l,r-b)\)</span>。</p><p><span class="math display">\[ans\leftarrow \binom{b-a-1}{\lfloor\frac{n}{2}\rfloor,\lceil\frac{n}{2}\rceil-a}\]</span></p><p>也就是对于 <span class="math inline">\(a,b\)</span>。</p><p><span class="math display">\[ans\leftarrow \min(a-l,r-b)\binom{b-a-1}{\lfloor\frac{n}{2}\rfloor,\lceil\frac{n}{2}\rceil-a}\]</span></p></li></ol>]]></content>
-    
-    
-    <categories>
-      
-      <category>数学</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>数论</tag>
-      
-      <tag>combination</tag>
       
     </tags>
     
@@ -108,19 +212,6 @@
       <tag>gf</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title></title>
-    <link href="/2021/07/31/Untitled/"/>
-    <url>/2021/07/31/Untitled/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
     
   </entry>
   
