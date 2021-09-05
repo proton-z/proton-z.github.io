@@ -194,6 +194,125 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/08/05/arc122E/" target="_self">
+          arc122D
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/05/arc122E/" target="_self">
+          
+          
+            
+          
+          题意
+Link
+sol
+贪心思路显然，我们先把选一定没事的放在后面，接下来化归成子问题。
+什么时候选一定没事，也就是 \(a_i\) 具有一个质因子 \(p\),使得 \(p\) 在 \(a_i\) 中次数最高。
+形式化表示：设 \(a_i=\prod_{k}p_k^{\alpha_{i,k}}\)。
+那么 \(a_i\) 选一定没事，当且仅当 存在 \(k\) , \(\forall
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-05 10:28" pubdate>
+              2021-08-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/04/arc116E/" target="_self">
+          arc116E
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/04/arc116E/" target="_self">
+          
+          
+            
+          
+          题意
+Link
+
+题解
+答案显然具有单调性。
+二分，对于 \(mid\) 我们计算最少需要几个点使得可以全部覆盖整个树。
+我们有一个显然的贪心，对于以 \(u\) 为跟的子树，我们选 \(u\) 当且仅当子树内最深的到 \(u\) 的距离恰好为 \(mid\)。
+如何证明？
+考虑如果不是这样，我们找到最深的一个选的 \(u\) 不满足上述贪心策略。
+跳 \(u\) 父亲，显然 \
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-04 14:52" pubdate>
+              2021-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%B4%AA%E5%BF%83/">贪心</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/idea%E9%A2%98/">idea题</a>
+            
+              <a href="/tags/binary-search/">binary search</a>
+            
+              <a href="/tags/greedy/">greedy</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/08/04/arc116D/" target="_self">
           arc116D
         </a>
@@ -606,124 +725,11 @@ Link
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/15/agc003d/" target="_self">
-          anticube
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/15/agc003d/" target="_self">
-          
-          
-            
-          
-          题意
-Link
-给你 \(n\) 个数，让你在这些数中间选出尽可能多的数使得，对于任意两个选出来的数，乘积不是完全立方数。
-题解
-我们可以发现，如果 \(a\times b\) 为完全立方数，那么分解质因数。
-\(a=\prod p_i^{a_i}\),\(b=\prod p_i^{b_i}\)。那么应该有 \(\forall i,(a_i+b_i)\bmod{3}=0\)。
-我们把每
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-15 14:45" pubdate>
-              2021-05-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
-            
-              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
-            
-              <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/15/cf1519E/" target="_self">
-          cf1519E
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/04/15/cf1519E/" target="_self">
-          
-          
-            
-          
-          题意
-Link
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-15 20:10" pubdate>
-              2021-04-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B0%8Fidea/">小idea</a>
-            
-              <a href="/tags/dfs/">dfs</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
