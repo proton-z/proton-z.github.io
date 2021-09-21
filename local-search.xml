@@ -4,6 +4,86 @@
   
   
   <entry>
+    <title>arc101C | Ribbon on tree</title>
+    <link href="/2021/09/18/arc101c/"/>
+    <url>/2021/09/18/arc101c/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/arc101/tasks/arc101_c">题意</a></p><p>题目大意解释一下，让你给一颗树结点配对，染色每对点。如果每一条边都有颜色，那么就算一种合法的情况。</p><hr /><h3 id="sol">sol</h3><p>0正：对于任意</p><p>反：存在</p><p>显然正难则反。</p><p>存在难，所以显然钦定然后容斥。</p><hr /><p>这样大体idea 出来了。</p><h4 id="step1">step1</h4><p>首先发现一件事情,我们可以通过把一颗树，切掉一条边，变成两颗子树，递归分别求解。</p><p>这样求出的是不包括 钦定的这条边的合法情况数。</p><p>这样显然可以容斥。</p><p><span class="math inline">\(\texttt{Complexity : }\mathcal{O(2^n)}\)</span>.</p><h4 id="step2">step2</h4><p>复杂度在于现在需要决策每一条边选不选。</p><p>这样让我们想到类似背包类的 dp。</p><p><span class="math inline">\(\text{dp}_u(x)\)</span> 表示以 <span class="math inline">\(u\)</span> 为根的子树，与 <span class="math inline">\(u\)</span> 相连有 <span class="math inline">\(x\)</span> 个。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>dp</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>dp</tag>
+      
+      <tag>IN-EX principle</tag>
+      
+      <tag>idea</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2021/09/13/script/"/>
+    <url>/2021/09/13/script/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Cumulative Sum</title>
+    <link href="/2021/09/12/abc208f/"/>
+    <url>/2021/09/12/abc208f/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题意"><a href="https://atcoder.jp/contests/abc208/tasks/abc208_f">题意</a></h3><h3 id="题解">题解</h3><h4 id="part1">part1</h4><p><span class="math inline">\(n\)</span> 很大,但 <span class="math inline">\(m,k\)</span> 很小，这提示了我们。</p><p>把 <span class="math inline">\(f(x,y)\)</span> 看成若干个关于 <span class="math inline">\(x\)</span> 的多项式，<span class="math inline">\(f_y(x)\)</span> 。</p><p>显然 <span class="math inline">\(y=0\)</span> 时 <span class="math inline">\(f_y(x)\)</span> 是一个 <span class="math inline">\(k\)</span> 次多项式。</p><p>考虑由于 <span class="math inline">\(f_y(x)\leftarrow f_y(x-1)+f_{y-1}(x)\)</span> 。</p><p>显然 <span class="math inline">\(f_y(x)\)</span> 本质上是一个 <span class="math inline">\(f_{y-1}(x)\)</span> 的前缀和，所以 <span class="math inline">\(f_y(x)\)</span> 次数是 <span class="math inline">\(f_{y-1}(x)\)</span> 次数加一。</p><p>可以发现 <span class="math inline">\(f_{y}(x)\)</span> 是一个 <span class="math inline">\(k+y\)</span> 次多项式。</p><hr /><h3 id="part2">part2</h3><p>暴力计算 <span class="math inline">\(f_y(x),x\in[1,k+y]\)</span> 后。(<span class="math inline">\(\texttt{Complexity : } \mathcal{O(ky)}\)</span>).</p><p>考虑 lagrange 插值。</p><p>记住 <span class="math inline">\(x_i\)</span> 值是有规律的时候拉格朗日插值是 <span class="math inline">\(O(n)\)</span> 的，或者高一点。</p><p>分子维护一个suffix,prefix就完事了。</p><p>分子发现是每一次全加一，也是可以做的。</p><p>这样就完事了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>拉格朗日插值</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>daily</title>
+    <link href="/2021/09/10/daily/"/>
+    <url>/2021/09/10/daily/</url>
+    
+    <content type="html"><![CDATA[<h3 id="section">🌌2021 8 19</h3><p>今天开始上网课了，可能事情会好起来了。</p><p>颓了好久。</p><p>没干什么正经事。</p><p>自己思维能力看起来真的不容乐观。</p><p>重要事情就留给明天吧。</p><h3 id="section-1">🌌2021 8 20</h3><p>确定了，并不是要否定自己初中的的学习方法，但也要改变初三末期对学习的看法。</p><p>「悔相道之不察兮，延伫乎吾将反。回朕车以复路兮，及行迷之未远。」</p><p>现在看来写作业应该是学好习的必要条件。</p><p>真正的成功不是逃避自己的不足，经过成熟的思考迎难而上才部分正确。</p><p>学OI不应该成为逃避文化课的借口。</p><p>学OI不应该成为颓废的借口。</p><h3 id="section-2">🌌2021 8 21</h3><p><code>hide: true</code></p><h3 id="section-3">🌌2021 8 22</h3><p>尽管 8.20 说的颇有道理。</p><p>但是我不能在此放弃努力学习 OI。</p><p>或许可以说为了“不要出意外”，要负责任，但是这些都不是阻挡我在高一上学期努力学习OI的理由，或者自甘堕落的借口。</p><p>我所看到，所听到的，都是强者在胜利后的“一己之言”，他们在当时有什么我没有的条件，付出了我没付出的什么，这些都是我所不知道的，调整时间的确重要，但是以调整作为借口，这是大忌。</p><p>在弱省，在一个充满颓意的东北，必须强迫自己接受，承受自己所改变不了的。</p><p>没周的做题计划也不应该取消，以着题目难度不一为借口？这种话你还好意思再说嘛？</p><p>这一个效率=0的一周，就当他是军训吧。</p><p>不必无故纠结过去的失败，重要的，能改变的还在现在和将来。</p><p>如果不具有强大的心灵，就应该不惧困难，不给自己找颓靡的借口。</p><p>现在 2021.8.22 19:20 前路漫漫，但是我已经没有什么好害怕的了。</p><p>「起风了,唯有努力生存。」</p><h3 id="section-4">🌌2021 8 31</h3><p>上周很忙碌，心情一会好，一会差，这周是差的。</p><p>心情应该一定取决于睡眠。</p><p>心情不好。</p><p>差死了。</p><p>睡觉！。</p><h3 id="section-5">🌌2021 9 3</h3><p>本应该很开心的。</p><p>看不惯有的人。</p><p>似乎是价值观不符。</p><p>似乎是自己太过傲慢。</p><p>不管了，记录一下at罢了。</p><p>有些事情，也应该释怀了。☄️</p><p>atcoder 的精髓似乎就是 rephrase</p><p>🪐</p><h3 id="section-6">🌌2021 9 5</h3><p>上午去打了疫苗。</p><p>下午颓颓颓，想学画画。</p><p>我觉得我有画画的天赋。。。</p><p>想学。</p><hr /><p>总是感觉在做梦。</p><p>我现在记不住初中每一回大型考试的具体答案。</p><p>我现在记不住天宇一次次天宇杯，阶段联系的题目。</p><p>我记不住3+3考试的题目。</p><p>我记不住我曾经对自己充满信心的世锦赛的答案。</p><p>要是让现在的我重新来过呢？</p><p>我可能只能在前几次 OI 比赛能得到更好的分数，我还记得 OI 比赛的题目。</p><p>如果让我重置一次人生呢？</p><p>或许这只是一场梦，让我醒来后呢？</p><p>我会不会重新走一次现在的道路？</p><p>我是不是就是在一个叫做”我想学计算机“的梦里？</p><p>谁知道呢！</p><p>我从未羡慕过自己。</p><p>我在很多方面的确什么也做不好。</p><p>我在人迹交往上，的确一窍不通。</p><p>我在情绪控制上也的确十分失败。</p><p>不。</p><p>我还是会羡慕自己的，只不过我更羡慕我身边的一些人。</p><p>我是个中国人。</p><p>我能够自由的发表自己对别人的看法，能发出心声（身边的十分善良，非常感谢他们能够接纳我的SB发言）。</p><p>尽管老师更喜欢学他们这个学科好的，老师也并没有对我这样学的欠佳的学生厌恶。</p><p>尽管中考压力客观上很大，我也通过主观上颓靡，使自己没有完全崩溃。</p><p>我去过NOI2021收获了一段对我而言非凡的经历。</p><hr /><p>突然想到初一的那个和同学说的”当时的梦想“实现了，但没完全实现。</p><p>很遗憾他高中不在我们学校了。</p><p>只能让那段时光封闭了吧。</p><p>在某些层面上我的确输惨了。。</p><hr /><p>1192 词。</p><h3 id="twice-update-on-9-5">twice update on 9 5</h3><p>sumsung 的屏幕我之前很卡以为被骗了。</p><p>现在才知道原来是刷新率没有调高。</p><p>😓</p><p>上周我开始半脱产。</p><p>还是比较好的。</p><p>我的心理状态还是没有得到严格控制。</p><p>现在听到noi那几个夜晚听的歌曲也还是会十分感伤。</p><p>我当时真有些结束了的感觉。</p><p>《如约而至》负全责！！！！！！</p><p>最终也没能相约老地方😂</p><p>但我也没能释怀我所有的悲伤。</p><p>all right!~~~~</p><h3 id="section-7">🌌2021 9 10</h3><p>今天又是星期五，中午放学。</p><p>周五什么作业也没写，心情也比较怅然。</p><p>学了学数学竞赛。</p><p>很自闭，但我相信我并不是从思想上都不适合。</p><p>我一定能行的。</p><p>效率极低。</p><p>2*abcF 下午的大把时间，被浪费了。</p><p>控制心情可以靠喝水了。</p><p>前路光明，还只是我的一厢情愿。</p><p>不知道。</p><p>好多事情已经在头脑中，也打算写出，可是终下不了笔。</p><p>左三右三也没有交。</p><p>看到今天的wjh,nx,myc，我真的似乎看到NOI前几天我身边人的状态，但还是wjh,myc他们更和我亲近？</p><p>他们并没有颓靡，但是看得出挺紧张的。</p><p>似乎颓靡只属于吉林的信息学。</p><p>我并不只是很在乎这次高联。就像NOI我并不是很在乎那个考试，而是，承载考试的整个NOI——余姚的校园，组委会，别的大佬，交朋友？</p><p>学数学的高联后就学习文化课了。</p><p>楼下的自习室，似乎就有空无一人了，我还是不能在那里长久的待呢。</p><p>I(ce) - scream?</p><p>Fighting dreamers?</p><p>学数学的他们身上我似乎看到了，他们对脱产的留恋，（？只是似乎），为着追求的紧张，lth最后也说出了一个让我非常敏感的词 “心理医生”。</p><p>好熟悉呀。。。。</p><p>我认为，同时希望 他们不会变成现在的我。</p><p>我想和像why,wst什么的聊聊天，可是最终我还是要付出最长时间和自己聊天，在心里聊，在大脑中聊，在作文里聊，渴望着老师给上一句评语，是有评语，但最终只是告知我作业质量不佳。</p><p>还是在躲避呀。</p><p>jump out of the window</p><p>记忆犹新？</p><p>跟风？在没有完全了解一个人前就尊崇为大哥？失败后把责任全推给“他”？</p><p>我不是赢不来我的perfect time。</p><p>我只是太容易忘却了。</p><p>我想是金碧辉煌的酒店里的一块漆黑的金刚石？我发出的光芒我只会以为是我的阴影？</p><p>不知道，我的身体告诉我要去睡觉了。</p><p>all right,update at 2021.9.10</p><hr /><h3 id="section-8">🌌2021 9 12</h3><p>回朕车以复路兮,及行迷之未远。</p><p>不要再陷入一部作品中无法自拔呀！</p><hr /><h3 id="section-9">🌌2021 9 21</h3><p>对OI的热情不能被磨去呀。</p><p>看着前人写的一片片博客，他们描述的生活，描述的OI是如此的美好。</p><p>的确我只能看到别的光鲜的一面，但是如此会看自己是否太过布满了阴霾？</p><p>希望的确始终客观存在，只不过我不去接受罢了。</p><figure><img src="\img\9.png" alt="image-20210921152212540" /><figcaption aria-hidden="true">image-20210921152212540</figcaption></figure><p>ORZ JCY学长</p><p>如果是一年前，两年前，我可能还是会自大的说出：“中考是什么傻逼，到了高中就一定会顺利这样的话语。”</p><p>但是现在，我已经彻彻底底进入了高中，高一一班，吴波老师的班级里。</p><p>我的轨道再次奇迹般地和他们重合到一起。</p><p>但是这次，我一定不会陷入之前所陷入的那样的漩涡。</p><p>一定的。生活应该重新充满希望，当然这样的希望不应是我去请来的，求来的，而应该是我“拿来的”。</p><hr /><p>我一定要主动刷难题，这样思维才会提升，而不是沉溺于简单题无法自拔，自我满足，不能啊Q</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Connectivity 2</title>
     <link href="/2021/09/03/abc213G/"/>
     <url>/2021/09/03/abc213G/</url>
@@ -52,19 +132,6 @@
       <tag>2-sat</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>daily</title>
-    <link href="/2021/08/19/daily/"/>
-    <url>/2021/08/19/daily/</url>
-    
-    <content type="html"><![CDATA[<h3 id="section">🌌2021 8 19</h3><p>今天开始上网课了，可能事情会好起来了。</p><p>颓了好久。</p><p>没干什么正经事。</p><p>自己思维能力看起来真的不容乐观。</p><p>重要事情就留给明天吧。</p><h3 id="section-1">🌌2021 8 20</h3><p>确定了，并不是要否定自己初中的的学习方法，但也要改变初三末期对学习的看法。</p><p>「悔相道之不察兮，延伫乎吾将反。回朕车以复路兮，及行迷之未远。」</p><p>现在看来写作业应该是学好习的必要条件。</p><p>真正的成功不是逃避自己的不足，经过成熟的思考迎难而上才部分正确。</p><p>学OI不应该成为逃避文化课的借口。</p><p>学OI不应该成为颓废的借口。</p><h3 id="section-2">🌌2021 8 21</h3><p><code>hide: true</code></p><h3 id="section-3">🌌2021 8 22</h3><p>尽管 8.20 说的颇有道理。</p><p>但是我不能在此放弃努力学习 OI。</p><p>或许可以说为了“不要出意外”，要负责任，但是这些都不是阻挡我在高一上学期努力学习OI的理由，或者自甘堕落的借口。</p><p>我所看到，所听到的，都是强者在胜利后的“一己之言”，他们在当时有什么我没有的条件，付出了我没付出的什么，这些都是我所不知道的，调整时间的确重要，但是以调整作为借口，这是大忌。</p><p>在弱省，在一个充满颓意的东北，必须强迫自己接受，承受自己所改变不了的。</p><p>没周的做题计划也不应该取消，以着题目难度不一为借口？这种话你还好意思再说嘛？</p><p>这一个效率=0的一周，就当他是军训吧。</p><p>不必无故纠结过去的失败，重要的，能改变的还在现在和将来。</p><p>如果不具有强大的心灵，就应该不惧困难，不给自己找颓靡的借口。</p><p>现在 2021.8.22 19:20 前路漫漫，但是我已经没有什么好害怕的了。</p><p>「起风了,唯有努力生存。」</p><h3 id="section-4">🌌2021 8 31</h3><p>上周很忙碌，心情一会好，一会差，这周是差的。</p><p>心情应该一定取决于睡眠。</p><p>心情不好。</p><p>差死了。</p><p>睡觉！。</p><h3 id="section-5">🌌2021 9 3</h3><p>本应该很开心的。</p><p>看不惯有的人。</p><p>似乎是价值观不符。</p><p>似乎是自己太过傲慢。</p><p>不管了，记录一下at罢了。</p><p>有些事情，也应该释怀了。☄️</p><p>atcoder 的精髓似乎就是 rephrase</p><p>🪐</p><h3 id="section-6">🌌2021 9 5</h3><p>上午去打了疫苗。</p><p>下午颓颓颓，想学画画。</p><p>我觉得我有画画的天赋。。。</p><p>想学。</p><hr /><p>总是感觉在做梦。</p><p>我现在记不住初中每一回大型考试的具体答案。</p><p>我现在记不住天宇一次次天宇杯，阶段联系的题目。</p><p>我记不住3+3考试的题目。</p><p>我记不住我曾经对自己充满信心的世锦赛的答案。</p><p>要是让现在的我重新来过呢？</p><p>我可能只能在前几次 OI 比赛能得到更好的分数，我还记得 OI 比赛的题目。</p><p>如果让我重置一次人生呢？</p><p>或许这只是一场梦，让我醒来后呢？</p><p>我会不会重新走一次现在的道路？</p><p>我是不是就是在一个叫做”我想学计算机“的梦里？</p><p>谁知道呢！</p><p>我从未羡慕过自己。</p><p>我在很多方面的确什么也做不好。</p><p>我在人迹交往上，的确一窍不通。</p><p>我在情绪控制上也的确十分失败。</p><p>不。</p><p>我还是会羡慕自己的，只不过我更羡慕我身边的一些人。</p><p>我是个中国人。</p><p>我能够自由的发表自己对别人的看法，能发出心声（身边的十分善良，非常感谢他们能够接纳我的SB发言）。</p><p>尽管老师更喜欢学他们这个学科好的，老师也并没有对我这样学的欠佳的学生厌恶。</p><p>尽管中考压力客观上很大，我也通过主观上颓靡，使自己没有完全崩溃。</p><p>我去过NOI2021收获了一段对我而言非凡的经历。</p><hr /><p>突然想到初一的那个和同学说的”当时的梦想“实现了，但没完全实现。</p><p>很遗憾他高中不在我们学校了。</p><p>只能让那段时光封闭了吧。</p><p>在某些层面上我的确输惨了。。</p><hr /><p>1192 词。</p><h3 id="twice-update-on-9-5">twice update on 9 5</h3><p>sumsung 的屏幕我之前很卡以为被骗了。</p><p>现在才知道原来是刷新率没有调高。</p><p>😓</p><p>上周我开始半脱产。</p><p>还是比较好的。</p><p>我的心理状态还是没有得到严格控制。</p><p>现在听到noi那几个夜晚听的歌曲也还是会十分感伤。</p><p>我当时真有些结束了的感觉。</p><p>《如约而至》负全责！！！！！！</p><p>最终也没能相约老地方😂</p><p>但我也没能释怀我所有的悲伤。</p><p>all right!~~~~</p>]]></content>
-    
-    
     
   </entry>
   
@@ -283,7 +350,7 @@
     <link href="/2021/08/04/arc116E/"/>
     <url>/2021/08/04/arc116E/</url>
     
-    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://atcoder.jp/contests/arc116/tasks/arc116_e">Link</a></p><hr /><h3 id="题解">题解</h3><p>答案显然具有单调性。</p><p>二分，对于 <span class="math inline">\(mid\)</span> 我们计算最少需要几个点使得可以全部覆盖整个树。</p><p>我们有一个显然的贪心，对于以 <span class="math inline">\(u\)</span> 为跟的子树，我们选 <span class="math inline">\(u\)</span> 当且仅当子树内最深的到 <span class="math inline">\(u\)</span> 的距离恰好为 <span class="math inline">\(mid\)</span>。</p><p>如何证明？</p><p>考虑如果不是这样，我们找到最深的一个选的 <span class="math inline">\(u\)</span> 不满足上述贪心策略。</p><p>跳 <span class="math inline">\(u\)</span> 父亲，显然 <span class="math inline">\(fa_u\)</span> 不劣于 <span class="math inline">\(u\)</span>。</p><p>考虑 <span class="math inline">\(fa_u\)</span> 能更多照顾到 <span class="math inline">\(u\)</span> 子树外的点，而且此时 <span class="math inline">\(u\)</span> 子树内依旧合法。</p><hr /><p>有了贪心策略就很简单了。</p><p>我们维护 <span class="math inline">\(a_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内所选的点还能支持多远。</p><p><span class="math inline">\(b_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内不能被覆盖到的点距离 <span class="math inline">\(u\)</span> 的距离。注意 <span class="math inline">\(u\)</span> 距离 <span class="math inline">\(u\)</span> 0个距离。</p><p>考虑 <span class="math inline">\(\min_{(u,v)}{a_v-1}\)</span> 和 <span class="math inline">\(\min_{(u,v)}b_v+1\)</span> 关系即可。</p><p>记 <span class="math inline">\(p=\min_{(u,v)}a_v-1,q=\min_{(u,v)}b_v+1\)</span></p><ol type="1"><li><p>如果 <span class="math inline">\(p&gt;=q\)</span> 证明 <span class="math inline">\(u\)</span> 子树内不能被覆盖的点可以通过其他所选点覆盖。</p><p>此时 <span class="math inline">\(b_u=-1\)</span>,<span class="math inline">\(a_u=p\)</span></p></li><li><p>否则如果 <span class="math inline">\(p=mid\)</span> 代表必须采取行动选 <span class="math inline">\(u\)</span> 覆盖，此时 <span class="math inline">\(b_u=-1,a_u=mid\)</span>。</p></li><li><p>否则，我们不覆盖，但是此时所选点也不会在产生贡献，所以我们可以直接 <span class="math inline">\(a_u=0,b_u=q\)</span>。</p></li></ol><p><a href="https://atcoder.jp/contests/arc116/submissions/24770350">code</a></p><h3 id="吐槽">吐槽</h3><p>at 的题解很奇怪，不是很懂为什么要提到 <code>dynamic programming</code>,也不解释 贪心策略。</p><p>这个贪心策略还是很明显的，但是正确性确实需要考虑，而我已经想到这个贪心，但是看到题解没提到贪心，而是放了一个 <code>dynamic programming</code> 就觉得自己错了。</p><p>希望这篇博客能帮到你吧。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://atcoder.jp/contests/arc116/tasks/arc116_e">Link</a></p><hr /><h3 id="题解">题解</h3><p>答案显然具有单调性。</p><p>二分，对于 <span class="math inline">\(mid\)</span> 我们计算最少需要几个点使得可以全部覆盖整个树。</p><p>我们有一个显然的贪心，对于以 <span class="math inline">\(u\)</span> 为跟的子树，我们选 <span class="math inline">\(u\)</span> 当且仅当子树内最深的到 <span class="math inline">\(u\)</span> 的距离恰好为 <span class="math inline">\(mid\)</span>。</p><p>如何证明？</p><p>考虑如果不是这样，我们找到最深的一个选的 <span class="math inline">\(u\)</span> 不满足上述贪心策略。</p><p>跳 <span class="math inline">\(u\)</span> 父亲，显然 <span class="math inline">\(fa_u\)</span> 不劣于 <span class="math inline">\(u\)</span>。</p><p>考虑 <span class="math inline">\(fa_u\)</span> 能更多照顾到 <span class="math inline">\(u\)</span> 子树外的点，而且此时 <span class="math inline">\(u\)</span> 子树内依旧合法。</p><hr /><p>有了贪心策略就很简单了。</p><p>我们维护 <span class="math inline">\(a_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内所选的点还能支持多远。</p><p><span class="math inline">\(b_u\)</span> 表示 <span class="math inline">\(u\)</span> 子树内不能被覆盖到的点距离 <span class="math inline">\(u\)</span> 的距离。注意 <span class="math inline">\(u\)</span> 距离 <span class="math inline">\(u\)</span> 0个距离。</p><p>考虑 <span class="math inline">\(\min_{(u,v)}{a_v-1}\)</span> 和 <span class="math inline">\(\min_{(u,v)}b_v+1\)</span> 关系即可。</p><p>记 <span class="math inline">\(p=\min_{(u,v)}a_v-1,q=\min_{(u,v)}b_v+1\)</span></p><ol type="1"><li><p>如果 <span class="math inline">\(p\geq q\)</span> 证明 <span class="math inline">\(u\)</span> 子树内不能被覆盖的点可以通过其他所选点覆盖。</p><p>此时 <span class="math inline">\(b_u=-1\)</span>,<span class="math inline">\(a_u=p\)</span></p></li><li><p>否则如果 <span class="math inline">\(p=mid\)</span> 代表必须采取行动选 <span class="math inline">\(u\)</span> 覆盖，此时 <span class="math inline">\(b_u=-1,a_u=mid\)</span>。</p></li><li><p>否则，我们不覆盖，但是此时所选点也不会在产生贡献，所以我们可以直接 <span class="math inline">\(a_u=0,b_u=q\)</span>。</p></li></ol><p><a href="https://atcoder.jp/contests/arc116/submissions/24770350">code</a></p><h3 id="吐槽">吐槽</h3><p>at 的题解很奇怪，不是很懂为什么要提到 <code>dynamic programming</code>,也不解释 贪心策略。</p><p>这个贪心策略还是很明显的，但是正确性确实需要考虑，而我已经想到这个贪心，但是看到题解没提到贪心，而是放了一个 <code>dynamic programming</code> 就觉得自己错了。</p><p>希望这篇博客能帮到你吧。</p>]]></content>
     
     
     <categories>
@@ -534,9 +601,9 @@
     
     <tags>
       
-      <tag>idea题</tag>
-      
       <tag>分解质因数</tag>
+      
+      <tag>idea题</tag>
       
       <tag>数论</tag>
       

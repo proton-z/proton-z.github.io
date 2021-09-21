@@ -186,7 +186,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2021-08-04 14:52" pubdate>
-        2021年8月4日 下午
+        星期三, 八月 4日 2021, 2:52 下午
       </time>
     </span>
   
@@ -258,7 +258,7 @@
 <p>考虑 <span class="math inline">\(\min_{(u,v)}{a_v-1}\)</span> 和 <span class="math inline">\(\min_{(u,v)}b_v+1\)</span> 关系即可。</p>
 <p>记 <span class="math inline">\(p=\min_{(u,v)}a_v-1,q=\min_{(u,v)}b_v+1\)</span></p>
 <ol type="1">
-<li><p>如果 <span class="math inline">\(p&gt;=q\)</span> 证明 <span class="math inline">\(u\)</span> 子树内不能被覆盖的点可以通过其他所选点覆盖。</p>
+<li><p>如果 <span class="math inline">\(p\geq q\)</span> 证明 <span class="math inline">\(u\)</span> 子树内不能被覆盖的点可以通过其他所选点覆盖。</p>
 <p>此时 <span class="math inline">\(b_u=-1\)</span>,<span class="math inline">\(a_u=p\)</span></p></li>
 <li><p>否则如果 <span class="math inline">\(p=mid\)</span> 代表必须采取行动选 <span class="math inline">\(u\)</span> 覆盖，此时 <span class="math inline">\(b_u=-1,a_u=mid\)</span>。</p></li>
 <li><p>否则，我们不覆盖，但是此时所选点也不会在产生贡献，所以我们可以直接 <span class="math inline">\(a_u=0,b_u=q\)</span>。</p></li>
