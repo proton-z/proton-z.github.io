@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>cf1574 F. Occurrences</title>
+    <link href="/2021/09/23/cf1574F/"/>
+    <url>/2021/09/23/cf1574F/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题意">题意</h3><p><a href="https://codeforces.com/contest/1574/problem/F">Link</a></p><p>中文大意：让你构造字符串 <span class="math inline">\(a,a_i\le k\)</span>。</p><p>记 <span class="math inline">\(s(b)\)</span> 为字符串 <span class="math inline">\(b\)</span> 在 <span class="math inline">\(a\)</span> 中出现次数</p><p>给你 <span class="math inline">\(n\)</span> 个限制字符串 <span class="math inline">\(A_i\)</span>,表示对于任意 <span class="math inline">\(A_i\)</span> 子串 <span class="math inline">\(b\)</span>,<span class="math inline">\(s(A_i)\ge s(b)\)</span>。</p><hr /><h3 id="题解">题解</h3><p>思路还蛮好想，只要合法的字符串 <span class="math inline">\(a\)</span> ,<span class="math inline">\(s(A_i)\le s(b)\)</span>，所以现在情况只有取等。</p><p>首先排除 <span class="math inline">\(\exist\ j\not =k\quad s.t.\ A_{i,j}=A_{i,k}\)</span>。</p><p>此后问题就变为如何决策 <span class="math inline">\(A_i,A_j\)</span> 两个冲不冲突。</p><p>rephrase 问题，如果我们选字符 <span class="math inline">\(A_{i,1}\)</span> 那么有必须选 <span class="math inline">\(A_{i,2}\)</span>,如此递推。</p><p>认为这是一个顺次向下钦定的问题。</p><p>建出图那么，我们只需要统计有向链的个数。</p><p>合法链长分别为 <span class="math inline">\(l_1,l_2\dots,l_k\)</span>。</p><p>注意单个字符。</p><p>那么可以使用多项式求逆 <span class="math inline">\([x^n]\sum_{i=0}f^i(x)=[x^n]\frac{1}{1-f(x)}\)</span>。</p><p><span class="math inline">\(\texttt{Complexity : }\mathcal{O(n\log n)}\)</span>。</p><p>发现 <span class="math inline">\(\sum_{i}l_i\leq n\)</span> ,可以想到根号分治。</p><p><span class="math inline">\(\texttt{Complexity : }\mathcal{O(n\sqrt n)}\)</span>。</p><p>注意算链的时候不要怕麻烦，要考虑周全，或许我是对了，但是正式考试+31可不是什么好东西。</p><p>code 略。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>combination</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>arc101C | Ribbon on tree</title>
     <link href="/2021/09/18/arc101c/"/>
     <url>/2021/09/18/arc101c/</url>
