@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>arc115D odd degree</title>
+    <link href="/2021/09/27/arc115d/"/>
+    <url>/2021/09/27/arc115d/</url>
+    
+    <content type="html"><![CDATA[<h3 id="statement">statement</h3><p><a href="https://atcoder.jp/contests/arc115/tasks/arc115_d">题意</a>很简洁。</p><p>让你对于 <span class="math inline">\(k\in[1,n]\)</span> 求一个图有多少个子图有恰好 <span class="math inline">\(k\)</span> 个奇度的点。</p><p><span class="math inline">\(n,m\leq 5000\)</span>。</p><p>注意子图特殊定义：原图 <span class="math inline">\(E\)</span>,子图 <span class="math inline">\(S\)</span>。<span class="math inline">\(E,S\)</span> 点集相同，<span class="math inline">\(S\)</span> 边集是 <span class="math inline">\(E\)</span> 边集的子集。</p><span id="more"></span><hr /><h3 id="solution">solution</h3><p>这个题其实和 <a href="https://proton-z.github.io/2021/06/15/cf1515F/">cf1515G</a> 有异曲同工之妙。</p><p>这道题本质让我们决策每一条边选还是不选。</p><h4 id="hint1">hint1</h4><p>如果是树怎么办？</p><h4 id="key">key</h4><p>接下来就是最精妙的地方了！</p><p>在树上的时候，只要我们钦定奇度点，我们可以得到唯一边的决策情况。</p><p>可以从反证法，如果多一条边，那么必须用一个环来抵消，树中没有环。</p><p>若要 <span class="math inline">\(2\mid k\)</span> 个奇度点，则方案数就为 <span class="math inline">\(\binom{n}{k}\)</span>。</p><hr /><p>从而可以扩展到平凡图。</p><p>我们拉出来一棵生成树，然后我们先决策树边，接下来决策非树边。</p><p>现在本质上是对一个树边的决策情况，我们想把若干个环取反使得奇偶状态不变。</p><p>这里与 <a href="https://proton-z.github.io/2021/06/15/cf1515F/">cf1515G</a> 便十分相似，我们认为每一个非树边与树边形成的简单环是所有环的“基环”。</p><p>所以只需要随意决策每一个非树边选不选即可。</p><hr /><p>也可以这么理解无论我们怎么决策非树边 <span class="math inline">\((x,y)\)</span>，都可以通过把 <span class="math inline">\(x,y\)</span> 间树边取反，使得状态不变。</p><p><span class="math inline">\(\texttt{Complexity : }\mathcal{O(n\alpha(n)+n^2)}\)</span>。</p><h3 id="code"><a href="https://atcoder.jp/contests/arc115/submissions/25897887">code</a></h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>图论</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>combination</tag>
+      
+      <tag>小idea</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>cf1574 F. Occurrences</title>
     <link href="/2021/09/23/cf1574F/"/>
     <url>/2021/09/23/cf1574F/</url>
@@ -45,9 +72,9 @@
     
     <tags>
       
-      <tag>dp</tag>
-      
       <tag>IN-EX principle</tag>
+      
+      <tag>dp</tag>
       
       <tag>idea</tag>
       
@@ -626,9 +653,9 @@
     
     <tags>
       
-      <tag>分解质因数</tag>
-      
       <tag>idea题</tag>
+      
+      <tag>分解质因数</tag>
       
       <tag>数论</tag>
       
