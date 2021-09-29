@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>一些简单题目总结</title>
+    <link href="/2021/09/29/Top-Simple-problem/"/>
+    <url>/2021/09/29/Top-Simple-problem/</url>
+    
+    <content type="html"><![CDATA[<hr /><hr /><p>一些简单问题。</p><p>可以一句话题解。</p><h3 id="problem-1">problem 1</h3><p><a href="https://codeforces.com/contest/1579/problem/G">G. Minimal Coverage</a></p><p>题意给一堆木棍长度 <span class="math inline">\(a_i\)</span>。</p><p>让你保证首尾相连，问你最少覆盖多少长度。</p><hr /><div class="note note-success">            <p>Solution</p>          </div><p><span class="math inline">\(f_i\)</span> 表示 <span class="math inline">\(i\)</span> 是否能被选。</p><p>转移很简单 <span class="math inline">\(f_i\gets f_{i\pm a}\)</span>。</p><p>可以二分，可以哦直接 dp。</p><p><span class="math inline">\(\texttt{Complexity : }\mathcal{O(n^2\log_2 n/n^2)}\)</span>。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>arc115D odd degree</title>
     <link href="/2021/09/27/arc115d/"/>
     <url>/2021/09/27/arc115d/</url>
@@ -79,19 +92,6 @@
       <tag>idea</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title></title>
-    <link href="/2021/09/13/script/"/>
-    <url>/2021/09/13/script/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
     
   </entry>
   
