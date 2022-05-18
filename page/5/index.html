@@ -1,1 +1,901 @@
-<!DOCTYPE html><html lang="zh-CN" data-default-color-scheme="light"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png"><link rel="icon" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#333333"><meta name="description" content="这一切都是stein;gates的选择吧"><meta name="author" content="Imitators"><meta name="keywords" content=""><meta name="description" content="这一切都是stein;gates的选择吧"><meta property="og:type" content="website"><meta property="og:title" content="Hexo"><meta property="og:url" content="https://proton-z.github.io/page/5/index.html"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="这一切都是stein;gates的选择吧"><meta property="og:locale" content="zh_CN"><meta property="article:author" content="Imitators"><meta name="twitter:card" content="summary_large_image"><title>Hexo</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css"><link rel="stylesheet" href="/css/main.css"><script id="fluid-configs">var Fluid=window.Fluid||{},CONFIG={hostname:"proton-z.github.io",root:"/",version:"1.8.12",typing:{enable:!0,typeSpeed:70,cursorChar:"_",loop:!1},anchorjs:{enable:!0,element:"h1,h2,h3,h4,h5,h6",placement:"right",visible:"hover",icon:""},progressbar:{enable:!0,height_px:3,color:"#29d",options:{showSpinner:!1,trickleSpeed:100}},copy_btn:!0,image_zoom:{enable:!0,img_url_replace:["",""]},toc:{enable:!0,headingSelector:"h1,h2,h3,h4,h5,h6",collapseDepth:0},lazyload:{enable:!0,loading_img:"/img/loading.gif",onlypost:!1,offset_factor:2},web_analytics:{enable:!1,baidu:null,google:null,gtag:null,tencent:{sid:null,cid:null},woyaola:null,cnzz:null,leancloud:{app_id:null,app_key:null,server_url:null,path:"window.location.pathname"}},search_path:"/local-search.xml"}</script><script src="/js/utils.js"></script><script src="/js/color-schema.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><header style="height:80vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/"><strong>My blog</strong> </a><button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 首页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 归档</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 分类</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"><a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a></li><li class="nav-item" id="color-toggle-btn"><a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a></li></ul></div></div></nav><div class="banner" id="banner" parallax="true" style="background:url(https://cdn.jsdelivr.net/gh/proton-z/cdn@2.0/img/84618.jpg) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" title="just the prover..."></span></div><div class="scroll-down-bar"><i class="iconfont icon-arrowdown"></i></div></div></div></div></header><main><div class="container nopadding-x-md"><div class="py-5" id="board"><div class="container"><div class="row"><div class="col-12 col-md-10 m-auto"><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/09/03/abc213G/" target="_self">Connectivity 2</a></h1><p class="index-excerpt"><a href="/2021/09/03/abc213G/" target="_self">题意 Link 题解 比较有趣。 如果从单纯的做题角度，这个题似乎就没有那么有趣了，对我而言。 大意，给你个图，每条边都可以保留或切断，问有多少种方式，使得最终 \(1,k\) 联通。 \(n\leq 17\) 很容易想到bitmask(状压)。 如果对于边的状压，不好处理连通性，也有太多状态。 那么就从连通性直接状压。 \(f(S)\) 表示提取 \(S\) 点集，在</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-09-03 22:01" pubdate>2021-09-03</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/idea%E9%A2%98/">idea题</a> <a href="/tags/bitmask/">bitmask</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/31/abc210F/" target="_self">Coprime Solitaire</a></h1><p class="index-excerpt"><a href="/2021/08/31/abc210F/" target="_self">现在很晚了，但是这个神必题卡了我真的好久好久。。。。。(before noi until present)......... （你可以通过我被这个SB题卡发现我真是个菜B) 题意 题解 显然 naive 的连边，如果 \(\gcd(a_i,a_j)\),\(a_i \rightarrow b_j\) 那么如果选 \(a_i\) 必须不能选 \(a_j\) ,显然应该选 \(b_j\) 。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-31 23:25" pubdate>2021-08-31</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a> <a href="/tags/2-sat/">2-sat</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">stirling number</a></h1><p class="index-excerpt"><a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">斯特林数。 感觉斯特林数从构造角度能更好理解吧。 未更新完毕，待更新。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-19 15:13" pubdate>2021-08-19</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/simple-thoughts/">simple thoughts</a> <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a> <a href="/tags/stirling-number/">stirling number</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/19/review-sam/" target="_self">SAM</a></h1><p class="index-excerpt"><a href="/2021/08/19/review-sam/" target="_self">sam，后缀自动机复习。 待更新。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-19 15:13" pubdate>2021-08-19</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/sam/">sam</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/19/basic-number-theory/" target="_self">基本数论</a></h1><p class="index-excerpt"><a href="/2021/08/19/basic-number-theory/" target="_self">说一下一些基本数论算法的实现和简洁证明。 持续更新中。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-19 15:13" pubdate>2021-08-19</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a> <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a> <a href="/tags/miller-rabin/">miller-rabin</a> <a href="/tags/pollard-rho/">pollard-rho</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/10/thought-in-8-10/" target="_self">一些想法</a></h1><p class="index-excerpt"><a href="/2021/08/10/thought-in-8-10/" target="_self">分享一点 OI 相关想法。 本来打算这篇文章是面向同学，大家写的，可是鄙人实在是文笔不济，想了想，还是以这样一种说闲话的方式写一些吧。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-10 02:15" pubdate>2021-08-10</time></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/%E5%9B%9E%E5%BF%86/">回忆</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/06/bzoj5348/" target="_self">bzoj5348</a></h1><p class="index-excerpt"><a href="/2021/08/06/bzoj5348/" target="_self">题意： 你有一个随机数生成器，最初给定一个 \(0\leq x\leq n-1\) 的整数作为随机种子. 这个随机数生成器会每次输出 \(x\) 并将 \(x^k \bmod n\) 作为新的 \(x\)。 你很快发现这个随机数生成器很渣。为了证明它很渣，你想要求出有多少个随机种子，使得这个随机数生成器会输出初始种子无穷多次。</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-06 23:53" pubdate>2021-08-06</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a> <a href="/tags/pollard-rho/">pollard-rho</a> <a href="/tags/%E9%98%B6/">阶</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/05/arc122E/" target="_self">arc122D</a></h1><p class="index-excerpt"><a href="/2021/08/05/arc122E/" target="_self">题意 Link sol 贪心思路显然，我们先把选一定没事的放在后面，接下来化归成子问题。 什么时候选一定没事，也就是 \(a_i\) 具有一个质因子 \(p\),使得 \(p\) 在 \(a_i\) 中次数最高。 形式化表示：设 \(a_i=\prod_{k}p_k^{\alpha_{i,k}}\)。 那么 \(a_i\) 选一定没事，当且仅当 存在 \(k\) , \(\fora</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-05 10:28" pubdate>2021-08-05</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/04/arc116E/" target="_self">arc116E</a></h1><p class="index-excerpt"><a href="/2021/08/04/arc116E/" target="_self">题意 Link 题解 答案显然具有单调性。 二分，对于 \(mid\) 我们计算最少需要几个点使得可以全部覆盖整个树。 我们有一个显然的贪心，对于以 \(u\) 为跟的子树，我们选 \(u\) 当且仅当子树内最深的到 \(u\) 的距离恰好为 \(mid\)。 如何证明？ 考虑如果不是这样，我们找到最深的一个选的 \(u\) 不满足上述贪心策略。 跳 \(u\) 父亲，</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-04 14:52" pubdate>2021-08-04</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/%E8%B4%AA%E5%BF%83/">贪心</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/binary-search/">binary search</a> <a href="/tags/idea%E9%A2%98/">idea题</a> <a href="/tags/greedy/">greedy</a></div></div></article></div><div class="row mx-auto index-card"><article class="col-12 col-md-12 mx-auto index-info"><h1 class="index-header"><a href="/2021/08/04/arc116D/" target="_self">arc116D</a></h1><p class="index-excerpt"><a href="/2021/08/04/arc116D/" target="_self">题意很简洁。 让你求有多少个长度为 \(N\) 的序列 \(A\)，使得 \(\sum_{i=1}^{n}A_i=m,\sum_{\oplus}A_i=0\).</a></p><div class="index-btm post-metas"><div class="post-meta mr-3"><i class="iconfont icon-date"></i> <time datetime="2021-08-04 10:02" pubdate>2021-08-04</time></div><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a href="/categories/dp/">dp</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a href="/tags/dp/">dp</a> <a href="/tags/%E5%B0%8Fidea/">小idea</a></div></div></article></div><nav aria-label="navigation"><span class="pagination" id="pagination"><a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a></span></nav></div></div></div></div></div><a id="scroll-top-button" aria-label="TOP" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div></main><footer class="text-center mt-5 py-3"><div class="footer-content"><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div></footer><script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css"><script>NProgress.configure({showSpinner:!1,trickleSpeed:100}),NProgress.start(),window.addEventListener("load",(function(){NProgress.done()}))</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script><script src="/js/events.js"></script><script src="/js/plugins.js"></script><script src="/js/local-search.js"></script><script src="/js/img-lazyload.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script><script>!function(t,i){(0,Fluid.plugins.typing)(i.getElementById("subtitle").title)}(window,document)</script><script src="/js/boot.js"></script></body></html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://proton-z.github.io/page/5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这一切都是stein;gates的选择吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@2.0/img/84618.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="just the prover...">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/03/abc213G/" target="_self">
+          Connectivity 2
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/03/abc213G/" target="_self">
+          
+          
+            
+          
+          题意
+Link
+题解
+比较有趣。
+如果从单纯的做题角度，这个题似乎就没有那么有趣了，对我而言。
+大意，给你个图，每条边都可以保留或切断，问有多少种方式，使得最终
+\(1,k\) 联通。
+
+\(n\leq 17\)
+很容易想到bitmask(状压)。
+如果对于边的状压，不好处理连通性，也有太多状态。
+那么就从连通性直接状压。
+\(f(S)\) 表示提取 \(S\) 点集，在 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-03 22:01" pubdate>
+              2021-09-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/idea%E9%A2%98/">idea题</a>
+            
+              <a href="/tags/bitmask/">bitmask</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/31/abc210F/" target="_self">
+          Coprime Solitaire
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/31/abc210F/" target="_self">
+          
+          
+            
+          
+          现在很晚了，但是这个神必题卡了我真的好久好久。。。。。(before noi
+until present).........
+（你可以通过我被这个SB题卡发现我真是个菜B)
+题意
+题解
+显然 naive 的连边，如果 \(\gcd(a_i,a_j)\),\(a_i \rightarrow b_j\) 那么如果选 \(a_i\) 必须不能选 \(a_j\) ,显然应该选 \(b_j\) 。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-31 23:25" pubdate>
+              2021-08-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a>
+            
+              <a href="/tags/2-sat/">2-sat</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">
+          stirling number
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">
+          
+          
+            
+          
+          斯特林数。
+感觉斯特林数从构造角度能更好理解吧。
+未更新完毕，待更新。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-19 15:13" pubdate>
+              2021-08-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+              <a href="/tags/stirling-number/">stirling number</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/19/review-sam/" target="_self">
+          SAM
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/19/review-sam/" target="_self">
+          
+          
+            
+          
+          sam，后缀自动机复习。
+待更新。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-19 15:13" pubdate>
+              2021-08-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/sam/">sam</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/19/basic-number-theory/" target="_self">
+          基本数论
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/19/basic-number-theory/" target="_self">
+          
+          
+            
+          
+          说一下一些基本数论算法的实现和简洁证明。
+持续更新中。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-19 15:13" pubdate>
+              2021-08-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+              <a href="/tags/miller-rabin/">miller-rabin</a>
+            
+              <a href="/tags/pollard-rho/">pollard-rho</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/10/thought-in-8-10/" target="_self">
+          一些想法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/10/thought-in-8-10/" target="_self">
+          
+          
+            
+          
+          分享一点 OI 相关想法。
+本来打算这篇文章是面向同学，大家写的，可是鄙人实在是文笔不济，想了想，还是以这样一种说闲话的方式写一些吧。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-10 02:15" pubdate>
+              2021-08-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9B%9E%E5%BF%86/">回忆</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/06/bzoj5348/" target="_self">
+          bzoj5348
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/06/bzoj5348/" target="_self">
+          
+          
+            
+          
+          题意：
+你有一个随机数生成器，最初给定一个 \(0\leq
+x\leq n-1\) 的整数作为随机种子.
+这个随机数生成器会每次输出 \(x\)
+并将 \(x^k \bmod n\) 作为新的 \(x\)。
+你很快发现这个随机数生成器很渣。为了证明它很渣，你想要求出有多少个随机种子，使得这个随机数生成器会输出初始种子无穷多次。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-06 23:53" pubdate>
+              2021-08-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+              <a href="/tags/pollard-rho/">pollard-rho</a>
+            
+              <a href="/tags/%E9%98%B6/">阶</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/05/arc122E/" target="_self">
+          arc122D
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/05/arc122E/" target="_self">
+          
+          
+            
+          
+          题意
+Link
+sol
+贪心思路显然，我们先把选一定没事的放在后面，接下来化归成子问题。
+什么时候选一定没事，也就是 \(a_i\)
+具有一个质因子 \(p\),使得 \(p\) 在 \(a_i\) 中次数最高。
+形式化表示：设 \(a_i=\prod_{k}p_k^{\alpha_{i,k}}\)。
+那么 \(a_i\) 选一定没事，当且仅当
+存在 \(k\) , \(\fora
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-05 10:28" pubdate>
+              2021-08-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/04/arc116E/" target="_self">
+          arc116E
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/04/arc116E/" target="_self">
+          
+          
+            
+          
+          题意
+Link
+
+题解
+答案显然具有单调性。
+二分，对于 \(mid\)
+我们计算最少需要几个点使得可以全部覆盖整个树。
+我们有一个显然的贪心，对于以 \(u\)
+为跟的子树，我们选 \(u\)
+当且仅当子树内最深的到 \(u\)
+的距离恰好为 \(mid\)。
+如何证明？
+考虑如果不是这样，我们找到最深的一个选的 \(u\) 不满足上述贪心策略。
+跳 \(u\) 父亲，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-04 14:52" pubdate>
+              2021-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%B4%AA%E5%BF%83/">贪心</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/binary-search/">binary search</a>
+            
+              <a href="/tags/idea%E9%A2%98/">idea题</a>
+            
+              <a href="/tags/greedy/">greedy</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/04/arc116D/" target="_self">
+          arc116D
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/04/arc116D/" target="_self">
+          
+          
+            
+          
+          题意很简洁。
+让你求有多少个长度为 \(N\) 的序列
+\(A\)，使得 \(\sum_{i=1}^{n}A_i=m,\sum_{\oplus}A_i=0\).
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-04 10:02" pubdate>
+              2021-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/dp/">dp</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/dp/">dp</a>
+            
+              <a href="/tags/%E5%B0%8Fidea/">小idea</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,2 +1,584 @@
-<!DOCTYPE html><html lang="zh-CN" data-default-color-scheme="light"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png"><link rel="icon" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#333333"><meta name="description" content="闵可夫斯基和。[正在施工]
-一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。"><meta name="author" content="Imitators"><meta name="keywords" content=""><meta name="description" content="闵可夫斯基和。[正在施工] 一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。"><meta property="og:type" content="article"><meta property="og:title" content="闵可夫斯基和"><meta property="og:url" content="https://proton-z.github.io/2021/12/22/Minkowski-addition-simple-thoughts/index.html"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="闵可夫斯基和。[正在施工] 一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-01.png"><meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-02.png"><meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-03.png"><meta property="article:published_time" content="2021-12-22T08:10:41.080Z"><meta property="article:modified_time" content="2022-03-20T03:39:50.664Z"><meta property="article:author" content="Imitators"><meta property="article:tag" content="simple thoughts"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proton-z.github.io/img/2021-12-22-01.png"><title>闵可夫斯基和 - Hexo</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css"><link rel="stylesheet" href="/lib/hint/hint.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css"><link rel="stylesheet" href="/css/main.css"><script id="fluid-configs">var Fluid=window.Fluid||{},CONFIG={hostname:"proton-z.github.io",root:"/",version:"1.8.12",typing:{enable:!0,typeSpeed:70,cursorChar:"_",loop:!1},anchorjs:{enable:!0,element:"h1,h2,h3,h4,h5,h6",placement:"right",visible:"hover",icon:""},progressbar:{enable:!0,height_px:3,color:"#29d",options:{showSpinner:!1,trickleSpeed:100}},copy_btn:!0,image_zoom:{enable:!0,img_url_replace:["",""]},toc:{enable:!0,headingSelector:"h1,h2,h3,h4,h5,h6",collapseDepth:0},lazyload:{enable:!0,loading_img:"/img/loading.gif",onlypost:!1,offset_factor:2},web_analytics:{enable:!1,baidu:null,google:null,gtag:null,tencent:{sid:null,cid:null},woyaola:null,cnzz:null,leancloud:{app_id:null,app_key:null,server_url:null,path:"window.location.pathname"}},search_path:"/local-search.xml"}</script><script src="/js/utils.js"></script><script src="/js/color-schema.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><header style="height:90vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/"><strong>My blog</strong> </a><button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 首页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 归档</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 分类</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"><a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a></li><li class="nav-item" id="color-toggle-btn"><a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a></li></ul></div></div></nav><div class="banner" id="banner" parallax="true" style="background:url(https://cdn.jsdelivr.net/gh/proton-z/cdn@3.0/2233/b13.jfif) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" title="闵可夫斯基和"></span><div class="mt-3"><span class="post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2021-12-22 16:10" pubdate>星期三, 十二月 22日 2021, 4:10 下午</time></span></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 805 字 </span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 3 分钟</span></div></div><div class="scroll-down-bar"><i class="iconfont icon-arrowdown"></i></div></div></div></div></header><main><div class="container-fluid nopadding-x"><div class="row nomargin-x"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-x-md"><div class="container nopadding-x-md" id="board-ctn"><div class="py-5" id="board"><article class="post-content mx-auto"><h1 style="display:none">闵可夫斯基和</h1><div class="markdown-body"><p>闵可夫斯基和。[正在施工]</p><p>一般人都是由这样一个<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4557">例题</a>引入学习的，那我们也用这个例题引入，记录。</p><span id="more"></span><p>last update: 2021-12-11 16:35</p><hr><p>给定两个凸多边形点集，多次询问向量 <span class="math inline">\(q\)</span>，问在点集 <span class="math inline">\(B\)</span> 每个点都移动 <span class="math inline">\(q\)</span>，两个点集还能有交吗？</p><p>对于别的题解，他们大都在花大量笔墨写闵可夫斯基和是什么东西，我觉得这是愚蠢的。</p><p>因为我并不能从这个题直观看出来他在求什么的“和”。</p><p>考虑这个题，判断两个凸多边形相交情况是较难的，所以我们打算预处理出来可以使这两个多边形有交的向量集合 <span class="math inline">\(Q\)</span>。</p><p>有交的基本情况一定是多边形 <span class="math inline">\(\mathcal{A,B}\)</span>,的某个顶点接触到了另一个的顶点（边相交可以沿边平移）。</p><p>所以我们把两个顶点间的向量求出来。如图：</p><figure><img src="\img\2021-12-22-01.png" srcset="/img/loading.gif" lazyload alt="img1"><figcaption aria-hidden="true">img1</figcaption></figure><p>这样我们列出这些向量：</p><figure><img src="\img\2021-12-22-02.png" srcset="/img/loading.gif" lazyload alt="img1"><figcaption aria-hidden="true">img1</figcaption></figure><p>接下来只能感性理解了，对于几个向量，在里面的“影响力”肯定没有在外面的大。</p><figure><img src="\img\2021-12-22-03.png" srcset="/img/loading.gif" lazyload alt="img1"><figcaption aria-hidden="true">img1</figcaption></figure><p>或者这么说明两个向量之间的向量一定合法，有交（毕竟原先的多边形也是凸的，不太可能首末状态有交，中间无交），所以最终的答案一定是一个凸包。</p><hr><p>那么问题转换为我们要求这个向量集合组成的凸包 ： <span class="math inline">\(S=\{q_a-q_b\mid q_a\in A,q_b\in B\}\)</span>。</p><p>此时闵可夫斯基和这个概念便可以解释上述问题。</p><p>闵可夫斯基和能计算 <span class="math inline">\(S=\{q_a+q_b\mid q_a\in A,q_b\in B\}\)</span>。</p><p>所以对于此题，把 <span class="math inline">\(B\)</span> 取反，计算闵可夫斯基和即可。</p><hr><p>求闵可夫斯基和的方法就是把“边向量”极角排序，然后顺次相连。</p><p>证明不是很会，以后再更。</p><p>每一个新凸包点都是原先两个凸包的点的和。</p><p>注意这些向量加法是原先向量平面上的“点”，而不是边向量，边向量只不过是用来求闵可夫斯基和的。</p><hr><p>前面没啥问题把。。。。后面：</p><h3 id="假了寄了">假了，寄了</h3><p>Max卷积如果不是有更好的凸的性质，<strong>几乎不可能</strong>很快的做出，包括使用闵可夫斯基和。</p><p>抱歉可能假了。</p><hr><p>其实并没有完全假，</p><p>主要就是考虑凸的性质更加厉害。</p></div><hr><div><div class="post-metas mb-3"><div class="post-meta"><i class="iconfont icon-tags"></i> <a class="hover-with-bg" href="/tags/simple-thoughts/">simple thoughts</a></div></div><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p><div class="post-prevnext"><article class="post-prev col-6"><a href="/2021/12/22/cf1610F/"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">cf1610F</span> <span class="visible-mobile">上一篇</span></a></article><article class="post-next col-6"><a href="/2021/12/20/seive-simple-thoughts/"><span class="hidden-mobile">min25筛法，powerful number 筛法</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></article></div></div><article class="comments" id="comments" lazyload><div id="valine"></div><script type="text/javascript">Fluid.utils.loadComments("#valine",(function(){Fluid.utils.createScript("https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js",(function(){var i=Object.assign({appId:"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz",appKey:"DlH5PmKDEOPuptEFP5FxLc7C",path:"window.location.pathname",placeholder:"欢迎评论(￣▽￣)/////",avatar:"retro",meta:["nick","mail","link"],requiredFields:[],pageSize:10,lang:"zh-CN",highlight:!0,recordIP:!0,serverURLs:null,emojiCDN:null,emojiMaps:null,enableQQ:!1,appid:"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz",appkey:"DlH5PmKDEOPuptEFP5FxLc7C"},{el:"#valine",path:window.location.pathname});new Valine(i),Fluid.utils.waitElementVisible("#valine .vcontent",()=>{Fluid.plugins.initFancyBox("#valine .vcontent img:not(.vemoji)")})}))}))</script><noscript>Please enable JavaScript to view the comments</noscript></article></article></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p><div class="toc-body" id="toc-body"></div></div></div></div></div><a id="scroll-top-button" aria-label="TOP" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div></main><footer class="text-center mt-5 py-3"><div class="footer-content"><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div></footer><script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css"><script>NProgress.configure({showSpinner:!1,trickleSpeed:100}),NProgress.start(),window.addEventListener("load",(function(){NProgress.done()}))</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script><script src="/js/events.js"></script><script src="/js/plugins.js"></script><script src="/js/local-search.js"></script><script src="/js/img-lazyload.js"></script><script src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script><script>!function(t,i){(0,Fluid.plugins.typing)(i.getElementById("subtitle").title)}(window,document)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},loader:{load:["ui/lazy"]},options:{renderActions:{findScript:[10,e=>{document.querySelectorAll('script[type^="math/tex"]').forEach(t=>{const a=!!t.type.match(/; *mode=display/),n=new e.options.MathItem(t.textContent,e.inputJax[0],a),o=document.createTextNode("");t.parentNode.replaceChild(o,t),n.start={node:o,delim:"",n:0},n.end={node:o,delim:"",n:0},e.math.push(n)})},"",!1],insertedScript:[200,()=>{document.querySelectorAll("mjx-container").forEach(e=>{let t=e.parentNode;"li"===t.nodeName.toLowerCase()&&t.parentNode.classList.add("has-jax")})},"",!1]}}}</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script><script src="/js/boot.js"></script></body></html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="闵可夫斯基和。[正在施工]
+一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="闵可夫斯基和。[正在施工] 一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闵可夫斯基和">
+<meta property="og:url" content="https://proton-z.github.io/2021/12/22/Minkowski-addition-simple-thoughts/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="闵可夫斯基和。[正在施工] 一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-01.png">
+<meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-02.png">
+<meta property="og:image" content="https://proton-z.github.io/img/2021-12-22-03.png">
+<meta property="article:published_time" content="2021-12-22T08:10:41.080Z">
+<meta property="article:modified_time" content="2022-03-20T03:39:50.664Z">
+<meta property="article:author" content="Imitators">
+<meta property="article:tag" content="simple thoughts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://proton-z.github.io/img/2021-12-22-01.png">
+  
+  <title>闵可夫斯基和 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@3.0/2233/b13.jfif') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="闵可夫斯基和">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-22 16:10" pubdate>
+        星期三, 十二月 22日 2021, 4:10 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      805 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">闵可夫斯基和</h1>
+            
+            <div class="markdown-body">
+              <p>闵可夫斯基和。[正在施工]</p>
+<p>一般人都是由这样一个<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4557">例题</a>引入学习的，那我们也用这个例题引入，记录。</p>
+<span id="more"></span>
+<p>last update: 2021-12-11 16:35</p>
+<hr />
+<p>给定两个凸多边形点集，多次询问向量 <span
+class="math inline">\(q\)</span>，问在点集 <span
+class="math inline">\(B\)</span> 每个点都移动 <span
+class="math inline">\(q\)</span>，两个点集还能有交吗？</p>
+<p>对于别的题解，他们大都在花大量笔墨写闵可夫斯基和是什么东西，我觉得这是愚蠢的。</p>
+<p>因为我并不能从这个题直观看出来他在求什么的“和”。</p>
+<p>考虑这个题，判断两个凸多边形相交情况是较难的，所以我们打算预处理出来可以使这两个多边形有交的向量集合
+<span class="math inline">\(Q\)</span>。</p>
+<p>有交的基本情况一定是多边形 <span
+class="math inline">\(\mathcal{A,B}\)</span>,的某个顶点接触到了另一个的顶点（边相交可以沿边平移）。</p>
+<p>所以我们把两个顶点间的向量求出来。如图：</p>
+<figure>
+<img src="\img\2021-12-22-01.png" srcset="/img/loading.gif" lazyload alt="img1" />
+<figcaption aria-hidden="true">img1</figcaption>
+</figure>
+<p>这样我们列出这些向量：</p>
+<figure>
+<img src="\img\2021-12-22-02.png" srcset="/img/loading.gif" lazyload alt="img1" />
+<figcaption aria-hidden="true">img1</figcaption>
+</figure>
+<p>接下来只能感性理解了，对于几个向量，在里面的“影响力”肯定没有在外面的大。</p>
+<figure>
+<img src="\img\2021-12-22-03.png" srcset="/img/loading.gif" lazyload alt="img1" />
+<figcaption aria-hidden="true">img1</figcaption>
+</figure>
+<p>或者这么说明两个向量之间的向量一定合法，有交（毕竟原先的多边形也是凸的，不太可能首末状态有交，中间无交），所以最终的答案一定是一个凸包。</p>
+<hr />
+<p>那么问题转换为我们要求这个向量集合组成的凸包 ： <span
+class="math inline">\(S=\{q_a-q_b\mid q_a\in A,q_b\in B\}\)</span>。</p>
+<p>此时闵可夫斯基和这个概念便可以解释上述问题。</p>
+<p>闵可夫斯基和能计算 <span class="math inline">\(S=\{q_a+q_b\mid q_a\in
+A,q_b\in B\}\)</span>。</p>
+<p>所以对于此题，把 <span class="math inline">\(B\)</span>
+取反，计算闵可夫斯基和即可。</p>
+<hr />
+<p>求闵可夫斯基和的方法就是把“边向量”极角排序，然后顺次相连。</p>
+<p>证明不是很会，以后再更。</p>
+<p>每一个新凸包点都是原先两个凸包的点的和。</p>
+<p>注意这些向量加法是原先向量平面上的“点”，而不是边向量，边向量只不过是用来求闵可夫斯基和的。</p>
+<hr />
+<p>前面没啥问题把。。。。后面：</p>
+<h3 id="假了寄了">假了，寄了</h3>
+<p>Max卷积如果不是有更好的凸的性质，<strong>几乎不可能</strong>很快的做出，包括使用闵可夫斯基和。</p>
+<p>抱歉可能假了。</p>
+<hr />
+<p>其实并没有完全假，</p>
+<p>主要就是考虑凸的性质更加厉害。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/simple-thoughts/">simple thoughts</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/22/cf1610F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">cf1610F</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/20/seive-simple-thoughts/">
+                        <span class="hidden-mobile">min25筛法，powerful number 筛法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

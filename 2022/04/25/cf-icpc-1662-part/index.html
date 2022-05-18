@@ -1,1 +1,615 @@
-<!DOCTYPE html><html lang="zh-CN" data-default-color-scheme="light"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png"><link rel="icon" href="/img/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#333333"><meta name="description" content="这一切都是stein;gates的选择吧"><meta name="author" content="Imitators"><meta name="keywords" content=""><meta name="description" content="Links 和袁妹妹打的一场acm。感觉由于是 7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。 赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。 只说我做的吧。。 D 题。 题意是每次你可以插入或删除 \(\text{aa,bb,cc,abab,bcbc}\) ，问你能不能将 \(A\)"><meta property="og:type" content="article"><meta property="og:title" content="SWERC 2021-2022"><meta property="og:url" content="https://proton-z.github.io/2022/04/25/cf-icpc-1662-part/index.html"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="Links 和袁妹妹打的一场acm。感觉由于是 7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。 赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。 只说我做的吧。。 D 题。 题意是每次你可以插入或删除 \(\text{aa,bb,cc,abab,bcbc}\) ，问你能不能将 \(A\)"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2022-04-25T09:35:00.000Z"><meta property="article:modified_time" content="2022-04-26T03:36:51.679Z"><meta property="article:author" content="Imitators"><meta name="twitter:card" content="summary_large_image"><title>SWERC 2021-2022 - Hexo</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css"><link rel="stylesheet" href="/lib/hint/hint.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css"><link rel="stylesheet" href="/css/main.css"><script id="fluid-configs">var Fluid=window.Fluid||{},CONFIG={hostname:"proton-z.github.io",root:"/",version:"1.8.12",typing:{enable:!0,typeSpeed:70,cursorChar:"_",loop:!1},anchorjs:{enable:!0,element:"h1,h2,h3,h4,h5,h6",placement:"right",visible:"hover",icon:""},progressbar:{enable:!0,height_px:3,color:"#29d",options:{showSpinner:!1,trickleSpeed:100}},copy_btn:!0,image_zoom:{enable:!0,img_url_replace:["",""]},toc:{enable:!0,headingSelector:"h1,h2,h3,h4,h5,h6",collapseDepth:0},lazyload:{enable:!0,loading_img:"/img/loading.gif",onlypost:!1,offset_factor:2},web_analytics:{enable:!1,baidu:null,google:null,gtag:null,tencent:{sid:null,cid:null},woyaola:null,cnzz:null,leancloud:{app_id:null,app_key:null,server_url:null,path:"window.location.pathname"}},search_path:"/local-search.xml"}</script><script src="/js/utils.js"></script><script src="/js/color-schema.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><header style="height:90vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/"><strong>My blog</strong> </a><button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 首页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 归档</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 分类</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"><a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a></li><li class="nav-item" id="color-toggle-btn"><a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a></li></ul></div></div></nav><div class="banner" id="banner" parallax="true" style="background:url(https://cdn.jsdelivr.net/gh/proton-z/cdn@3.0/2233/b34.jfif) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" title="SWERC 2021-2022"></span><div class="mt-3"><span class="post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2022-04-25 17:35" pubdate>星期一, 四月 25日 2022, 5:35 下午</time></span></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 2.1k 字 </span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 6 分钟</span></div></div><div class="scroll-down-bar"><i class="iconfont icon-arrowdown"></i></div></div></div></div></header><main><div class="container-fluid nopadding-x"><div class="row nomargin-x"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-x-md"><div class="container nopadding-x-md" id="board-ctn"><div class="py-5" id="board"><article class="post-content mx-auto"><h1 style="display:none">SWERC 2021-2022</h1><div class="markdown-body"><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662">Links</a></p><p>和袁妹妹打的一场acm。感觉由于是 7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。</p><p>赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。</p><p>只说我做的吧。。</p><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/D">D</a> 题。</p><p>题意是每次你可以插入或删除 <span class="math inline">\(\text{aa,bb,cc,abab,bcbc}\)</span> ，问你能不能将 <span class="math inline">\(A\)</span> 串变为 <span class="math inline">\(B\)</span> 串。</p><p><span class="math inline">\(n\)</span> 竟然只开到了 <span class="math inline">\(100\)</span> 让我以为是dp什么的。。</p><p>但是存在 <span class="math inline">\(\text{a}\to\text{aabcb}\to \text{bcb}\)</span> 这种，不是很能dp。</p><p>仔细考虑一下发现这样一种变换 <span class="math inline">\(\mathrm{ab\to ababba\to ba}\)</span> 所以暗示了我们本质是在交换。</p><p>只不过 <span class="math inline">\(\text{a,b,c}\)</span> 不对称。所以变成 <span class="math inline">\(\text{b}\)</span> 随便动 ，<span class="math inline">\(\text{a,c}\)</span> 不能交叉动。</p><p>所以剩下的也很简单了，先把连着的消没，然后把 <span class="math inline">\(\text{b}\)</span> 放到一起，删掉。</p><p>看剩下的两个只包含 <span class="math inline">\(\text{a,c}\)</span> 的串是否相同。</p><hr><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/F">F</a> 题。</p><p>题意是你从 <span class="math inline">\(i\)</span> 走到 <span class="math inline">\(j\)</span> 的充要条件是 <span class="math inline">\(|i-j|\leq \min(p_i,p_j)\)</span> 。问 <span class="math inline">\(i\to j\)</span> 最短路。</p><p>性质想错了。。口胡了。。</p><p>实际上正解就是 bfs。</p><p>只需要满足 <span class="math inline">\(j\in[i,i-p_i],j+p_j\leq i\)</span> 很简单的线段树二分即可解决。</p><p>线段树二分新写法get： 你把区间列出来，然后一个一个判断，如果存在答案，那就正常dfs他.</p><p>口胡.jpg</p><figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">//[x,y] first &lt;=w</span><br><span class="hljs-keyword">int</span> tot=<span class="hljs-number">0</span>,d[<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">divi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(x&lt;=l&amp;&amp;r&lt;=y)&#123;<br>        d[++tot]=p;<span class="hljs-keyword">return</span> ;<br>    &#125;<br>    <span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(x&lt;=mid) divi(p&lt;&lt;<span class="hljs-number">1</span>,l,mid,x,y);<br>    <span class="hljs-keyword">if</span>(y&gt;mid) divi(p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r,x,y);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> w)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> l;<span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(t[p&lt;&lt;<span class="hljs-number">1</span>]&lt;=w) <span class="hljs-keyword">return</span> solve(p&lt;&lt;<span class="hljs-number">1</span>,l,mid,w);<br>    <span class="hljs-keyword">return</span> solve(p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r,w);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> w)</span></span>&#123;<br>    tot=<span class="hljs-number">0</span>;divi(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n,x,y);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,p=d[i];i&lt;=tot;i++,p=d[i])&#123;<br>        <span class="hljs-keyword">if</span>(t[p]&lt;=w) <span class="hljs-keyword">return</span> solve(p,l[p],r[p],w);<br>    &#125;<br>    <span class="hljs-keyword">return</span> inf;<br>&#125;<br></code></pre></div></td></tr></table></figure><p>我觉得，，挺好写的，因为 divi 就是在找区间。</p><p>这个题赛后一遍过了，爽歪歪。、</p><hr><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/I">I</a> 枚举当前能覆盖道的最后一个。然后二分。</p><p>不知道加强版是神木。</p><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/L">L</a> 题。优化simple的 <span class="math inline">\(O(n^2)\)</span> dp。</p><p>发现有绝对值小等。</p><p><span class="math inline">\(|A|\leq B \Longleftrightarrow A\leq B,-A\leq B\)</span> 然后等价二位数点。cdq,BIT什么的就好了。、</p><p>总结，这次和上次 GR 都看出来了我时间一晚脑子就不好使，必须要利用上午时间，十一点前的时间、。</p><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/G">G</a> 题。。赛后竟然觉得很简单。。</p><p>结论容易猜到，实际上我们能感觉到应该是，一堆点都能到 <span class="math inline">\(u\)</span> ，然后 <span class="math inline">\(u\)</span> 能到达剩下的点这样最优。</p><p>然后有这样的性质 <span class="math inline">\(u\)</span> 就无可厚非是重心了。</p><p>具体证明结论就是说</p><ol type="1"><li>首先不存在内向根（除非叶子），原因是你可以任选一个子树，把所有边反向，然后新增贡献显然。</li><li>外向根同理</li><li>想了一下感觉充要了？？不知道题解在说什么。。。。。。</li></ol><p>然后考虑为啥这样的 <span class="math inline">\(u\)</span> 是重心。这个我胡的感觉不太对（猜的结论相当于）。实际上感觉有点显然，如果<span class="math inline">\(u\)</span> 是这样的点，且不是重心，那么向重心方向的边，也一定指向中心方向，然后这个点就可以看作没用了，听显然了。</p><p>如果是重心我们需要分配子树大小 <span class="math inline">\(s\)</span> ，使得最接近 <span class="math inline">\(n-1/2\)</span> 。</p><p>这里题解给出了一种 <span class="math inline">\(O(\frac{n\sqrt n}{w})\)</span> 的做法。</p><p><span class="math inline">\(O(\frac{n\sqrt n}{w} \log n)\)</span> 可以用二进制分组背包来做。。。。。。</p><p>但实际上，考虑如果我们要选 <span class="math inline">\(k\)</span> 个大小位 <span class="math inline">\(w\)</span> 的物品，可以按 <span class="math inline">\(k\)</span> 奇偶分类，如果 <span class="math inline">\(k\)</span> 是奇数，那么看作 <span class="math inline">\(1\)</span> 个 <span class="math inline">\(w\)</span> 和 <span class="math inline">\((k-1)/2\)</span> 个 <span class="math inline">\(2w\)</span> 。</p><p>偶数就是 <span class="math inline">\(k/2\)</span> 个 <span class="math inline">\(2w\)</span> ，那么对于 小于 <span class="math inline">\(\sqrt n\)</span> 的我们这么做，每一个只会被更新 <span class="math inline">\(O(1)\)</span> 次。</p><p>剩下的都是 <span class="math inline">\(w&gt;\sqrt n\)</span> 的，也是 根号个了。复杂度得到了。</p></div><hr><div><div class="post-metas mb-3"><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a class="hover-with-bg" href="/categories/whole-round/">whole round</a></div></div><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p><div class="post-prevnext"><article class="post-prev col-6"><a href="/2022/05/11/KM-simple-thought/"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">KM 二分图最大权匹配。</span> <span class="visible-mobile">上一篇</span></a></article><article class="post-next col-6"><a href="/2022/04/21/linear-base-simple-thought/"><span class="hidden-mobile">线性基求交</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></article></div></div><article class="comments" id="comments" lazyload><div id="valine"></div><script type="text/javascript">Fluid.utils.loadComments("#valine",(function(){Fluid.utils.createScript("https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js",(function(){var i=Object.assign({appId:"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz",appKey:"DlH5PmKDEOPuptEFP5FxLc7C",path:"window.location.pathname",placeholder:"欢迎评论(￣▽￣)/////",avatar:"retro",meta:["nick","mail","link"],requiredFields:[],pageSize:10,lang:"zh-CN",highlight:!0,recordIP:!0,serverURLs:null,emojiCDN:null,emojiMaps:null,enableQQ:!1,appid:"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz",appkey:"DlH5PmKDEOPuptEFP5FxLc7C"},{el:"#valine",path:window.location.pathname});new Valine(i),Fluid.utils.waitElementVisible("#valine .vcontent",()=>{Fluid.plugins.initFancyBox("#valine .vcontent img:not(.vemoji)")})}))}))</script><noscript>Please enable JavaScript to view the comments</noscript></article></article></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p><div class="toc-body" id="toc-body"></div></div></div></div></div><a id="scroll-top-button" aria-label="TOP" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">搜索</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">关键词</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div></main><footer class="text-center mt-5 py-3"><div class="footer-content"><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div></footer><script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css"><script>NProgress.configure({showSpinner:!1,trickleSpeed:100}),NProgress.start(),window.addEventListener("load",(function(){NProgress.done()}))</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script><script src="/js/events.js"></script><script src="/js/plugins.js"></script><script src="/js/local-search.js"></script><script src="/js/img-lazyload.js"></script><script src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script><script>!function(t,i){(0,Fluid.plugins.typing)(i.getElementById("subtitle").title)}(window,document)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},loader:{load:["ui/lazy"]},options:{renderActions:{findScript:[10,e=>{document.querySelectorAll('script[type^="math/tex"]').forEach(t=>{const a=!!t.type.match(/; *mode=display/),n=new e.options.MathItem(t.textContent,e.inputJax[0],a),o=document.createTextNode("");t.parentNode.replaceChild(o,t),n.start={node:o,delim:"",n:0},n.end={node:o,delim:"",n:0},e.math.push(n)})},"",!1],insertedScript:[200,()=>{document.querySelectorAll("mjx-container").forEach(e=>{let t=e.parentNode;"li"===t.nodeName.toLowerCase()&&t.parentNode.classList.add("has-jax")})},"",!1]}}}</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script><script src="/js/boot.js"></script></body></html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="Links 和袁妹妹打的一场acm。感觉由于是 7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。 赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。 只说我做的吧。。 D 题。 题意是每次你可以插入或删除 \(\text{aa,bb,cc,abab,bcbc}\) ，问你能不能将 \(A\)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SWERC 2021-2022">
+<meta property="og:url" content="https://proton-z.github.io/2022/04/25/cf-icpc-1662-part/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Links 和袁妹妹打的一场acm。感觉由于是 7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。 赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。 只说我做的吧。。 D 题。 题意是每次你可以插入或删除 \(\text{aa,bb,cc,abab,bcbc}\) ，问你能不能将 \(A\)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-25T09:35:00.000Z">
+<meta property="article:modified_time" content="2022-04-26T03:36:51.679Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>SWERC 2021-2022 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@3.0/2233/b34.jfif') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SWERC 2021-2022">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-25 17:35" pubdate>
+        星期一, 四月 25日 2022, 5:35 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SWERC 2021-2022</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662">Links</a></p>
+<p>和袁妹妹打的一场acm。感觉由于是
+7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。</p>
+<p>赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。</p>
+<p>只说我做的吧。。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/D">D</a>
+题。</p>
+<p>题意是每次你可以插入或删除 <span
+class="math inline">\(\text{aa,bb,cc,abab,bcbc}\)</span> ，问你能不能将
+<span class="math inline">\(A\)</span> 串变为 <span
+class="math inline">\(B\)</span> 串。</p>
+<p><span class="math inline">\(n\)</span> 竟然只开到了 <span
+class="math inline">\(100\)</span> 让我以为是dp什么的。。</p>
+<p>但是存在 <span class="math inline">\(\text{a}\to\text{aabcb}\to
+\text{bcb}\)</span> 这种，不是很能dp。</p>
+<p>仔细考虑一下发现这样一种变换 <span
+class="math inline">\(\mathrm{ab\to ababba\to ba}\)</span>
+所以暗示了我们本质是在交换。</p>
+<p>只不过 <span class="math inline">\(\text{a,b,c}\)</span>
+不对称。所以变成 <span class="math inline">\(\text{b}\)</span> 随便动
+，<span class="math inline">\(\text{a,c}\)</span> 不能交叉动。</p>
+<p>所以剩下的也很简单了，先把连着的消没，然后把 <span
+class="math inline">\(\text{b}\)</span> 放到一起，删掉。</p>
+<p>看剩下的两个只包含 <span class="math inline">\(\text{a,c}\)</span>
+的串是否相同。</p>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/F">F</a>
+题。</p>
+<p>题意是你从 <span class="math inline">\(i\)</span> 走到 <span
+class="math inline">\(j\)</span> 的充要条件是 <span
+class="math inline">\(|i-j|\leq \min(p_i,p_j)\)</span> 。问 <span
+class="math inline">\(i\to j\)</span> 最短路。</p>
+<p>性质想错了。。口胡了。。</p>
+<p>实际上正解就是 bfs。</p>
+<p>只需要满足 <span class="math inline">\(j\in[i,i-p_i],j+p_j\leq
+i\)</span> 很简单的线段树二分即可解决。</p>
+<p>线段树二分新写法get：
+你把区间列出来，然后一个一个判断，如果存在答案，那就正常dfs他.</p>
+<p>口胡.jpg</p>
+<figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">//[x,y] first &lt;=w</span><br><span class="hljs-keyword">int</span> tot=<span class="hljs-number">0</span>,d[<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">divi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(x&lt;=l&amp;&amp;r&lt;=y)&#123;<br>        d[++tot]=p;<span class="hljs-keyword">return</span> ;<br>    &#125;<br>    <span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(x&lt;=mid) divi(p&lt;&lt;<span class="hljs-number">1</span>,l,mid,x,y);<br>    <span class="hljs-keyword">if</span>(y&gt;mid) divi(p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r,x,y);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> w)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> l;<span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(t[p&lt;&lt;<span class="hljs-number">1</span>]&lt;=w) <span class="hljs-keyword">return</span> solve(p&lt;&lt;<span class="hljs-number">1</span>,l,mid,w);<br>    <span class="hljs-keyword">return</span> solve(p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>,r,w);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">solve</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> w)</span></span>&#123;<br>    tot=<span class="hljs-number">0</span>;divi(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n,x,y);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>,p=d[i];i&lt;=tot;i++,p=d[i])&#123;<br>        <span class="hljs-keyword">if</span>(t[p]&lt;=w) <span class="hljs-keyword">return</span> solve(p,l[p],r[p],w);<br>    &#125;<br>    <span class="hljs-keyword">return</span> inf;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>我觉得，，挺好写的，因为 divi 就是在找区间。</p>
+<p>这个题赛后一遍过了，爽歪歪。、</p>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/I">I</a>
+枚举当前能覆盖道的最后一个。然后二分。</p>
+<p>不知道加强版是神木。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/L">L</a>
+题。优化simple的 <span class="math inline">\(O(n^2)\)</span> dp。</p>
+<p>发现有绝对值小等。</p>
+<p><span class="math inline">\(|A|\leq B \Longleftrightarrow A\leq
+B,-A\leq B\)</span> 然后等价二位数点。cdq,BIT什么的就好了。、</p>
+<p>总结，这次和上次 GR
+都看出来了我时间一晚脑子就不好使，必须要利用上午时间，十一点前的时间、。</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1662/problem/G">G</a>
+题。。赛后竟然觉得很简单。。</p>
+<p>结论容易猜到，实际上我们能感觉到应该是，一堆点都能到 <span
+class="math inline">\(u\)</span> ，然后 <span
+class="math inline">\(u\)</span> 能到达剩下的点这样最优。</p>
+<p>然后有这样的性质 <span class="math inline">\(u\)</span>
+就无可厚非是重心了。</p>
+<p>具体证明结论就是说</p>
+<ol type="1">
+<li>首先不存在内向根（除非叶子），原因是你可以任选一个子树，把所有边反向，然后新增贡献显然。</li>
+<li>外向根同理</li>
+<li>想了一下感觉充要了？？不知道题解在说什么。。。。。。</li>
+</ol>
+<p>然后考虑为啥这样的 <span class="math inline">\(u\)</span>
+是重心。这个我胡的感觉不太对（猜的结论相当于）。实际上感觉有点显然，如果<span
+class="math inline">\(u\)</span>
+是这样的点，且不是重心，那么向重心方向的边，也一定指向中心方向，然后这个点就可以看作没用了，听显然了。</p>
+<p>如果是重心我们需要分配子树大小 <span class="math inline">\(s\)</span>
+，使得最接近 <span class="math inline">\(n-1/2\)</span> 。</p>
+<p>这里题解给出了一种 <span class="math inline">\(O(\frac{n\sqrt
+n}{w})\)</span> 的做法。</p>
+<p><span class="math inline">\(O(\frac{n\sqrt n}{w} \log n)\)</span>
+可以用二进制分组背包来做。。。。。。</p>
+<p>但实际上，考虑如果我们要选 <span class="math inline">\(k\)</span>
+个大小位 <span class="math inline">\(w\)</span> 的物品，可以按 <span
+class="math inline">\(k\)</span> 奇偶分类，如果 <span
+class="math inline">\(k\)</span> 是奇数，那么看作 <span
+class="math inline">\(1\)</span> 个 <span
+class="math inline">\(w\)</span> 和 <span
+class="math inline">\((k-1)/2\)</span> 个 <span
+class="math inline">\(2w\)</span> 。</p>
+<p>偶数就是 <span class="math inline">\(k/2\)</span> 个 <span
+class="math inline">\(2w\)</span> ，那么对于 小于 <span
+class="math inline">\(\sqrt n\)</span> 的我们这么做，每一个只会被更新
+<span class="math inline">\(O(1)\)</span> 次。</p>
+<p>剩下的都是 <span class="math inline">\(w&gt;\sqrt n\)</span> 的，也是
+根号个了。复杂度得到了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/whole-round/">whole round</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/KM-simple-thought/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">KM 二分图最大权匹配。</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/21/linear-base-simple-thought/">
+                        <span class="hidden-mobile">线性基求交</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
