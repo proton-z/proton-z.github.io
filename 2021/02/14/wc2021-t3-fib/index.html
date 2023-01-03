@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="wc 2021 的 T3。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wc2021 t3 fib">
+<meta property="og:url" content="https://proton-z.github.io/2021/02/14/wc2021-t3-fib/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="wc 2021 的 T3。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-14T11:13:00.000Z">
+<meta property="article:modified_time" content="2022-06-30T06:25:05.534Z">
+<meta property="article:author" content="Imitators">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="fib循环节">
+<meta property="article:tag" content="人类智慧题">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>wc2021 t3 fib - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 90vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@1.2/2233/cd02a5048846677686a7b0c302135a66.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="wc2021 t3 fib"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-14 19:13" pubdate>
+          星期日, 二月 14日 2021, 7:13 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">wc2021 t3 fib</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>wc 2021 的 T3。</p>
+<span id="more"></span>
+<p>今天有点晚了，写一下这个题的大体思路。</p>
+<p>首先由题意： <span class="math display">\[
+F_n=F_{n-1}+F_{n-2},F_0=a,F_{1}=b
+\]</span> 记录斐波那契数列为 <span
+class="math inline">\(f_i,f_0=0\)</span> ，特殊定义 <span
+class="math inline">\(f_{-1}=1\)</span>。 <span class="math display">\[
+有\ F_n=a\cdot f_{n-1}+b\cdot f_{n}
+\]</span> 问题转换成 给你 <span
+class="math inline">\(a,b\)</span>,让你求使得 <span
+class="math inline">\(a\cdot f_{n-1}+b\cdot f_{n}\equiv
+0\pmod{m}\)</span> 最小的 <span class="math inline">\(n\)</span>。</p>
+<ol type="1">
+<li><p>首先，当 <span class="math inline">\(m\)</span>
+为质数的时候很好做，因为 <span
+class="math inline">\(a,b,f_n,f_{n-1}\)</span>
+的逆元都存在，可以直接移项，做除法。</p></li>
+<li><p>其次由于斐波那契在 <span class="math inline">\(\bmod m\)</span>
+的情况下是纯循环的（暂时不会证明），假如 <span
+class="math inline">\(m=\prod p_i\)</span>
+，我们也是也已轻松合并的。</p></li>
+<li><p>但是并不是所有的 <span class="math inline">\(m\)</span>
+都可以分解成一堆会不相同的素数积，考虑 <span
+class="math inline">\(m=\prod
+p_i^{\alpha_i}\)</span>，合并似乎还是很好合并。（本质上就是求一堆同余方程组的最小解），问题转化为解决
+<span class="math inline">\(m=p^{\alpha}\)</span> 的问题。</p></li>
+<li><p><span class="math inline">\(update\)</span>
+我想了一下，发现合并并不显然，这里可能是最重要的一步，</p></li>
+</ol>
+<p>假设现在我们有一个对于 <span class="math inline">\(F_x \bmod
+p^\alpha=0\)</span> 的最小解，而他的循环节可能并不是斐波那契 <span
+class="math inline">\(f_x \bmod p^\alpha=0\)</span> 的循环节。</p>
+<p>有结论 <span class="math inline">\(F_x \bmod p^\alpha=0\)</span>
+的循环节，肯定是 <span class="math inline">\(f_x \bmod
+p^\alpha=0\)</span> 的循环节的因数。</p>
+<p>证明：</p>
+<ol type="1">
+<li><p>显然 <span class="math inline">\(f_x\bmod p^\alpha =0\)</span>
+的循环节肯定是 <span class="math inline">\(F_x\bmod p^\alpha=0\)</span>
+的循环节，根据 <span class="math inline">\(F_n\)</span>
+表达式可知。</p></li>
+<li><p>设 <span class="math inline">\(F_x\bmod p^\alpha=0\)</span>
+最小解为 <span class="math inline">\(x_1\)</span>，第二小解为 <span
+class="math inline">\(x_2\)</span> 。</p>
+<p>那么有结论 <span class="math inline">\(x2-x1\)</span>
+是一个循环节，证明可能比较感性。</p>
+<p>当前 <span class="math inline">\(F_x\)</span> 数列长得样子应该是：
+<span class="math display">\[
+\cdots,-k,0,k,k,2k,\cdots,f_i\times k,\cdots,-t,0,t,2t,\cdots
+\]</span> 就是 <span class="math inline">\(0\equiv f_i\times
+k\pmod{p^\alpha}\)</span>,有两种可能 <span
+class="math inline">\(p^\alpha\mid f_i\)</span>, <span
+class="math inline">\(p^\beta\mid k,p^{\alpha-\beta}\mid f_i\)</span>
+。</p>
+<p>第一种可能证明显然，第二种可能因为有 <span
+class="math inline">\(t\)</span> 是数倍的 <span
+class="math inline">\(k\)</span> ，那么显然也有 <span
+class="math inline">\(p^\beta\mid t\)</span>
+,接下来的证明显然。</p></li>
+<li><p>如果这个新循环节不是 <span class="math inline">\(f_x\bmod
+p^\alpha=0\)</span> 的循环节，那可以根据类似上面的证明，证明出 <span
+class="math inline">\((l_1,l_2)\)</span> 也是一个循环节，<span
+class="math inline">\(l_1,l_2\)</span>
+分别为之前的两个循环节（新循环节，和斐波那契自带的循环节）。 <span
+class="math inline">\((l_1,l_2)\)</span> 显然也是 <span
+class="math inline">\(l_2\)</span> 的一个因数。</p></li>
+</ol>
+<p>如是我们为了找到解的循环节可以去找斐波那契循环节的因数，然后判断该长度是否为循环节。这样一定可以找到最小的循环节。</p>
+<p><span class="math inline">\(10^5\)</span> 范围内数的因子 <span
+class="math inline">\(\leq 128\)</span> 此处暴力即可。</p>
+<ol start="5" type="1">
+<li>由于 <span class="math inline">\(m=p^{\alpha}\)</span>
+,逆元可能不存在，按照基本套路，我们使用乘法方程，并且提取每一个数的
+<span class="math inline">\(p\)</span> 因子</li>
+</ol>
+<p>为了之后表达方便，令 <span
+class="math inline">\(a&#39;,b&#39;\)</span> 表示现在的 <span
+class="math inline">\(a,b\)</span>。 <span class="math display">\[
+   a&#39;=a\cdot p^{A}\ ,\ b&#39;=b\cdot p^{B}\ ,\ f_{n-1}=c\cdot p^{C}\
+,\ f_{n}=d\cdot p^D\ ( \ a,b,c,d\perp p)
+   \]</span> 原方程化为： <span class="math display">\[
+   a\times p^A\cdot c\times p^C+b\times p^B\cdot d\times p^D\equiv
+0\pmod{p^\alpha}
+   \]</span></p>
+<p><span class="math display">\[
+   (ac)\times p^{A+C}+(bd)\times p^{B+D}\equiv 0\pmod{p^\alpha}
+   \]</span></p>
+<p>这个方程成立有两种情况：</p>
+<ol type="1">
+<li><span class="math inline">\(A+C\ge \alpha\)</span>,<span
+class="math inline">\(B+D\ge \alpha\)</span>。</li>
+<li><span class="math inline">\(ac\equiv
+bd\pmod{p^{\alpha-(A+C)}}\)</span>，且 <span
+class="math inline">\(A+C=B+D\)</span></li>
+</ol>
+<p>成立条件：</p>
+<ol type="1">
+<li><p>在线处理 <span class="math inline">\(C\ge \alpha-A,D\ge
+\alpha-B\)</span> 相当于二维数点（可能会有简单方法？）（由于 <span
+class="math inline">\(A,B,C,D\)</span> 都很小直接暴力就行）。</p></li>
+<li><p>显然等价: <span class="math display">\[
+\frac{a}{b}\equiv \frac{d}{c}\pmod{p^{\alpha-(A+C)}},A-B=D-C
+\]</span></p></li>
+<li><p>预处理 ，对每一个 <span class="math inline">\(m\)</span> 的质因数
+<span class="math inline">\(p_i\)</span>，首先处理出成立条件 <span
+class="math inline">\(1\)</span> 成立的答案。其次考虑成立条件 <span
+class="math inline">\(2\)</span> ,预处理的过程此时我们知道 <span
+class="math inline">\(C,c,D,d,\alpha\)</span> ，不知道 <span
+class="math inline">\(A,a,B,b\)</span> 。发现 <span
+class="math inline">\(A\leq \log_{p}^{m}\)</span> , 即<span
+class="math inline">\(A\)</span> 的值域很小 ，此时暴力枚举 <span
+class="math inline">\(A\)</span> ，此时可以计算出 <span
+class="math inline">\(B\)</span> 的取值，从而可以处理出 <span
+class="math inline">\(\frac{d}{c}\bmod
+p^{\alpha-(A+C)}\)</span>,将其存进表。</p></li>
+</ol>
+<p>不难发现，此处复杂度为枚举 <span class="math inline">\(A\)</span>
+的复杂度，即 <span class="math inline">\(\mathcal{O(\sum\limits
+_{i=1}^{k}p_i^{\alpha_i}\alpha_i)}\)</span>或者<span
+class="math inline">\(\mathcal{O(\sum\limits
+_{i=1}^{k}p_i^{\alpha_i}\alpha_i^2)}\)</span> 。(看你成立条件 <span
+class="math inline">\(1\)</span> 的具体处理方法)。</p>
+<p>询问时候，对于每个 <span class="math inline">\(m\)</span> 的质因数
+<span class="math inline">\(p_i\)</span> ，我们可以枚举 <span
+class="math inline">\(C\)</span> 然后，可以算出 <span
+class="math inline">\(\frac{a}{b} \bmod {p^{\alpha-(A+C)}}\)</span>
+的值，暴力查表，找到一组特解。</p>
+<p>不难发现，此处的复杂度为枚举 <span class="math inline">\(C\)</span>
+的复杂度，和寻找循环节的复杂度，即 <span
+class="math inline">\(\mathcal{O(\sum\limits_{i=1}^{k}d(3p_i^{\alpha_i})+\sum
+\limits _{i=1}^k\alpha_i)}\)</span>。</p>
+<p>代码写的可能比较丑。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;tr1/unordered_map&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-type">int</span> T,m;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">char</span> c=<span class="hljs-built_in">getchar</span>();x=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(c&gt;<span class="hljs-string">&#x27;9&#x27;</span>||c&lt;<span class="hljs-string">&#x27;0&#x27;</span>) c=<span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span>(c&lt;=<span class="hljs-string">&#x27;9&#x27;</span>&amp;&amp;c&gt;=<span class="hljs-string">&#x27;0&#x27;</span>) x=(x&lt;&lt;<span class="hljs-number">1</span>)+(x&lt;&lt;<span class="hljs-number">3</span>)+c-<span class="hljs-string">&#x27;0&#x27;</span>,c=<span class="hljs-built_in">getchar</span>();<br>&#125;<br>vector&lt;<span class="hljs-type">int</span>&gt; divs[<span class="hljs-number">300010</span>];<br><span class="hljs-type">int</span> p[<span class="hljs-number">10</span>],k[<span class="hljs-number">10</span>],t[<span class="hljs-number">10</span>],loop[<span class="hljs-number">10</span>];<br><span class="hljs-type">int</span> f[<span class="hljs-number">10</span>][<span class="hljs-number">300010</span>];<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span>&#123;<span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> a;<span class="hljs-keyword">return</span> <span class="hljs-built_in">gcd</span>(b,a%b);&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">qpow</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b,<span class="hljs-type">int</span> p)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(b)&#123;<span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>) k=k*a%p;a=a*a%p,b=b&gt;&gt;<span class="hljs-number">1</span>;&#125;<span class="hljs-keyword">return</span> k;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">ppow</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(b)&#123;<span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>) k=k*a;a=a*a,b=b&gt;&gt;<span class="hljs-number">1</span>;&#125;<span class="hljs-keyword">return</span> k;<br>&#125;<br><span class="hljs-keyword">namespace</span> Inv<br>&#123;<br>    <span class="hljs-type">int</span> phi[<span class="hljs-number">100010</span>],pr[<span class="hljs-number">100010</span>],p[<span class="hljs-number">100010</span>],tot=<span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-number">100000</span>;i++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(pr[i]==<span class="hljs-number">0</span>) p[++tot]=i,phi[i]=i<span class="hljs-number">-1</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=tot&amp;&amp;p[j]*i&lt;=<span class="hljs-number">100000</span>;j++)<br>            &#123;<br>                pr[i*p[j]]=<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span>(i%p[j]==<span class="hljs-number">0</span>)<br>                &#123;<br>                    phi[i*p[j]]=p[j]*phi[i];<span class="hljs-keyword">break</span>;<br>                &#125;<br>                phi[i*p[j]]=(p[j]<span class="hljs-number">-1</span>)*phi[i];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">inv</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> m)</span></span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">qpow</span>(x,phi[m]<span class="hljs-number">-1</span>,m);&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; <span class="hljs-title">nump</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> p,<span class="hljs-type">int</span> ki)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(ki,<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">while</span>(x%p==<span class="hljs-number">0</span>) k++,x/=p;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(<span class="hljs-built_in">min</span>(k,ki),x);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">exgcd</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b,<span class="hljs-type">int</span> &amp;x,<span class="hljs-type">int</span> &amp;y)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(b==<span class="hljs-number">0</span>)&#123;x=<span class="hljs-number">1</span>,y=<span class="hljs-number">0</span>;<span class="hljs-keyword">return</span> ;&#125;<br>    <span class="hljs-built_in">exgcd</span>(b,a%b,y,x); y-=(a/b)*x;<br>&#125;<br><span class="hljs-type">int</span> can[<span class="hljs-number">10</span>][<span class="hljs-number">20</span>][<span class="hljs-number">20</span>];<br>tr1::unordered_map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; z[<span class="hljs-number">10</span>][<span class="hljs-number">20</span>][<span class="hljs-number">20</span>][<span class="hljs-number">40</span>];<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Inv::<span class="hljs-built_in">init</span>();<br>    <span class="hljs-built_in">read</span>(T),<span class="hljs-built_in">read</span>(m);<br>    <span class="hljs-type">int</span> mm=m;<br>    <span class="hljs-type">int</span> tot=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i*i&lt;=m;i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(m%i==<span class="hljs-number">0</span>)<br>        &#123;<br>            p[++tot]=i;t[tot]=<span class="hljs-number">1</span>;k[tot]=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span>(m%i==<span class="hljs-number">0</span>) m/=i,t[tot]*=i,k[tot]++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> MAXX=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span>(m&gt;<span class="hljs-number">1</span>) p[++tot]=m,t[tot]=m,k[tot]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=tot;i++)<br>    &#123;<br>        f[i][<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;f[i][<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">2</span>;j&lt;=<span class="hljs-number">6</span>*t[i];j++)<br>        &#123;<br>            <br>            f[i][j]=(f[i][j<span class="hljs-number">-1</span>]+f[i][j<span class="hljs-number">-2</span>])%t[i]; <br>            <span class="hljs-keyword">if</span>(f[i][j<span class="hljs-number">-1</span>]==<span class="hljs-number">0</span>&amp;&amp;f[i][j]==<span class="hljs-number">1</span>)<br>            &#123;<br>                loop[i]=j<span class="hljs-number">-1</span>; <span class="hljs-comment">// 0-&gt; loop -&gt; 2loop ...and so on </span><br>                MAXX=<span class="hljs-built_in">max</span>(MAXX,loop[i]);<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; vc=<span class="hljs-built_in">nump</span>(f[i][j<span class="hljs-number">-1</span>],p[i],k[i]),vd=<span class="hljs-built_in">nump</span>(f[i][j],p[i],k[i]);<br>            <span class="hljs-type">int</span> C=vc.first,c=vc.second,D=vd.first,d=vd.second;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> a=<span class="hljs-built_in">max</span>(<span class="hljs-number">0ll</span>,k[i]-C);a&lt;=k[i];a++) <br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> b=<span class="hljs-built_in">max</span>(<span class="hljs-number">0ll</span>,k[i]-D);b&lt;=k[i];b++) can[i][a][b]=j;<br>            <span class="hljs-type">int</span> tmp=<span class="hljs-built_in">ppow</span>(p[i],k[i]-C);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> A=<span class="hljs-number">0</span>;A+C&lt;k[i];A++)<br>            &#123;<br>                <span class="hljs-type">int</span> res=d*Inv::<span class="hljs-built_in">inv</span>(c,tmp)%tmp;<br>                <span class="hljs-keyword">if</span>(z[i][A][D-C+k[i]][C].<span class="hljs-built_in">count</span>(res)==<span class="hljs-number">0</span>)<br>                z[i][A][D-C+k[i]][C][res]=j;<br>                tmp/=p[i];<br>            &#125;<span class="hljs-comment">// z : p_i , A -&gt; D-C  -&gt; d/c</span><br>        &#125; <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">2</span>;j&lt;=loop[i]*<span class="hljs-number">2</span>;j++) f[i][j]=(f[i][j<span class="hljs-number">-1</span>]+f[i][j<span class="hljs-number">-2</span>])%t[i];<br>    &#125;<br>    <span class="hljs-comment">/////////////////</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=MAXX;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j*i&lt;=MAXX;j++) divs[i*j].<span class="hljs-built_in">push_back</span>(i);<br>    &#125;<br>    m=mm;<br>    <span class="hljs-type">int</span> a0=<span class="hljs-number">0</span>,m0=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        <span class="hljs-type">int</span> a,b,aa,bb,A,B;<br>        <span class="hljs-built_in">read</span>(aa),<span class="hljs-built_in">read</span>(bb);<br>        aa%=m,bb%=m;<br>        <span class="hljs-keyword">if</span>(aa==<span class="hljs-number">0</span>) &#123;cout&lt;&lt;<span class="hljs-number">0</span>&lt;&lt;endl;;<span class="hljs-keyword">continue</span>;&#125;<br>        <span class="hljs-keyword">if</span>(bb==<span class="hljs-number">0</span>) &#123;cout&lt;&lt;<span class="hljs-number">1</span>&lt;&lt;endl;<span class="hljs-keyword">continue</span>;&#125;<br>        a0=<span class="hljs-number">0</span>,m0=<span class="hljs-number">1</span>;<span class="hljs-type">bool</span> FLG=<span class="hljs-number">0</span>,fag=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=tot;i++)<br>        &#123;<br>            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; va=<span class="hljs-built_in">nump</span>(aa,p[i],k[i]),vb=<span class="hljs-built_in">nump</span>(bb,p[i],k[i]);<br>            a=va.second,A=va.first;<br>            b=vb.second,B=vb.first;<br>            <span class="hljs-type">int</span> ans=<span class="hljs-number">-1</span>,tmp;<br>            <span class="hljs-keyword">if</span>(aa%t[i]==<span class="hljs-number">0</span>) &#123;ans=<span class="hljs-number">0</span>;<span class="hljs-keyword">goto</span> chk;&#125;<br>            <span class="hljs-keyword">if</span>(bb%t[i]==<span class="hljs-number">0</span>) &#123;ans=<span class="hljs-number">1</span>;<span class="hljs-keyword">goto</span> chk;&#125;<br>            <span class="hljs-keyword">if</span>(can[i][A][B]!=<span class="hljs-number">0</span>) &#123;ans=can[i][A][B];<span class="hljs-keyword">goto</span> chk;&#125;<br>            <span class="hljs-keyword">if</span>((a*f[i][<span class="hljs-number">0</span>]+b*f[i][<span class="hljs-number">1</span>])%t[i]==<span class="hljs-number">0</span>)&#123;ans=<span class="hljs-number">1</span>;<span class="hljs-keyword">goto</span> chk;&#125;<br>            tmp=<span class="hljs-built_in">ppow</span>(p[i],k[i]-A);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> C=<span class="hljs-number">0</span>;A+C&lt;k[i];C++)<br>            &#123;<br>                <span class="hljs-type">int</span> res=a*Inv::<span class="hljs-built_in">inv</span>(b,tmp)%tmp;<br>                res=-res+tmp+tmp;<br>                res%=tmp;<br>                <span class="hljs-keyword">if</span>(z[i][A][A-B+k[i]][C].<span class="hljs-built_in">count</span>(res))<br>                &#123;<br>                    ans=z[i][A][A-B+k[i]][C][res];<br>                    <span class="hljs-keyword">goto</span> chk;<br>                &#125;<br>                tmp/=p[i];<br>            &#125;<br>            chk:;<br>            ans%=loop[i];<br>            <span class="hljs-keyword">if</span>(ans==<span class="hljs-number">-1</span>) &#123;<br>                FLG=<span class="hljs-number">1</span>;<br>                cout&lt;&lt;<span class="hljs-number">-1</span>&lt;&lt;endl;<span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-type">int</span> M=<span class="hljs-number">0</span>,A=ans;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> x:divs[loop[i]])<br>            &#123;<br>                <span class="hljs-keyword">if</span>((aa*f[i][x+ans<span class="hljs-number">-1</span>]+bb*f[i][x+ans])%t[i]==<span class="hljs-number">0</span>) <br>                &#123;<br>                    M=x;<span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">/////////////////////////////////////</span><br>            <span class="hljs-type">int</span> g=<span class="hljs-built_in">gcd</span>(M,m0);<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(A-a0)%g!=<span class="hljs-number">0</span>)&#123;<br>                fag=<span class="hljs-number">1</span>;cout&lt;&lt;<span class="hljs-number">-1</span>&lt;&lt;endl;<span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-type">int</span> x,y;<br>            <span class="hljs-built_in">exgcd</span>(m0/g,M/g,x,y);<br>            x%=(M/g),x+=(M/g),x%=(M/g);<br>            <span class="hljs-type">int</span> MM=m0;<br>            m0=m0/g*M;x=x*((A-a0)/g)%m0+m0;x%=m0;<br>            a0=x%m0*MM%m0+a0;a0%=m0;<br>            a0+=m0;a0%=m0;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(FLG==<span class="hljs-number">1</span>||fag==<span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,a0);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%A6/" class="category-chain-item">数学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E8%AE%BA/">#数论</a>
+      
+        <a href="/tags/fib%E5%BE%AA%E7%8E%AF%E8%8A%82/">#fib循环节</a>
+      
+        <a href="/tags/%E4%BA%BA%E7%B1%BB%E6%99%BA%E6%85%A7%E9%A2%98/">#人类智慧题</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>wc2021 t3 fib</div>
+      <div>https://proton-z.github.io/2021/02/14/wc2021-t3-fib/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Imitators</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/15/JLOI2015/" title="JLOI2015 骗我呢">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JLOI2015 骗我呢</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/13/point-divide-simple-thoughts/" title="点分治">
+                        <span class="hidden-mobile">点分治</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
