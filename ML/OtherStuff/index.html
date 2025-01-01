@@ -16,16 +16,17 @@
   <meta name="description" content="这一切都是stein;gates的选择吧">
   <meta name="author" content="Imitators">
   <meta name="keywords" content="">
-  <meta name="description" content="Other Stuff Other stuff  Robust machine learning  Obfuscated gradients Certified robustness  Hyperparameter tuning  (Bayesian methods) Gradient optimization Random search Multi-armed Band">
+  <meta name="description" content="\[ \newcommand{\Pr}{\mathrm{Pr}} \newcommand{\E}{\mathbb{E}} \] Other Stuff Other stuff  Robust machine learning  Obfuscated gradients Certified robustness  Hyperparameter tuning  (Bayes">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Other Stuff">
 <meta property="og:url" content="https://proton-z.github.io/ML/OtherStuff/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Other Stuff Other stuff  Robust machine learning  Obfuscated gradients Certified robustness  Hyperparameter tuning  (Bayesian methods) Gradient optimization Random search Multi-armed Band">
+<meta property="og:description" content="\[ \newcommand{\Pr}{\mathrm{Pr}} \newcommand{\E}{\mathbb{E}} \] Other Stuff Other stuff  Robust machine learning  Obfuscated gradients Certified robustness  Hyperparameter tuning  (Bayes">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
+<meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102005517290.png">
 <meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-29T15:44:22.244Z">
+<meta property="article:modified_time" content="2025-01-01T17:11:10.671Z">
 <meta property="article:author" content="Imitators">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
@@ -213,7 +214,11 @@
                 
 
 <article class="page-content">
-  <h1 id="other-stuff">Other Stuff</h1>
+  <p><span class="math display">\[
+\newcommand{\Pr}{\mathrm{Pr}}
+\newcommand{\E}{\mathbb{E}}
+\]</span></p>
+<h1 id="other-stuff">Other Stuff</h1>
 <p>Other stuff</p>
 <ul>
 <li>Robust machine learning
@@ -351,6 +356,242 @@ class="math inline">\(x&#39;,y&#39;\)</span>
 
 \end{aligned}\]</span>
 <p>$$</p>
+<hr />
+<p>Generating non-robust feature data set.</p>
+<p>假设已经有一个 robust feature 提取器 <span
+class="math inline">\(g\)</span>，我们对于原先数据集中每一个图片 <span
+class="math inline">\(x\)</span> ，随机生成一个 <span
+class="math inline">\(g(x_r)\approx g(x)\)</span>（可以使用 GD）</p>
+<p>直觉上说 <span class="math inline">\(x_r\)</span> 所拥有的 non-robust
+feature 将会比较独立，而他们的 robust feature
+比较类似。在新构造出的数据集上训练。</p>
+<hr />
+<h2 id="attack">Attack</h2>
+<p>图像识别 white-box attack，用 adversarial attack 得到一个数据 <span
+class="math inline">\((x,y)\)</span> 将他 compress 成一个
+JPG，然后发布到网上。</p>
+<p>defense models:</p>
+<ul>
+<li>混淆梯度
+<ul>
+<li>shattering gradients : undifferentiable（不可微），Numeric
+instability（数值不稳定），梯度退化。<br />
+</li>
+<li>Stochastic Gradients : add randomness</li>
+<li>Exploding and vanishing gradients :
+非常神的神经网络，导致链式法则非常长，最终梯度爆炸/消失。</li>
+</ul></li>
+</ul>
+<p>混淆梯度最终失败了。</p>
+<h3 id="attack-techniques">Attack techniques</h3>
+<ol type="1">
+<li><p>对于不稳定，不可微的情况，是model在原先的 <span
+class="math inline">\(x\)</span> 外侧套上一层壳 <span
+class="math inline">\(g\)</span>，<span class="math inline">\(g\)</span>
+不稳定，不可微分。且满足 <span class="math inline">\(g(x)\approx
+x\)</span>。</p>
+<p>我们不好计算 Loss function: <span class="math inline">\(\nabla_x
+f(g(x))\)</span>，（其中 <span class="math inline">\(f\)</span> 是 loss
+function）。 <span class="math display">\[
+\begin{aligned}
+\nabla_x f(g(x))\approx (\nabla_xf)(g(x))
+\end{aligned}
+\]</span></p>
+<p>也就是 <span class="math inline">\(\nabla_x f(\cdot)\)</span> 在
+<span class="math inline">\(g(x)\)</span> 处的取值。</p></li>
+<li><p>对于随机的情况，我们可以创造多个对象，或者直接假设他的梯度是
+期望方向。</p></li>
+</ol>
+<hr />
+<h2 id="histogram">histogram</h2>
+<p>我们希望找到一个有 guarantee 的 robust model。</p>
+<p>假如我们现在有了要给 non-robust 的 classifier。我们假设一次询问点是
+<span class="math inline">\(x\)</span>，我们构造一个关于 <span
+class="math inline">\(x\)</span> 的分布（比如以 <span
+class="math inline">\(x\)</span> 为圆心的球，比如以 <span
+class="math inline">\(x\)</span> 为中心的 Gaussian）。</p>
+<p>然后计算，对每一种颜色（in different class）: <span
+class="math display">\[
+w_v=\int_{v}[f(v)=i]\mathrm{Pr}(v)\mathrm{d}v
+\]</span> 我们选择最大的 <span class="math inline">\(w_v\)</span>
+作为答案。这个的答案记作 <span
+class="math inline">\(g(v):=\mathrm{argmin}_{v} w_v\)</span>。</p>
+<hr />
+<p>我们希望证明 <span class="math inline">\(g\)</span> 有 robust 的
+guarantee.</p>
+<p>对一个点 <span
+class="math inline">\(x\)</span>，我们计算，在最坏情况下使得 <span
+class="math inline">\(g(x)=g(x+\delta)\)</span> 最大的 <span
+class="math inline">\(|\delta|\)</span>。我们进行 greedy fill。</p>
+<p>我们按照 <span
+class="math inline">\(\frac{\mathrm{Pr}(v|x)}{\mathrm{Pr}(v|x+\delta)}\)</span>
+从大到小染色，然后看在这种情况下， <span
+class="math inline">\(g(x)\)</span> 在 <span
+class="math inline">\(x+\delta\)</span> 处的积分是不是大于 <span
+class="math inline">\(\frac{1}{2}\)</span>。</p>
+<hr />
+<h1 id="hyperparameter-optimization">hyperparameter optimization</h1>
+<ol type="1">
+<li>Bayesian optimization</li>
+<li>Gradient descent</li>
+<li>Random Search</li>
+<li>Multi-armed Bandit based algorithms</li>
+<li>Grid Search</li>
+</ol>
+<h2 id="bayesian-optimization">Bayesian Optimization</h2>
+<p>我们用 Gaussian process
+在函数空间中取样，最开始有一个“先验知识”（linear,
+cycle...）因为最开始没有“后验知识”的，所以直接根据“先验知识”生成的概率分布
+<span class="math inline">\(D\)</span>
+采样。根据函数空间，我们得到了一个最优秀的函数值点 <span
+class="math inline">\(x\)</span>，我们看一看 <span
+class="math inline">\(x\)</span> 点的函数值 <span
+class="math inline">\((x,f(x))\)</span>，然后再根据这个“后验知识”改进
+Gaussian process 的 covariance 矩阵，得到新的分布 <span
+class="math inline">\(D&#39;\)</span>，接着做。</p>
+<h2 id="gradient-descent">Gradient Descent</h2>
+<p>我们假设一个跑 <span class="math inline">\(n\)</span> 步的
+GD，我们可以把它写成 <span class="math inline">\(f(x_0,\eta)\)</span>
+我们需要设置超参 <span class="math inline">\(\eta\)</span>，我们希望对
+<span class="math inline">\(\eta\)</span>
+求导，得到一个尽量好的参数。</p>
+<p>直接做需要存下来 <span class="math inline">\(w_1,\cdots,w_n\)</span>
+这需要 <span class="math inline">\(n^2\)</span> 的内存，很垃圾。</p>
+<p>我们考虑使用 momentum。 <span class="math display">\[
+\begin{aligned}
+g_{t+1}&amp;=\nabla L(w_t)&amp;(1)\\
+v_{t+1}&amp;=\gamma v_t- (1-\gamma)g_{t+1}&amp;(2)\\
+w_{t+1}&amp;=w_t+v_{t+1}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &amp;(3)
+\end{aligned}
+\]</span> 这样，我们就可以根据 <span
+class="math inline">\(w_{t+1},v_{t+1}\)</span> 反推出 <span
+class="math inline">\(w_t\)</span> (3)，然后用 (1) 算出来 <span
+class="math inline">\(g_{t+1}\)</span>，然后再反推出 <span
+class="math inline">\(v_t\)</span> (2)。</p>
+<p>总共需要： <span
+class="math inline">\(T\log\left(\frac{1}{\gamma}\right)\)</span>
+bits。</p>
+<p>需要：变量连续。</p>
+<h2 id="random-search">random search</h2>
+<p>随机搜。实际有较好的效果。</p>
+<h2 id="multi-armed-bandit-based-algorithms">Multi-armed Bandit based
+algorithms</h2>
+<p>有 <span class="math inline">\(n\)</span> 个 arm，每个变量都是
+bounded 的，第 <span class="math inline">\(i\)</span>-th 老虎机的期望是
+<span class="math inline">\(v_i\)</span>。</p>
+<p>我们希望找到最大的那个 arm。</p>
+<h3 id="sh-algorithm">SH algorithm</h3>
+<p>设置一个阈值 <span class="math inline">\(B\)</span>，以及 <span
+class="math inline">\(T=B/\log_2(n)\)</span>。</p>
+<p>在第 <span class="math inline">\(i\)</span> 轮，假设此时剩余的集合为
+<span class="math inline">\(S_i\)</span>，我们对每一个 <span
+class="math inline">\(x\in S_i\)</span> 玩 <span
+class="math inline">\(\frac{T}{|S_i|}\)</span> 次，我们选取均值最大的
+<span class="math inline">\(\frac{|S_i|}{2}\)</span> 个。</p>
+<p>这样，每次减半，最终只会玩 <span
+class="math inline">\(\log_2(n)\)</span> 轮，总共 <span
+class="math inline">\(B\)</span> 次。</p>
+<hr />
+<p>我们给出证明：WLOG，我们假设 <span
+class="math inline">\(v_1&gt;v_2\ge v_3\cdots\ge v_n\)</span>。假设
+<span class="math inline">\(\Delta_i=v_1-v_i\)</span>。</p>
+<h3 id="theorem">theorem</h3>
+<p>选 <span class="math inline">\(B=O(H_2\log n\log{\frac{\log
+m}{\delta}})\)</span> ，w.p. <span class="math inline">\(\ge
+1-\delta\)</span> 我们可以得到最优老虎机。</p>
+<p><span
+class="math inline">\(H_2:=\max_{i=2}^n\frac{i}{\Delta_i^2}\)</span>.</p>
+<ol type="1">
+<li><p>我们首先给出： <span class="math inline">\(\mathrm{Pr}(\hat
+v_1&lt;\hat v_i)\)</span> 的 upper bound，我们假设老虎机给的是 <span
+class="math inline">\([0,1]\)</span> 随机分布。</p>
+<p>根据 Hoeffding Inequality: 一个均值为 <span
+class="math inline">\(\mu\)</span>，且有上下界 <span
+class="math inline">\([a,b]\)</span> 的随机变量，sample <span
+class="math inline">\(n\)</span> 次后的均值记为：<span
+class="math inline">\(\overline{x}\)</span>，则： <span
+class="math display">\[
+\begin{aligned}
+\Pr[\overline{x}-\E[\overline x]\ge t]\le
+\exp\left(-\frac{-2t^2n^2}{n(b-a)^2}\right)=\exp\left(-\frac{2t^2n}{(b-a)^2}\right)
+\end{aligned}
+\]</span> 我们可以扩展到 <span class="math inline">\(a_i\le x_i\le
+b_i\)</span>，<span class="math inline">\(\overline x=\frac{1}{n}\sum
+x_i\)</span>。</p>
+<p>那么： <span class="math display">\[
+\begin{aligned}
+\mathrm{Pr}[\hat v_1\le \hat v_i]=\mathrm{Pr}[\hat v_1-\hat v_i\le 0]\le
+\exp\left(-\frac{2\Delta_i^2T}{(1-(-1))^2}\right)=\exp\left(-\frac{\Delta^2_iT}{2}\right)
+\end{aligned}
+\]</span> 其中：<span class="math inline">\(T=\frac{B}{\log
+n|S_i|}\)</span>。</p></li>
+<li><p>计算出被干掉的期望，然后使用 Markov 不等式。（我们将前 <span
+class="math inline">\(\frac{1}{4}\)</span>
+hide，认为他们可以超过第一个人。bound 剩下的 <span
+class="math inline">\(\frac{3}{4}\)</span>） <span
+class="math display">\[
+\begin{aligned}
+\E[\#\hat v_i\ge \hat v_1]=\sum_{j\in
+S_i&#39;}\exp\left(-\frac{\Delta_i^2B}{2|S_i|\log n}\right)\le
+|S_i&#39;|\exp\left(-\frac{\Delta_{|S_i|}^2B}{2|S_i|\log n}\right)\\
+\mathrm{Pr}\left[(\#\hat v_i\ge \hat v_1)\ge \frac{1}{4}|S_i|\right]\le
+3\exp\left(-\frac{\Delta_{|S_i|}^2B}{2|S_i|\log n}\right)
+\end{aligned}
+\]</span> union bound一下： <span class="math display">\[
+\begin{aligned}
+\mathrm{Pr[lost]}\le 3\log
+n\exp\left(-\frac{\Delta_{|S_i|}^2B}{2|S_i|\log n}\right)
+\end{aligned}
+\]</span> 故，我们 <span class="math inline">\(B=O\left(2H_2\log
+n\log\left(\frac{\log n}{\delta}\right)\right)\)</span> 可以使得：<span
+class="math inline">\(\mathrm{Pr[lost]}\le \delta\)</span>。</p></li>
+</ol>
+<hr />
+<h3 id="sh-in-hyperparameter-learning">SH in hyperparameter
+learning</h3>
+<p>我们考虑一个GD（或者别的什么model训练的）过程，假设我们随机选择
+hyperparameter 得到了 <span class="math inline">\(S_1\)</span>
+个模型。</p>
+<p>我们假设他们都会收敛，我们还是希望找到最好的那个 model。</p>
+<p>我们假设： <span class="math display">\[
+\begin{aligned}
+\forall y\ge x,|f_{i}(k)-v_i|\le \gamma_i(t)
+\end{aligned}
+\]</span> 并且 <span class="math inline">\(\gamma_i(t)\)</span>
+单调减。</p>
+<p>也就是：</p>
+<p><img src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20250102005517290.png" srcset="/img/loading.gif" lazyload alt="image-20250102005517290" style="zoom:50%;" /></p>
+<p>黑线表示 <span class="math inline">\(f_i(k)\)</span> 即，模型 <span
+class="math inline">\(i\)</span> 训练 <span
+class="math inline">\(k\)</span> 步后的 loss，而橙色是 <span
+class="math inline">\(\gamma_i(t)+v_i\)</span>。</p>
+<p>我们考虑 <span class="math inline">\(\gamma_i(t)\)</span> 的反函数
+<span class="math inline">\(\gamma_i^{-1}(\alpha)\)</span>
+可以理解成，何时“陷入了” <span class="math inline">\(\alpha\)</span>
+邻域。不妨假设 <span
+class="math inline">\(\gamma(t)=\max_{i=1}^n\gamma_i(t)\)</span>。</p>
+<p>我们考虑这样一件事情，如果此时 <span
+class="math inline">\(k\)</span>（训练轮数）大于 <span
+class="math inline">\(\gamma_i^{-1}(\frac{v_i-v_1}{2}),\gamma_1^{-1}(\frac{v_i-v_1}{2})\)</span>，那么我们就可以认定
+<span class="math inline">\(f_1\)</span> 和 <span
+class="math inline">\(f_i\)</span> 被分开了。</p>
+<hr />
+<h3 id="theorem-1">theorem</h3>
+<p>如果我们的 <span class="math inline">\(B\)</span> 满足： <span
+class="math display">\[
+\begin{aligned}
+B\ge
+2\log_2n\left(n+\sum_{i=2}^n\gamma^{-1}\left(\frac{v_i-v_1}{2}\right)\right)
+\end{aligned}
+\]</span> 可以发现 <span class="math inline">\(\gamma^{-1}\)</span>
+也具有单调性。</p>
+<p>我们可以发现： <span class="math display">\[
+\begin{aligned}
+T=2\left(n+\sum_{i=2}^n\gamma^{-1}\left(\frac{v_i-v_1}{2}\right)\right)\\
+\frac{T}{|S_i|}\ge \gamma^{-1}\left(\frac{v_{|S_i|/2+1}-v_1}{2}\right)
+\end{aligned}
+\]</span> 所以可以分开。可以发现，这个 <span
+class="math inline">\(\gamma\)</span> 性质巨强无比，所以没有概率。</p>
 
 
   
