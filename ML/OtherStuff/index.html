@@ -25,8 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102005517290.png">
+<meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102015028509.png">
 <meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-01T17:11:10.671Z">
+<meta property="article:modified_time" content="2025-01-01T18:01:19.724Z">
 <meta property="article:author" content="Imitators">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
@@ -592,6 +593,65 @@ T=2\left(n+\sum_{i=2}^n\gamma^{-1}\left(\frac{v_i-v_1}{2}\right)\right)\\
 \end{aligned}
 \]</span> 所以可以分开。可以发现，这个 <span
 class="math inline">\(\gamma\)</span> 性质巨强无比，所以没有概率。</p>
+<hr />
+<h2 id="proxylessnas">ProxyLessNAS</h2>
+<p>我们现在有一个很深很深的神经网络的层，我们需要去决定每一层都是什么（<span
+class="math inline">\(3\times 3\)</span>,<span
+class="math inline">\(5\times5\)</span>,identity... and so
+on）每一层内部的权值。以及我们怎么选取这一层。</p>
+<hr />
+<p>假设第 <span class="math inline">\(i\)</span> 个 component 返回 <span
+class="math inline">\(o_i(x)\)</span>。</p>
+<p>那么 One-shot 做法是：<span
+class="math inline">\(f(x)=\sum_{i=1}^no_i(x)\)</span> 愚蠢的很。</p>
+<p>DARTS 做法是： <span
+class="math inline">\(f(x)=\sum_{i=1}^n\frac{\exp(\alpha_i)}{\sum
+\exp(\alpha_i)}o_i(x)\)</span>。</p>
+<p>这个做法的内存效力很差，我们改进做法是，每次以 <span
+class="math inline">\(p_i=\frac{\exp(\alpha_i)}{\sum
+\exp(\alpha_i)}\)</span> 的概率随机选一个 component <span
+class="math inline">\(i\)</span>，然后返回 <span
+class="math inline">\(o_i(x)\)</span>，并且此时，不将 <span
+class="math inline">\(o_j,j\not=i\)</span> 放入内存。（省内存）</p>
+<hr />
+<p>形式化的，我们定义一个随机变量 <span
+class="math inline">\(g=[1,0,\cdots,0] w.p.p_1;=[0,1,\cdots,0],w.p.
+p_2\)</span> 以此类推。</p>
+<p><img src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20250102015028509.png" srcset="/img/loading.gif" lazyload alt="image-20250102015028509" style="zoom:50%;" /></p>
+<p>然后我们的返回函数是： <span class="math display">\[
+\begin{aligned}
+f(x)=\sum_{i=1}^Ng_io_i(x)
+\end{aligned}
+\]</span> 其中 <span class="math inline">\(g_i\)</span> sample 出来的
+<span class="math inline">\(g\)</span> 的第 <span
+class="math inline">\(i\)</span> 位的值。和上述方法一致。</p>
+<hr />
+<h3 id="如何训练">如何训练？</h3>
+<p>我们训练神经网络内部时，froze <span
+class="math inline">\(\alpha_i\)</span>，同时训练 <span
+class="math inline">\(\alpha_i\)</span> 时，froze 神经网络内部值。</p>
+<p>如何训练 <span
+class="math inline">\(\alpha_i\)</span>，他并不显式出现在 loss function
+里？ <span class="math display">\[
+\begin{aligned}
+\frac{\partial L}{\partial \alpha_i}=\sum_{j=1}^N\frac{\partial
+L}{\partial p_j}\frac{\partial p_j}{\partial
+\alpha_i}\approx\sum_{j=1}^N\frac{\partial L}{\partial
+g_j}\frac{\partial p_j}{\partial\alpha_i}=\sum_{j=1}^N\frac{\partial
+L}{\partial g_j}p_j(\delta_{i,j}-p_i)
+\end{aligned}
+\]</span> 因为： <span class="math display">\[
+\begin{aligned}
+\frac{\partial\frac{\exp(a_j)}{\sum\exp(\alpha_k)}}{\partial\alpha_i}&amp;=-\frac{\exp(a_j)}{(\sum\exp(\alpha_k))^2}\times
+\exp(a_i)\\
+&amp;=-p_jp_i\\
+\frac{\partial\frac{\exp(a_i)}{\sum\exp(\alpha_k)}}{\partial\alpha_i}&amp;=-\frac{\exp(a_i)}{(\sum\exp(\alpha_k))^2}\times
+\exp(a_i)+\frac{\exp(a_i)}{\sum\exp(\alpha_k)}\\
+&amp;=p_i(1-p_i)
+\end{aligned}
+\]</span> Loss function 里有 <span class="math inline">\(g_i\)</span>
+所以直接假装 <span class="math inline">\(g_1,\cdots g_n\)</span>
+全是独立变量求导即可。</p>
 
 
   
