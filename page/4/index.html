@@ -204,27 +204,24 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/03/AGC052-partly/" target="_self">
-          AGC052 - partly solution
+        <a href="/2022/06/09/shifenlihai/" target="_self">
+          十分厉害的数论提
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/03/AGC052-partly/" target="_self">
+        <a href="/2022/06/09/shifenlihai/" target="_self">
           
           
             
           
-          Link
-暂时只会了ABC（这就是similar to ABC 吗？）
-
-A
-
-            题目无关的。
-          
-本来想写的是『简单题，考场傻逼』了。
-但想想，我真的能在不看题解时想到吗？
-这真的不好说，在我看题解的那一瞬间，"我能想到"，和"我想不到"两个不确定的状态会瞬间坍塌成"我曾经想不到"这一个状态，时间不会回溯，没看过题解的我也不复存在.....
+          十分厉害。
+\(x,y\in[1,p\times (p-1)]\) 求使得
+\(x^y=y^x \bmod p\) 的对数。
+首先这个东西不能用原根，阶去分析， 因为 \(x\) 可能大于 \(p\)，这样会产生一个 %p 不容易考虑了。
+那只能观察这个定义域限制了。
+先改写一下方程 ：\((x\bmod p)^{y\ \bmod
+p-1}={(y\bmod p)}^{x\ \bmod
         </a>
       </p>
 
@@ -232,8 +229,8 @@ A
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-03 20:35" pubdate>
-              2021-11-03
+            <time datetime="2022-06-09 00:00" pubdate>
+              2022-06-09
             </time>
           </div>
         
@@ -241,7 +238,7 @@ A
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/whole-round/">whole round</a>
+              <a href="/categories/math/">math</a>
             
           </div>
         
@@ -256,34 +253,74 @@ A
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/25/cf-round750-div2/" target="_self">
-          codeforces round 750 [div2]
+        <a href="/2022/05/25/Rec-DS/" target="_self">
+          不停的T,成为大傻冒！
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/25/cf-round750-div2/" target="_self">
+        <a href="/2022/05/25/Rec-DS/" target="_self">
           
           
             
           
-          Link
+          
+seg T。
 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-25 13:55" pubdate>
+              2022-05-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ds/">ds</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/16/arc140/" target="_self">
+          ARC140
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/16/arc140/" target="_self">
+          
+          
+            
+          
+          
+未补完
+Link
 A
-\(a,b,c \bmod 10\) 然后暴力。
-注意如果 \(a,b,c\geq 10\)
-那么模完还要加上10。
-10只不过是一个大偶数。
-
+让你最多改 \(k\)
+个字符，最大化循环位移得到的本质不同的串。
+枚举循环节，然后贪心判断即可。。复杂度 \(O(d(n)n)\)。
 B
-暴力看 \(0,1\) 个数。
-
-C
-枚举删什么字符，然后看是否回文，回文就在两个之间添加该字符。
-
-D
-构造 \(b,s.t. \sum a_ib_i=0\)。
-两两配对 \(b_i=a_{i+1},
+题意你有俩操作必须轮流做，\(\mathrm{ARC \to
+R},\mathrm{ARC\to AC}\)。
+冷静思考一下发现最终有可能操作的一定是 \(R\) 旁边的数。
+1操作相当于把 \(\mathrm{A
         </a>
       </p>
 
@@ -291,8 +328,8 @@ D
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-25 11:35" pubdate>
-              2021-10-25
+            <time datetime="2022-05-16 19:00" pubdate>
+              2022-05-16
             </time>
           </div>
         
@@ -315,28 +352,30 @@ D
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/22/AGC006F/" target="_self">
-          AGC006F
+        <a href="/2022/05/15/abc251/" target="_self">
+          ABC251
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/22/AGC006F/" target="_self">
+        <a href="/2022/05/15/abc251/" target="_self">
           
           
             
           
           Link
-这题我大概一年前就做过，现在心情很糟。
-直接说现在的心路历程。
+A,B,C都是模拟题没啥好说的。
+D
+最开始想的是贪心做，以为信息熵足够贪心就行，然后发现不对。。。。。
+然后看拿什么1,2,4,8,15什么的自然想到能不能把二进制拆开那么做。，这样数量太多了。
+所以大概就能想到按10进制分，就xx0000,xx00,xx这样三组恰好 297。
 
-看反了 \((x,y),(y,z) \rightarrow
-(z,w)\) 中的 \((z,w)\)。
-受到一个cf题的影响，拼命想并查集，做成了二分图，没什么进展（因为没有联通性）。
-看题解，得知应该看成有向图，用边的方向表示。
-又看错题意回到了 1，认为这个和 noi day1 t3
-很像。
-不忍心
+E
+很简单的DP，拆下环就行。
+
+F
+想了一小会，是调整那样做，复杂度爆炸。
+然后
         </a>
       </p>
 
@@ -344,8 +383,111 @@ D
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-22 17:01" pubdate>
-              2021-10-22
+            <time datetime="2022-05-15 19:00" pubdate>
+              2022-05-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/whole-round/">whole round</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/13/Rec-string/" target="_self">
+          串串超人与山姆大叔
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/13/Rec-string/" target="_self">
+          
+          
+            
+          
+          串串超人与山姆大叔
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-13 00:02" pubdate>
+              2022-05-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/string/">string</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SAM/">SAM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/11/KM-simple-thought/" target="_self">
+          KM 二分图最大权匹配。
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/11/KM-simple-thought/" target="_self">
+          
+          
+            
+          
+          
+可以说是抄的ix35的洛谷博客了。。。。。
+改写
+首先要讲最大权匹配改写成线性规划形式。 \[
+\begin{aligned}
+\max \sum_{i\leq m}w_ix_i\\
+s.t. \forall i\leq n,\sum_{j\leq m}w(i,j)x_j\leq 1
+\end{aligned}
+\] \(x_i\)
+代表着每条边选不选。
+\(w(i,j)\)
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-11 00:00" pubdate>
+              2022-05-11
             </time>
           </div>
         
@@ -354,9 +496,9 @@ D
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">线性规划</a>
             
-              <a href="/tags/%E6%9F%93%E8%89%B2/">染色</a>
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
             
           </div>
         
@@ -370,30 +512,26 @@ D
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/22/scanning-line-simple-thoughts/" target="_self">
-          扫描线类线段树正确性分析
+        <a href="/2022/04/25/cf-icpc-1662-part/" target="_self">
+          SWERC 2021-2022
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/22/scanning-line-simple-thoughts/" target="_self">
+        <a href="/2022/04/25/cf-icpc-1662-part/" target="_self">
           
           
             
           
-          
-            对于线段树分析。
-          
-\(\mathcal{Goal: }\)
-我们希望使用线段树维护区间大于0的数的个数，支持区间加/减。
-
-\(\mathcal{Main\ \ Idea :}\)
-方法：通过打加法 tag，直接维护答案。
-
-
-由于扫描线的性质，区间减法相当于撤销上一次区间加，所以 tag
-始终非负。
-至于维护的值，我们只需要保
+          Links
+和袁妹妹打的一场acm。感觉由于是
+7点开始，有点疲劳了，我自己状态不是很好，爬了。。。。。
+赛时只做对了6道，实际上可以做出8，9道以上，两道是DS，而且我思路都不是很对。而且还是较为简单的“送分题”，DS真的应该多加练习。
+只说我做的吧。。
+D
+题。
+题意是每次你可以插入或删除 \(\text{aa,bb,cc,abab,bcbc}\) ，问你能不能将
+\(A\) 
         </a>
       </p>
 
@@ -401,8 +539,115 @@ D
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-22 16:01" pubdate>
-              2021-10-22
+            <time datetime="2022-04-25 17:35" pubdate>
+              2022-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/whole-round/">whole round</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/24/stirling-number-simple-thoughts/" target="_self">
+          stirling number
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/24/stirling-number-simple-thoughts/" target="_self">
+          
+          
+            
+          
+          斯特林数。
+感觉斯特林数从构造角度能更好理解吧。
+未更新完毕，待更新。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-24 12:56" pubdate>
+              2022-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
+            
+              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
+            
+              <a href="/tags/stirling-number/">stirling number</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/21/linear-base-simple-thought/" target="_self">
+          线性基求交
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/21/linear-base-simple-thought/" target="_self">
+          
+          
+            
+          
+          线性基求交。
+大概就是 \(A,B\) 线性基求交。
+答案 \(C\) 一定满足 \(\forall x\in C,x\in A,B\) 。
+所以我们考虑 \(A\)
+的每一个基，看他在没在 \(B\)
+中出现。
+如果出现，保留，否则考虑只可能是 \(x\in
+B,x=d_i \oplus \sum d_{k_j},k_j&lt;i\) 这种。
+所以这代表了 \(B\) 和小于 \
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-21 00:00" pubdate>
+              2022-04-21
             </time>
           </div>
         
@@ -420,6 +665,8 @@ D
             
               <a href="/tags/simple-thoughts/">simple thoughts</a>
             
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E5%9F%BA/">线性基</a>
+            
           </div>
         
       </div>
@@ -432,27 +679,30 @@ D
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/15/abc221H/" target="_self">
-          Count Multiset
+        <a href="/2022/04/15/dp-mono/" target="_self">
+          决策单调性随笔
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/15/abc221H/" target="_self">
+        <a href="/2022/04/15/dp-mono/" target="_self">
           
           
             
           
-          
-            Arc221H-Link
-          
-
-            Solution
-          
-第一步，对于 multiset 计数，我们将其转换成 对于单调不降数列计数。
-这时看起来对于单调不降数列计数已经有较好的性质了，我们也可以得到如下的
-\(\mathcal{O(n^3)}\) 的 dp。
-对于每个 \(t\),更新 dp 数组：\
+          这个题让我入门了决策单调性（我爬了）。。。。。
+说：谢谢出题人。
+我：“谢谢出题人”。
+首先，转化成 \(w_0+w_1,w_2,w_3,\cdots
+,w_n\)。
+然后有显然的 \((+,\min)\)
+卷积，有:
+\[
+f_x=\min_{i+j=x}(h_i+g_j)
+\]
+设 \(x\) 最优转移点是 \(p_x\)，通过四边形不等式，证明决策单调性。
+\[
+\b
         </a>
       </p>
 
@@ -460,8 +710,8 @@ D
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-15 17:01" pubdate>
-              2021-10-15
+            <time datetime="2022-04-15 00:00" pubdate>
+              2022-04-15
             </time>
           </div>
         
@@ -472,304 +722,6 @@ D
               <a href="/categories/dp/">dp</a>
             
           </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/dp/">dp</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/27/arc115d/" target="_self">
-          arc115D odd degree
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/27/arc115d/" target="_self">
-          
-          
-            
-          
-          statement
-题意很简洁。
-让你对于 \(k\in[1,n]\)
-求一个图有多少个子图有恰好 \(k\)
-个奇度的点。
-\(n,m\leq 5000\)。
-注意子图特殊定义：原图 \(E\),子图
-\(S\)。\(E,S\) 点集相同，\(S\) 边集是 \(E\) 边集的子集。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-27 10:02" pubdate>
-              2021-09-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B0%8Fidea/">小idea</a>
-            
-              <a href="/tags/combination/">combination</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/23/cf1574F/" target="_self">
-          cf1574 F. Occurrences
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/23/cf1574F/" target="_self">
-          
-          
-            
-          
-          题意
-Link
-中文大意：让你构造字符串 \(a,a_i\le
-k\)。
-记 \(s(b)\) 为字符串 \(b\) 在 \(a\) 中出现次数
-给你 \(n\) 个限制字符串 \(A_i\),表示对于任意 \(A_i\) 子串 \(b\),\(s(A_i)\ge
-s(b)\)。
-
-题解
-思路还蛮好想，只要合法的字符串 \(a\)
-,\(s(A_i)\le
-s(b)\)，所以
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-23 17:35" pubdate>
-              2021-09-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/combination/">combination</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/18/arc101c/" target="_self">
-          arc101C | Ribbon on tree
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/18/arc101c/" target="_self">
-          
-          
-            
-          
-          题意
-题目大意解释一下，让你给一颗树结点配对，染色每对点。如果每一条边都有颜色，那么就算一种合法的情况。
-
-sol
-0正：对于任意
-反：存在
-显然正难则反。
-存在难，所以显然钦定然后容斥。
-
-这样大体idea 出来了。
-step1
-首先发现一件事情,我们可以通过把一颗树，切掉一条边，变成两颗子树，递归分别求解。
-这样求出的是不包括 钦定的这条边的合法情况数。
-这样显然可以
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 10:02" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/dp/">dp</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/dp/">dp</a>
-            
-              <a href="/tags/IN-EX-principle/">IN-EX principle</a>
-            
-              <a href="/tags/idea/">idea</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/12/abc208f/" target="_self">
-          Cumulative Sum
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/12/abc208f/" target="_self">
-          
-          
-            
-          
-          题意
-题解
-part1
-\(n\) 很大,但 \(m,k\) 很小，这提示了我们。
-把 \(f(x,y)\) 看成若干个关于 \(x\) 的多项式，\(f_y(x)\) 。
-显然 \(y=0\) 时 \(f_y(x)\) 是一个 \(k\) 次多项式。
-考虑由于 \(f_y(x)\leftarrow
-f_y(x-1)+f_{y-1}(x)\) 。
-显然 \(f_y(x)\) 本质上
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-12 18:25" pubdate>
-              2021-09-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC/">拉格朗日插值</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/10/daily/" target="_self">
-          daily
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/10/daily/" target="_self">
-          
-          
-            
-          
-          🌃2021 8 19
-今天开始上网课了，可能事情会好起来了。
-颓了好久。
-没干什么正经事。
-自己思维能力看起来真的不容乐观。
-重要事情就留给明天吧。
-🌃2021 8 20
-确定了，并不是要否定自己初中的的学习方法，但也要改变初三末期对学习的看法。
-「悔相道之不察兮，延伫乎吾将反。回朕车以复路兮，及行迷之未远。」
-现在看来写作业应该是学好习的必要条件。
-真正的成功不是逃避自己
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-10 00:00" pubdate>
-              2021-09-10
-            </time>
-          </div>
-        
         
         
       </div>
@@ -780,7 +732,7 @@ f_y(x-1)+f_{y-1}(x)\) 。
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

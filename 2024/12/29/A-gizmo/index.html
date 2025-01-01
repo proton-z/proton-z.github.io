@@ -1,0 +1,661 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="随记?标题那个词时百度翻译的，，，， 感觉比较有拓展的，或者说自己应该多看看的打上了*标。 1. \(\mu(ix)\) 怎么筛？* 可以杜教筛，很震撼。 \(f_x(i)&#x3D;\mu(ix)\) 这个函数首先是积性的，不包含的质因子直积形成的，而他的的贝尔级数为：\((1-x)\) 和 \(1\)。 我们构造 \(g_x(i)&#x3D;[\gcd(x,i)&#x3D;1]\)。他的贝尔级数为：\(1+x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随记">
+<meta property="og:url" content="https://proton-z.github.io/2024/12/29/A-gizmo/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="随记?标题那个词时百度翻译的，，，， 感觉比较有拓展的，或者说自己应该多看看的打上了*标。 1. \(\mu(ix)\) 怎么筛？* 可以杜教筛，很震撼。 \(f_x(i)&#x3D;\mu(ix)\) 这个函数首先是积性的，不包含的质因子直积形成的，而他的的贝尔级数为：\((1-x)\) 和 \(1\)。 我们构造 \(g_x(i)&#x3D;[\gcd(x,i)&#x3D;1]\)。他的贝尔级数为：\(1+x">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-28T16:28:14.992Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.672Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>随记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/11/02/CQU7d2pvxrbE3Tf.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="随记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-12-29 00:28" pubdate>
+        星期日, 十二月 29日 2024, 12:28 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">随记</h1>
+            
+            <div class="markdown-body">
+              <p>随记?标题那个词时百度翻译的，，，，</p>
+<p>感觉比较有拓展的，或者说自己应该多看看的打上了*标。</p>
+<h2 id="muix-怎么筛">1. <span class="math inline">\(\mu(ix)\)</span>
+怎么筛？*</h2>
+<p>可以杜教筛，很震撼。</p>
+<p><span class="math inline">\(f_x(i)=\mu(ix)\)</span>
+这个函数首先是积性的，不包含的质因子直积形成的，而他的的贝尔级数为：<span
+class="math inline">\((1-x)\)</span> 和 <span
+class="math inline">\(1\)</span>。</p>
+<p>我们构造 <span
+class="math inline">\(g_x(i)=[\gcd(x,i)=1]\)</span>。他的贝尔级数为：<span
+class="math inline">\(1+x+x^2+\cdots +x^n+\cdots\)</span>，和 <span
+class="math inline">\(1\)</span>。</p>
+<p>发现很神奇呀，乘起来之后就是 <span
+class="math inline">\(\epsilon\)</span>。</p>
+<hr />
+<p>特别的 <span class="math inline">\(\phi(ix)\)</span>
+的杜教筛法也是类似的。</p>
+<hr />
+<h2 id="感性理解对偶">2. 感性理解对偶。</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\max c^{T}x,Ax\le b,x\ge 0\\
+\min y^Tb,A^Ty\ge c,y\ge 0\\
+\end{aligned}
+\]</span></p>
+<p>限制与变量对调，限制系数与目标函数系数对调。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y^TA\ge c^T\Rightarrow y^TAx\ge c^Tx\Rightarrow y^Tb\ge y^TAx\ge c^Tx
+\end{aligned}
+\]</span></p>
+<p>这样我们得到了 <span class="math inline">\(\min y^Tb\ge \max
+c^{T}x\)</span>。</p>
+<p>接下来证明等号很复杂，所以感性理解 <span
+class="math inline">\(\mathrm{maximize}\)</span> 也始终小于 <span
+class="math inline">\(\mathrm{minimize}\)</span> 最终取等？</p>
+<hr />
+<h2 id="复杂度真的不对吗">3. 复杂度真的不对吗？*</h2>
+<p>我们都知道，值域是 <span class="math inline">\(sz_u\)</span> 的树背包
+dp 的复杂度是 <span class="math inline">\(O(n^2)\)</span> 的。</p>
+<p>那么如果值域变成了 <span class="math inline">\(\min(sz_u,k)\)</span>
+这类的，他的复杂度啥呢？</p>
+<p>答案是通过精细实现，是 <span class="math inline">\(O(nk)\)</span>
+的。</p>
+<p>大概是你考虑将合并分成三部分。</p>
+<p>我们称 <span class="math inline">\((u,v),sz_u&gt;k,sz_v\le k\)</span>
+为切换边，那么切换边下面的转移复杂度可以用 <span
+class="math inline">\(\sum_{v}sz_v^2\)</span>
+来分析，由于是不交的，所以有 <span
+class="math inline">\(\sum_{v}sz_v^2\le
+\sum_{v}sz_vk=O(nk)\)</span>。</p>
+<p>切换边上面的点总共只有 <span class="math inline">\(n/k\)</span>
+个，那么直接转移的复杂度是 <span
+class="math inline">\((n/k)k^2=O(nk)\)</span> 的。</p>
+<p>切换边的转移代价可以用 <span class="math inline">\(\sum_{v}
+sz_vk\)</span> 来分析的，又是 <span class="math inline">\(v\)</span>
+不交，所以这部分也是 <span class="math inline">\(O(nk)\)</span> 的。</p>
+<p>这个其实给了我们一些启示，如果能将树分成若干个“不交并”的这样的集合，那么很多事情会变成
+<span class="math inline">\(O(n)\)</span> 。</p>
+<p>例如『MdOI R1』Path 这题的 <span class="math inline">\(n\log
+n\)</span> 做法，几次利用到了不交并关键性质。</p>
+<details>
+<summary>
+『MdOI R1』Path
+</summary>
+考虑全局最大异或和的链，实际上有很多链的答案是他们。性质太棒了。
+</details>
+<hr />
+<h2 id="原汁原味的淀粉">4.原汁原味的淀粉。*</h2>
+<p>如题，如果需要维护点集 <span
+class="math inline">\(A\)</span>，每次插入一个数，查询 <span
+class="math inline">\(f(u)\sum_{x\in A}dis(u,x)\)</span>。</p>
+<p>这个问题我最开始以为拆贡献，变成链加，链求和是最为方便的做法。可惜不用全局平衡二叉树的话，树剖是
+<span class="math inline">\(\log^2\)</span> 的。</p>
+<p>那么如果使用点分树的话呢？，考虑点分树这样一个结构，点分树上两点一定在原树路径上。</p>
+<p>我们之前干的事情是把路径集合，划分成若干个落在lca处的不交并。这样我们可以把路径集合落在<strong>点分树</strong>上lca处的不交并。</p>
+<p>好处是明显的，树高 <span class="math inline">\(\log\)</span>
+一些我们平时不敢干的事情可以暴力做了。感觉做法很有拓展性。</p>
+<p>当然我们知道 toptree
+的结构更加有拓展性。记得u群里总说直接在toptree上分治。全局平衡二叉树是静态toptree。</p>
+<h2 id="英国的将军算法">5.英国的将军算法。</h2>
+<p>不知道这玩意咋想出来的。。</p>
+<p>如何求 <span class="math inline">\(a\cdot m^{-1}\bmod
+M\)</span>。</p>
+<!-- $t=$ -->
+<p>waiting for upd</p>
+<h2 id="区间点积真的啥操作都能维护呀">6.
+区间点积真的啥操作都能维护呀！</h2>
+<p>区间点积真的啥操作都能维护呀！</p>
+<p>记录 <span class="math inline">\(sa,sb,sab\)</span>
+足以了。。。。。。。。。。</p>
+<p>不用 <span class="math inline">\(5\times 5\)</span>
+矩阵。。。。。</p>
+<h2 id="mtt">7. MTT</h2>
+<p><span class="math inline">\(a_i,b_i\in \mathbb{Z}\)</span>。</p>
+<p><span
+class="math inline">\(f(x)=A(x)+iB(x),g(x)=A(x)-iB(x)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+[x^k]f(x)=\sum_{j=0}(a_j+ib_j)(w_{n}^k)^j\\
+[x^{n-k}]g(x)=\sum_{j=0}(a_j-ib_j)(w_{n}^{n-k})^j\\
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\overline{a_j+ib_j}=a_j-ib_j\)</span></p>
+<p><span
+class="math inline">\(\overline{w_{n}^k}=w_{n}^{n-k}\)</span></p>
+<p><span
+class="math inline">\(\overline{[x^k]f(x)}={[x^{n-k}]g(x)}\)</span></p>
+<h2 id="agc的c的證明">8. agc的c的證明。</h2>
+<p>如果一个完全图，我给每条边都定向，产生的无向图有环。</p>
+<p>那么一定存在一个简单三元环。对于任意一个长度&gt;=4的环，考虑其中任意两点，不管怎么连边，必然会分成一个更小的环。</p>
+<h2 id="只有向后push_back的st表">9. 只有向后push_back的st表。</h2>
+<p>这个我们更改定义变成 <span class="math inline">\([x-2^i+1,x]\)</span>
+的极值。</p>
+<p>然后发现就可以转移啦，这个也就是相当于插入叶子，然后倍增求lca那种东西。</p>
+<h2 id="不清楚的异或卷积感谢cres的无私贡献">10.
+不清楚的异或卷积（感谢cres的无私贡献）*</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fwt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> lim)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> mid=<span class="hljs-number">1</span>;mid&lt;lim;mid&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;lim;j+=(mid&lt;&lt;<span class="hljs-number">1</span>))&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;mid;k++)&#123;<br>                <span class="hljs-keyword">int</span> x=a[j+k],y=a[j+k+mid];<br>                a[j+k]=x+y,a[j+k+mid]=x-y;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">int</span> a[<span class="hljs-number">1010</span>],b[<span class="hljs-number">1010</span>],d[<span class="hljs-number">1010</span>];<br><span class="hljs-keyword">double</span> c[<span class="hljs-number">1010</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> x=<span class="hljs-number">11</span>,y=<span class="hljs-number">7</span>,z=<span class="hljs-number">5</span>,lim=<span class="hljs-number">32</span>;<br>    a[<span class="hljs-number">0</span>]=<span class="hljs-number">3</span>,a[x]=<span class="hljs-number">1</span>;fwt(a,lim);<br>    b[<span class="hljs-number">0</span>]=<span class="hljs-number">5</span>,b[y]=<span class="hljs-number">1</span>;fwt(b,lim);<br>    d[<span class="hljs-number">0</span>]=<span class="hljs-number">7</span>,d[z]=<span class="hljs-number">1</span>;fwt(d,lim);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;lim;i++) <span class="hljs-built_in">cout</span>&lt;&lt;a[i]*b[i]*d[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;lim;i++) c[i]=<span class="hljs-number">1</span>;<br>    c[x]*=<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span>*(<span class="hljs-number">3</span>+<span class="hljs-number">1</span>)/(<span class="hljs-number">3</span><span class="hljs-number">-1</span>));<br>    c[y]*=<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span>*(<span class="hljs-number">5</span>+<span class="hljs-number">1</span>)/(<span class="hljs-number">5</span><span class="hljs-number">-1</span>));<br>    c[z]*=<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span>*(<span class="hljs-number">7</span>+<span class="hljs-number">1</span>)/(<span class="hljs-number">7</span><span class="hljs-number">-1</span>));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> mid=<span class="hljs-number">1</span>;mid&lt;lim;mid&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;lim;j+=(mid&lt;&lt;<span class="hljs-number">1</span>))&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;mid;k++)&#123;<br>                <span class="hljs-keyword">double</span> x=c[j+k],y=c[j+k+mid];<br>                c[j+k]=x*y;c[j+k+mid]=x/y;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;lim;i++) &#123;<br>        <span class="hljs-built_in">cout</span>&lt;&lt;(c[i]*<span class="hljs-built_in">sqrt</span>((<span class="hljs-number">5</span>+<span class="hljs-number">1</span>)*(<span class="hljs-number">5</span><span class="hljs-number">-1</span>))*<span class="hljs-built_in">sqrt</span>((<span class="hljs-number">3</span>+<span class="hljs-number">1</span>)*(<span class="hljs-number">3</span><span class="hljs-number">-1</span>))*<span class="hljs-built_in">sqrt</span>((<span class="hljs-number">7</span>+<span class="hljs-number">1</span>)*(<span class="hljs-number">7</span><span class="hljs-number">-1</span>)))&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>似乎正确性得到了说明，如果我们只在 <span
+class="math inline">\(\bmod\)</span> 质数意义下计算大抵可以这么做。</p>
+<p><span class="math inline">\(\bmod p\)</span>
+时，开一次根号只会扩一次域。我们只会引入一次 <span
+class="math inline">\(i\)</span>。</p>
+<p>考虑 <span class="math inline">\(p\)</span>
+是质数，所以存在原根，这样数域中每一个数（除了0）都可以表示成 <span
+class="math inline">\(g^c\)</span> 如果 <span
+class="math inline">\(c\bmod 2=0\)</span> 那么是二次剩余，否则只需要引入
+<span class="math inline">\(i=g^{1/2}\)</span>
+这样所有的数都可以在数域中被表示出来。</p>
+<p>然后现在我们希望求的是： <span class="math display">\[
+\prod_{i=1}^{n} (a_i+b_ix^{T_i})
+\]</span> 这里的乘法是异或卷积，即 <span class="math inline">\(x^a\times
+x^b=x^{a\text{ xor }b}\)</span>。</p>
+<p>我的做法大概是一个 <span
+class="math inline">\(2^nn\mathrm{polylog}(p)\)</span> 的。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">waiting for addition</span><br></code></pre></div></td></tr></table></figure>
+<p>接下来我们可以将位置 <span class="math inline">\(T_i\)</span> 处乘上
+<span class="math inline">\(\sqrt{\frac{A_i}{B_i}}\)</span>
+，最后在进行一次新定义的 fwt 即可得到真实的 <span
+class="math inline">\(fwt(\prod_{i=1}^{n}
+(a_i+b_ix^{T_i}))\)</span>。</p>
+<p>然后做一次普通的ifwt。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/29/A-Amokao/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模考.md</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/16/wc2023-zjk-part/">
+                        <span class="hidden-mobile">hhz 杂题选讲。</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

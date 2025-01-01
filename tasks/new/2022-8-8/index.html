@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="2022-8-8 T1 分块题. (safe) 大概就是给你个分块程序分析跑多少步。 事实上这个东西不难写出表达式，大概就是一些下取整之类的。 简单整除分块可做到，\(O(\sqrt n)\)，其实可以直接枚举因数，然后扫描线做到 \(O(n\log^2n+n\log n)\) 前面是查询，后面是修改。 也可以用 \(\log\log n\) 叉线段树做到 \(\frac{\log">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2022-8-8 ~ 2022-8-15">
+<meta property="og:url" content="https://proton-z.github.io/tasks/new/2022-8-8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2022-8-8 T1 分块题. (safe) 大概就是给你个分块程序分析跑多少步。 事实上这个东西不难写出表达式，大概就是一些下取整之类的。 简单整除分块可做到，\(O(\sqrt n)\)，其实可以直接枚举因数，然后扫描线做到 \(O(n\log^2n+n\log n)\) 前面是查询，后面是修改。 也可以用 \(\log\log n\) 叉线段树做到 \(\frac{\log">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-19T14:36:20.713Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.713Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>2022-8-8 ~ 2022-8-15 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@3.2/2233/wallhaven-6o3j87.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2022-8-8 ~ 2022-8-15">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h2 id="section"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/257">2022-8-8</a></h2>
+<h3 id="t1-分块题.-safe">T1 分块题. (safe)</h3>
+<p>大概就是给你个分块程序分析跑多少步。</p>
+<p>事实上这个东西不难写出表达式，大概就是一些下取整之类的。</p>
+<p>简单整除分块可做到，<span class="math inline">\(O(\sqrt
+n)\)</span>，其实可以直接枚举因数，然后扫描线做到 <span
+class="math inline">\(O(n\log^2n+n\log n)\)</span>
+前面是查询，后面是修改。</p>
+<p>也可以用 <span class="math inline">\(\log\log n\)</span> 叉线段树做到
+<span class="math inline">\(\frac{\log n}{\log\log n}\)</span>。</p>
+<hr />
+<h3 id="t2-神必题.-euclid">T2 神必题. (euclid)</h3>
+<p>动态修改的滑动窗口。</p>
+<p>赛时根本没在想。。</p>
+<p>如果时间分治后可以变成只插的滑动窗口。每次讨论这个点产生的新贡献即可。（max
+会不怕算重之类的。。。）</p>
+<p>本来还以为要线段树二分呢。。。实际上就是找 <span
+class="math inline">\([x-k,x+k]\)</span> 最大的。。。。</p>
+<p><a target="_blank" rel="noopener" href="https://tg.hszxoj.com/contest/316">强化版(T3)</a></p>
+<hr />
+<h3 id="t3-逆天题.-kater">T3 逆天题. (kater)</h3>
+<p>waiting solution...</p>
+<hr />
+<h2 id="section-1"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/258">2022-8-9</a></h2>
+<h3 id="t1-ddtt.-euclid">T1 ddtt. (euclid)</h3>
+<p>今年第二次死在强连通上了。</p>
+<p>本来还想点双耳分解，然后看看了这有向图，就放弃了。。。。。</p>
+<p>事实上任意一个 SCC 都是可以被耳分解的。</p>
+<p>所以我们朴素的插入耳朵可以做到简单的 <span
+class="math inline">\(3^n\mathrm{poly(n)}\)</span>。</p>
+<p>然后我们重新考虑一下这个贡献，我们可以理解成都选 <span
+class="math inline">\(\min(w(u,v),w(v,u))\)</span> 然后每次更改。</p>
+<p>不难发现只有我们钦定选的耳朵 <span class="math inline">\(u\to e_1 \to
+e_2 \to ... \to e_k \to v\)</span> 这些边会产生改变。</p>
+<p>现在你看一下，加一个耳朵可以看成选一个对 <span
+class="math inline">\(u,v\)</span>
+（起点，终点），接着一个点一个点加入。</p>
+<p>我们似乎只需要保证加入的点不在<strong>已选集合</strong>即可。</p>
+<p>那我直接设dp状态 <span
+class="math inline">\(\mathrm{dp}(s,i,j)\)</span> 表示选完 <span
+class="math inline">\(s\)</span> 集合，然后耳朵两段是 <span
+class="math inline">\(i,j\)</span> 的最小贡献。</p>
+<p>那么不难做到 <span class="math inline">\(2^nn^3\)</span>。</p>
+<p>特殊注意一下选 耳朵对 <span class="math inline">\(u,u\)</span>
+时，<span class="math inline">\(u\to e_1\to u\)</span>
+是不合法的，要每次强制更新。</p>
+<hr />
+<h3 id="t2-菱形覆盖.-未知">T2 菱形覆盖. 【未知】</h3>
+<p>waiting....</p>
+<hr />
+<h3 id="t3-排列.-euclid">T3 排列. (euclid)</h3>
+<p>这个东西我以前是觉得不能做的，然后就被出成了题。很震撼。</p>
+<p>做法是要容斥。</p>
+<p>我们钦定原序列被分成，若干个公差是 <span
+class="math inline">\(k\)</span> 的等差数列（增减不重要）。</p>
+<p>那么我们给 <span class="math inline">\((-1)^{n-segs}\)</span>
+作为容斥系数即可。</p>
+<p>然后需要发现实际上我们把原序列拆开，拆成若干公差是 <span
+class="math inline">\(k\)</span>
+的极长等差数列后，每一段都是独立的。</p>
+<p>独立后就能想到，实际上我们把每一个长度的答案做出来后，只需要egf卷积起来就能得到答案。</p>
+<p>不难发现把长度是 <span class="math inline">\(k\)</span>
+的等差数列拆成 <span class="math inline">\(n\)</span> 段的答案是：<span
+class="math inline">\([x^k](\frac{(1+x)}{1-x})^n\)</span> 。</p>
+<p>这个东西一看就可以 <span class="math inline">\(O(n^2)\)</span>
+求出来。（前缀和+(shift+)）。</p>
+<p>然后问题就是 <span class="math inline">\(\sum_{i}l_i=N\)</span>
+的多项式乘法了。</p>
+<p>最开始我以为暴力是 <span class="math inline">\(O(n^3)\)</span>
+的，但实际上这东西就是 <span class="math inline">\(O(n^2)\)</span>
+的。</p>
+<p>你考虑每次卷积看成 <span class="math inline">\(f&#39;=f\times
+g\)</span> 你把 <span class="math inline">\(f\)</span> 看成就是 <span
+class="math inline">\(n\)</span> 项的，每次复杂度就是 <span
+class="math inline">\(\sum n\times deg(g)\)</span> 也就是 <span
+class="math inline">\(n^2\)</span>。</p>
+<p>所以得到 <span class="math inline">\(O(n^2)\)</span> 的做法。</p>
+<hr />
+<h2 id="section-2"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/259">2022-8-11</a></h2>
+<h3 id="t1-随机.-euclid">T1 随机. (euclid)</h3>
+<p>大概让你求 一个st表的 <span
+class="math inline">\((\max-\min)^2\)</span>，要你支持动态修改，但是保证了初始权值，修改权值，修改位置全是随机的。</p>
+<p>不难想到如果我真要做的话，就找那些区间贡献改变了就好。</p>
+<p>考虑如果修改位置 <span class="math inline">\(p\)</span> ，现在 <span
+class="math inline">\([p,r]\)</span> 已经有 <span
+class="math inline">\(\ge a_p,\le a_p\)</span> 的了，那从 <span
+class="math inline">\(r\)</span> 做结尾的区间和后面的都不会改变。</p>
+<p>我们具体分析一下期望。</p>
+<p>你就考虑随机选一个数 <span class="math inline">\(w\)</span>
+然后在后面随便写数，然后既出现过 <span class="math inline">\(\ge
+w\)</span> 也出现过 <span class="math inline">\(\le w\)</span>
+的期望长度。</p>
+<p>大概就是考虑走了 <span class="math inline">\(k\)</span>
+步还不死的概率求和。</p>
+<p>大概就是：</p>
+<p><span class="math display">\[
+\frac{2}{n}\sum_{w\le n} \sum_{j\ge 0}
+(\frac{w}{n})^j=\frac{2}{n}\sum_{w\le
+n}\frac{1}{1-\frac{w}{n}}=2\sum_{w\le n}\frac{1}{w}=O(\log n)
+\]</span></p>
+<p>所以说明有修改的区间长度是 <span class="math inline">\(\log
+n\)</span> 级别的。</p>
+<p>那么暴力可以做到 <span class="math inline">\(n\log n(\log \log
+n)\)</span></p>
+<p>这个小证明还蛮有意思。。。。</p>
+<hr />
+<h3 id="t2-树.-未知">T2 树. 【未知】</h3>
+<p>waiting...</p>
+<hr />
+<h3 id="t3-生成器.-未知">T3 生成器. 【未知】</h3>
+<p>waiting...</p>
+<hr />
+<h2 id="section-3"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/260">2022-8-12</a></h2>
+<h3 id="矩形.-safe">矩形. (safe)</h3>
+<p>问你一个 <span class="math inline">\(n\times m\)</span>
+满足每一行每一列单调的子矩形的个数。</p>
+<p>子矩形定义为选取若干行，若干列后，交出的矩形。</p>
+<p>一看 <span class="math inline">\(n,m\le 20\)</span>
+不状压都觉得很亏。</p>
+<p>考虑一个很扯的暴力 <span
+class="math inline">\(\mathrm{dp}(s,t)\)</span> 表示列选了 <span
+class="math inline">\(s\)</span> 然后，行的单调性是 <span
+class="math inline">\(t\)</span> 这个状态。</p>
+<p>这样甚至不如暴力。但仔细想想其实这样搞很扯。我压根不用通过记录单调性这个又臭又长的
+status，我只需要知道这一行位置，前一行位置，这样我们就得到了
+status。</p>
+<p>这样通过bitmask什么的不难得到 <span
+class="math inline">\(2^nn^3\)</span> 的小(<span
+class="math inline">\(\frac{1}{6}\)</span> 大概) 的dp。</p>
+<hr />
+<h3 id="黄金矿工.-euclid">黄金矿工. (euclid)</h3>
+<p>大概是让你搞一个物品有性质的背包。</p>
+<p>物品的性质是体积是 <span class="math inline">\(x_i\times y_i\le n\le
+10^6\)</span>，价值是 <span class="math inline">\(y_i\)</span>
+，很奇怪的是 <span class="math inline">\(x_i\)</span>
+是互不相同的整数。</p>
+<p>此外你需要支持 <span class="math inline">\(m\le 3\times 10^3\)</span>
+次插入并且查询单点的dp值。</p>
+<p>实际上不难看出来 <code>$x_i$ 是互不相同的整数。</code>
+这个限制是很重要的，如果没有的话那么就是个背包，很难。</p>
+<hr />
+<p>下一步我不太知道怎么想的，，，可能是看 <span
+class="math inline">\(x\times y\)</span> 就控制不住自己想根号分治？</p>
+<p>反正就根号分治了，这个 <span class="math inline">\(x_i\)</span>
+太怪了，我们就分治 <span class="math inline">\(x_i\)</span>。</p>
+<p>如果 <span class="math inline">\(x_i\le b\)</span> 的话，只有最多
+<span class="math inline">\(b\)</span> 个物品，每次插入的代价是 <span
+class="math inline">\(O(n)\)</span> 的。</p>
+<p>而如果 <span class="math inline">\(x_i\ge b\)</span> 的话，那么你的
+<span class="math inline">\(y_i\)</span> 就得 <span
+class="math inline">\(\le n/b\)</span> 了。</p>
+<p>不难发现如果 <span class="math inline">\(y_i\)</span>
+相同的话，我们必定先选 <span class="math inline">\(x_i\)</span>
+小的。那么我们对于一个 <span class="math inline">\(y_i\)</span> 最多选
+<span class="math inline">\(n/(b\cdot y_i)\)</span></p>
+<p>对 <span class="math inline">\(y\)</span> 求个和，发现最多要 <span
+class="math inline">\(n/b\log (n/b)\)</span>
+个，我们是知道选哪些的。</p>
+<p>同时也由于现在 <span class="math inline">\(x_i\)</span>
+很大，我们能选的最大的权值(<span
+class="math inline">\(y_i\)</span>)也只剩下 <span
+class="math inline">\(n/b\)</span> 了。</p>
+<p>这就启示我们换维，<span class="math inline">\(f_w\)</span> 表示达到
+<span class="math inline">\(w\)</span> 权值最少的题解，<span
+class="math inline">\(w\le n/b\)</span>。</p>
+<p>比较奇怪的是这个前后实际上并不是很对称的。。。前面似乎是个均摊，后面不是。</p>
+<p>/yun</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

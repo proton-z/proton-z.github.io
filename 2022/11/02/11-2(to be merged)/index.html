@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="胡策 R14？T3 不用vscode写了。 旋转是线性变换。镜像也是线性变换。 那么对点可以直接维护矩阵乘积（没有修改的情况）。 如果是对变换矩阵的修改呢？发现可以看成对空间的变换，实际上我们在改变基。那么可以使用基变换。 （考场时候想的是转置，而实际上就是逆。） 一个线性变换 \(A\) ,一个对基的线性变换矩阵 \(E\)。 正常一个列向量 \(v\) 经过这个线性变换后得到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="？">
+<meta property="og:url" content="https://proton-z.github.io/2022/11/02/11-2(to%20be%20merged)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="胡策 R14？T3 不用vscode写了。 旋转是线性变换。镜像也是线性变换。 那么对点可以直接维护矩阵乘积（没有修改的情况）。 如果是对变换矩阵的修改呢？发现可以看成对空间的变换，实际上我们在改变基。那么可以使用基变换。 （考场时候想的是转置，而实际上就是逆。） 一个线性变换 \(A\) ,一个对基的线性变换矩阵 \(E\)。 正常一个列向量 \(v\) 经过这个线性变换后得到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://proton-z.github.io/img/acc1.png">
+<meta property="og:image" content="https://proton-z.github.io/img/acc2.png">
+<meta property="article:published_time" content="2022-11-02T06:45:00.000Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.670Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://proton-z.github.io/img/acc1.png">
+  
+  <title>？ - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@1.2/2233/wallhaven-13m9z9.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="？">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-11-02 14:45" pubdate>
+        星期三, 十一月 2日 2022, 2:45 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">？</h1>
+            
+            <div class="markdown-body">
+              <p>胡策 R14？T3</p>
+<p>不用vscode写了。</p>
+<p>旋转是线性变换。镜像也是线性变换。</p>
+<p>那么对点可以直接维护矩阵乘积（没有修改的情况）。</p>
+<p>如果是对变换矩阵的修改呢？发现可以看成<strong>对空间的</strong>变换，实际上我们在改变基。那么可以使用基变换。</p>
+<p>（考场时候想的是转置，而实际上就是逆。）</p>
+<p>一个线性变换 <span class="math inline">\(A\)</span>
+,一个对基的线性变换矩阵 <span class="math inline">\(E\)</span>。</p>
+<p>正常一个列向量 <span class="math inline">\(v\)</span>
+经过这个线性变换后得到 <span class="math inline">\(Av\)</span>。</p>
+<p>那么如果我们对基（线性空间）变换的话，那么我们可以先把 <span
+class="math inline">\(v\)</span> 变换到原先空间上 <span
+class="math inline">\(E^{-1}v\)</span>，然后线性变换 <span
+class="math inline">\(A\)</span> 再变回 <span
+class="math inline">\(E\)</span> 上。</p>
+<p><span class="math inline">\(Av\to EAE^{-1}v\)</span>。</p>
+<p>那么发现事实上我们可以直接拿线段树来维护这个东西，维护区间矩阵乘法，修改形如：
+<span class="math inline">\(A\to EAE^{-1}\)</span>。</p>
+<p>维护起来时还存在一个问题，对坐标系的变换显然可以直接矩阵乘法是正确的。但是一个“镜像修改”对“旋转”这个操作，会让它变成逆。</p>
+<p>所以特殊处理就好。</p>
+<hr />
+<p>R14 T2</p>
+<p>是个基础题。</p>
+<p>首先发现如果 <span class="math inline">\(a_i,a_{i+1}\)</span>
+颜色相同我们必不会用别的颜色覆盖他。（因为覆盖产生的正贡献只有
+1，保持原样不劣）。</p>
+<p>每个点和他的颜色上一次出现的位置构成一个区间，于是问题就是让我们选出尽量多的不交区间。</p>
+<p>第一步，把包含关系去掉，现在,l,r分别单调。</p>
+<p>第二步发现我们此时可以尽可能选靠前的了，那可以拿倍增直接维护，也可以直接分治。</p>
+<hr />
+<p>R15 T1</p>
+<p>斯坦纳树。（我甚至有点忘了斯坦纳树了。。）</p>
+<p>大概是说选择 <span class="math inline">\(k\)</span> 个边，边权 <span
+class="math inline">\(a_i\to b_i\)</span> 后，最短路最大是多少。</p>
+<p>最开始还以为是二分。</p>
+<p>考虑最短路最后构成了一个树。，我们就是要对这颗
+<strong>有向树</strong> dp。</p>
+<p>仿照着斯坦纳树的dp，<span class="math inline">\(dp_{u,k,s}\)</span>
+表示现在根是 <span class="math inline">\(u\)</span>,选了 <span
+class="math inline">\(k\)</span> 条边，集合状态是 <span
+class="math inline">\(s\)</span>。</p>
+<p>依旧是我们有两种转移，一种是我们延申一条树边的转移，一种是我们合并的转移。</p>
+<p>依旧是我们可以按照 <span class="math inline">\(s\)</span>
+从小到大转移，（自然有序）。然后我们总共会进行 <span
+class="math inline">\(2^nn\)</span>
+次合并。每次合并的是枚举超集，一个卷积，总计复杂度 <span
+class="math inline">\(3^nn^3\)</span> 很是吓人（至少比我最开始想的是
+<span class="math inline">\(3^nn^4\)</span> 强。。。）。</p>
+<p>接下来是延申树边的转移，可以dij，然后复杂度是 <span
+class="math inline">\(2^nnm\log m\)</span> 的。</p>
+<p>dij 没啥救（也能跑过去），合并转移可以考虑这个卷积形式过于特殊：
+<span class="math display">\[
+f_{i+j}=\min\{f_{i+j},\max(g_i,h_j)\}
+\]</span> 发现事实上，做完前缀min后，我们可以直接two pointers
+转移。这下复杂度是 <span class="math inline">\(3^nn^2\)</span>
+的了。</p>
+<p>值得注意的是
+dij前，转移后什么的dp可能不自然满足单调减，（不是很懂，好像挺有道理）所以需要做一次前缀min。</p>
+<hr />
+<p>R13 T1</p>
+<p>12-3 还没写，记一下做法，<strong>防止明天忘了</strong>。</p>
+<p>首先背包出来每家店的生成函数。（注意卷形如 <span
+class="math inline">\(\frac{1}{1-x^c}\)</span> 的容易做到 <span
+class="math inline">\(O(n)\)</span>）。</p>
+<p>接下来考虑我们可以 <span class="math inline">\(O(n)\)</span>
+的根据点值表示求出一项。（在单位根意义下范德蒙德矩阵逆容易计算。）</p>
+<p>不存在单位根的话，随便找 <span class="math inline">\(n+1\)</span>
+个点值。接下来预处理: <span class="math display">\[
+[x^n]\sum_{i=1}y_i\prod_{j\not=i} \frac{x-x_j}{x_i-x_j}
+\]</span> （这是一个矩阵）。<span class="math inline">\(\vec y \cdot
+M\)</span>。</p>
+<hr />
+<p>但是 <span class="math inline">\(n^2mq\)</span> 太大了。主要原因
+<span class="math inline">\(q\)</span> 过大了。同时 <span
+class="math inline">\(nm\)</span>
+的长度过长，以及每次我们都需要枚举会额外产生 一个 <span
+class="math inline">\(n\)</span>。</p>
+<p>解决 <span class="math inline">\(nm\)</span> 过长和多出来的 <span
+class="math inline">\(n\)</span> 的方法是分块（）。</p>
+<p>我们分 <span class="math inline">\(B\)</span> 块，这样长度就是 <span
+class="math inline">\(mn/B\)</span>，合并次数就是 <span
+class="math inline">\(n/B\)</span>。</p>
+<p>问题来到如何预处理。不应忘记的是我们维护点值是<strong>先截断</strong>，后扩长的点值。</p>
+<p>我们需要预处理所有 <span class="math inline">\(F_{s,k}(x)\)</span>
+含义为 <span class="math inline">\(s\)</span> 这个集合被强制 <span
+class="math inline">\(\ge k\)</span>。这样的总数是 <span
+class="math inline">\(m\sum_{i=0}^{n}\binom{n}{i}/i\approx
+m\sum_{}\binom{n+1}{i}/(n+1)\approx m2^n/n\)</span> 。</p>
+<p>发现朴素转移很困难。这里有一个很巧妙的容斥，我们计算钦定 <span
+class="math inline">\(s\)</span> 这个集合强制 <span
+class="math inline">\(\le k\)</span>，记作 <span
+class="math inline">\(g_{s,k}(x)\)</span> （这里是只把 <span
+class="math inline">\(\le k\)</span>
+的生成函数乘起来），然后很巧妙的使用高维前缀和得到 <span
+class="math inline">\(s\)</span> 这个集合恰好 <span
+class="math inline">\(\le k\)</span> 的方案数。</p>
+<p>接下来再次进行子集和（？）得到 <span class="math inline">\(s\)</span>
+这个集合强制 <span class="math inline">\(\ge k\)</span> 的方案数。</p>
+<p>那么为什么要做这个容斥呢？这保证了我们对于 <span
+class="math inline">\(k\)</span> 种限制进行多次合并的时候，合并长度不是
+<span class="math inline">\(nm\)</span> 而是 <span
+class="math inline">\(m\)</span>
+。这当然是保证复杂度至关重要的一步。</p>
+<p>但同时这样做复杂度会有一个高维前缀和。</p>
+<hr />
+<p>R13 T2</p>
+<p>很有趣的一道题，同样的先写题解，防止自己忘了。</p>
+<p>首先不难得到一下结论，如果要加速，我们一定会直接按最高加速度 <span
+class="math inline">\(a\)</span> 加速。</p>
+<p>为什么？考虑如下 <strong>v-t</strong> 图像。</p>
+<figure>
+<img src="\img\acc1.png" srcset="/img/loading.gif" lazyload alt="img1" />
+<figcaption aria-hidden="true">img1</figcaption>
+</figure>
+<p>如下调整不劣。</p>
+<hr />
+<p>接下来的结论就更加厉害了。如果我们<strong>一定要减速</strong>，那么我们不管现在时间多么靠前，都不如提前减速。</p>
+<p>为什么？考虑如下 <strong>s-t</strong> 图像。</p>
+<figure>
+<img src="\img\acc2.png" srcset="/img/loading.gif" lazyload alt="img1" />
+<figcaption aria-hidden="true">img1</figcaption>
+</figure>
+<p>我们可以在过程的开始减少一点速度，也就是红色那条线，他是不劣的。除非，除非原来这条线已经顶到限制。</p>
+<p>而顶到限制不是 <span class="math inline">\(L\)</span> 限制，而是
+<span class="math inline">\(R\)</span>
+限制（观察图像，实际上我们是推迟到达的。）</p>
+<p>然后考虑过程，过程自然被分成若干阶段，每个阶段都是恰好到达 <span
+class="math inline">\(R\)</span> 然后更改速度。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/13/AA1113/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">~11-13 部分题解。</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/01/A-huce/">
+                        <span class="hidden-mobile">胡策部分题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

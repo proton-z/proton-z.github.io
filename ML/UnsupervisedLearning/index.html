@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="\[ \newcommand{\E}{\mathbb{E}} \] Sketch  Unsupervised learning  PCA Nearest neighbour(keywords: kNN, Metric learning) Clustering()  K-means Spectral graph clustering SimCLR (eq to Spectr">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Unsupervised learning">
+<meta property="og:url" content="https://proton-z.github.io/ML/UnsupervisedLearning/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="\[ \newcommand{\E}{\mathbb{E}} \] Sketch  Unsupervised learning  PCA Nearest neighbour(keywords: kNN, Metric learning) Clustering()  K-means Spectral graph clustering SimCLR (eq to Spectr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228214607413.png">
+<meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-28T16:36:47.028Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228214607413.png">
+  
+  <title>Unsupervised learning - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@2.0/2233/a33.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Unsupervised learning">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <p><span class="math display">\[
+\newcommand{\E}{\mathbb{E}}
+\]</span></p>
+<h1 id="sketch">Sketch</h1>
+<ol start="6" type="1">
+<li><a href="">Unsupervised learning</a>
+<ul>
+<li>PCA</li>
+<li>Nearest neighbour(keywords: kNN, Metric learning)</li>
+<li>Clustering()
+<ul>
+<li>K-means</li>
+<li>Spectral graph clustering</li>
+<li>SimCLR (eq to Spectral graph clustering)</li>
+</ul></li>
+<li>t-SNE</li>
+</ul></li>
+</ol>
+<h1 id="dimension-reduction">Dimension reduction</h1>
+<p>JL-lemma: 给定 <span class="math inline">\(m\)</span> 个 <span
+class="math inline">\(\mathbb{R}^d\)</span> 的向量，则存在一个 <span
+class="math inline">\(n=\Omega\left(\frac{\log
+m}{\epsilon^2}\right)\)</span> ，使得存在映射 <span
+class="math inline">\(f:\mathbb{R}^d\to \mathbb{R}^n\)</span>，满足
+<span class="math inline">\((1-\epsilon)\|
+u-v\|^2\le\|f(u)-f(v)\|^2\le(1+\epsilon)\| u-v\|^2\)</span>。</p>
+<p>也就是说，<span class="math inline">\(m\)</span> 个点临近信息只跟
+<span class="math inline">\(\log m\)</span> 与所要求的精度 <span
+class="math inline">\(\epsilon\)</span> 相关，而和本身所在的空间维数
+<span class="math inline">\(d\)</span> 无关。</p>
+<p>JL-lemma 很强大，它能够保 metric。</p>
+<hr />
+<p>而我们接下来谈论的 PCA
+的主要想法是，保留“拥有最大”差距的那（几）个维度。</p>
+<h2 id="pca">PCA</h2>
+<p>Def: Find the direction with max-variance. Firstly, we assume the set
+of the points' centre (<em>means</em>) be <span
+class="math inline">\((0,\cdots,0)\)</span>. (我们只关心相对位置)</p>
+<p>Our goal is to find the direction(of course with <span
+class="math inline">\(\|\cdot\|=1\)</span>) <span
+class="math inline">\(v\)</span>, s.t. maximize the <span
+class="math inline">\(\E[\langle x_i,v\rangle^2]\)</span>.
+(方差的话，<span class="math inline">\(\E\langle
+x_i,v\rangle=0\)</span>) . <span class="math display">\[
+\begin{aligned}
+\frac{1}{n}\sum_{i=1}^n(x_i^\top v)^2=\frac{1}{n}v^\top X X^\top v
+\end{aligned}
+\]</span> where <span
+class="math inline">\(X=(x_1,\cdots,x_n)_{n,n}\)</span>.</p>
+<hr />
+<p>Another interpretation is: minimize the reconstruction error.</p>
+<figure>
+<img
+src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20241228002429192.png" srcset="/img/loading.gif" lazyload
+alt="image-20241228002429192" />
+<figcaption aria-hidden="true">image-20241228002429192</figcaption>
+</figure>
+<p><span class="math display">\[
+\begin{aligned}
+\min_{v}\sum_{i=1}^n\|x_i-\langle x_i,v\rangle
+v\|^2&amp;=\min_v\sum_{i=1}^n\langle x_i-\langle x_i,v\rangle
+v,x_i-\langle x_i,v\rangle v\rangle\\
+&amp;=\min_{v}\sum_{i=1}^n\| x_i\|^2-2\langle x_i,v\rangle^2+\langle
+x_i,v\rangle^2\|v\|^2\\
+&amp;=\min_{v}\sum_{i=1}^n\| x_i\|^2-\langle x_i,v\rangle^2\\
+\end{aligned}
+\]</span> Thus, we also want to maximize the <span
+class="math inline">\(\E \langle x_i,v\rangle^2\)</span>.</p>
+<hr />
+<p>保留最大的 <span class="math inline">\(k&lt;d\)</span> 的特征向量
+<span class="math inline">\(v_1,\cdots,v_k\)</span> 然后 project 到
+<span class="math inline">\(\mathrm{span}(v_1,\cdots ,v_k)\)</span>.</p>
+<p>怎么找最大的 特征向量 呢？</p>
+<h2 id="power-method">power method</h2>
+<p>We want to find the maximum eigenvalue of <span
+class="math inline">\(D=XX^\top\)</span>.</p>
+<p>We can random choose a vector <span class="math inline">\(b_0\in
+\mathbb{R}^n\)</span> and normalize it. <span class="math display">\[
+\begin{aligned}
+b_{t+1}=\frac{D b_t}{\| Db_t\|}\\
+b_{t}=\sum_{i=1}^na_i\lambda_i^tv_i
+\end{aligned}
+\]</span> <span class="math inline">\(\lambda_1\)</span> grows
+exponentially faster than <span
+class="math inline">\(\lambda_i\)</span>, at last <span
+class="math inline">\(b_t\approx v_1\)</span>.</p>
+<p>存在正交特征基，所以可以 remove <span
+class="math inline">\(v_1\)</span> from <span
+class="math inline">\(b_0\)</span>.</p>
+<hr />
+<h2 id="image-compression">Image compression</h2>
+<p>We divide the picture into <span class="math inline">\((n/d)\times
+(m/d)\)</span> parts(each part has size <span
+class="math inline">\(d\times d\)</span>) and then we consider each
+parts as a <span class="math inline">\(d\times d\)</span> dimension
+vector. and use PCA.</p>
+<hr />
+<h2 id="nearest-neighbour">nearest neighbour</h2>
+<p>We use kNN(k-nearest neighbour) to do the classification.</p>
+<p>kNN: 每个点找到离得最近的 <span class="math inline">\(k\)</span>
+个点，看这些点的颜色众数。（我们的假设是，"My label depends on my
+neighbour' labels"）不需要hyperparameter，随着 <span
+class="math inline">\(k\)</span> 增大模型会变得更 "smooth".</p>
+<p>然后我们如何找到离得最近的点呢？用LSH。</p>
+<h2 id="locality-sensitive-hashing">locality sensitive hashing</h2>
+<p>Usually we don't need the exactly <span
+class="math inline">\(k\)</span>-nearest neighbour, we try to find some
+sub-nearest points.</p>
+<p>我们去二分查找，看 <span class="math inline">\(r\)</span>
+距离内用没有点，我们去称一个随机算法是 <span
+class="math inline">\((c,r)\)</span>-NN ，如果存在一个 <span
+class="math inline">\(r\)</span>-nearest 的邻居，我们会以 <span
+class="math inline">\(1-\delta\)</span> 的概率输出一个 <span
+class="math inline">\(cr\)</span>-nearest neighbour. 跑 <span
+class="math inline">\(t\)</span> 次，我们就能得到一个 <span
+class="math inline">\(1-\delta^t\)</span> 正确率的算法。</p>
+<p><strong>locality sensitive hashing</strong>：<span
+class="math inline">\((R,cR,p,q)\)</span></p>
+<p>比较近时，高概率相等：<span class="math inline">\(\mathrm{Pr}_{h\sim
+\mathcal{H}}[h(x)=h(y)]\ge p\)</span> 当 <span
+class="math inline">\(d(x,y)\le R\)</span>.</p>
+<p>比较远时，高概率不相等： <span
+class="math inline">\(\mathrm{Pr}_{h\sim\mathcal{H}}[h(x)=h(y)]\le
+q\)</span>。当 <span class="math inline">\(d(x,y)\ge cR\)</span></p>
+<p>当然需要保证 <span
+class="math inline">\(p&gt;q\)</span>.(我纯随机赋值，<span
+class="math inline">\(1/2\)</span>)</p>
+<hr />
+<h3 id="binary-hamming-distance">Binary hamming distance</h3>
+<p><span class="math inline">\(x,y\in\{0,1\}^n\)</span>, <span
+class="math inline">\(d(x,y)\)</span> 是汉明距离。</p>
+<p>LSH family: <span
+class="math inline">\(\mathcal{H}=\{h_i(x)=x_i\}\)</span>。也就是保留任意一位的的投影映射。</p>
+<p>可以发现 <span class="math inline">\(\mathrm{Pr}_{h\sim
+\mathcal{H}}[h(x)=h(y)]\ge1-\frac{R}{n}\)</span>. (<span
+class="math inline">\(d(x,y)\le R\)</span>)</p>
+<p><span class="math inline">\(\mathrm{Pr}_{h\sim
+\mathcal{H}}[h(x)=h(y)]\le 1-\frac{cR}{n}\)</span>, <span
+class="math inline">\(d(x,y)\ge cR\)</span>. 满足 <span
+class="math inline">\(p&gt;q\)</span>.</p>
+<hr />
+<h3 id="主要做法">主要做法</h3>
+<p>考虑将多个 hash function 合起来。我们假设将 <span
+class="math inline">\(k\)</span> 个 <span
+class="math inline">\(\mathcal{H}\)</span>
+里的元素（哈希函数）合起来拼成一个新的哈希函数，设这个哈希函数族为 <span
+class="math inline">\(\mathcal{F}\)</span>。</p>
+<p>那么如果原先两个点 <span class="math inline">\(d(x,y)\le r\)</span>
+那么他们在 <span class="math inline">\(\mathcal{F}\)</span>
+中相同的概率就会 <span class="math inline">\(\ge p^k\)</span>
+，反之，如果 <span class="math inline">\(d(x,y)\ge cr\)</span>
+那么他们在 <span class="math inline">\(\mathcal{F}\)</span>
+中相同的概率会 <span class="math inline">\(\le q^k\)</span>。</p>
+<p>所以我们将原先点集中的 <span class="math inline">\(n\)</span>
+个点，哈希 <span class="math inline">\(L\)</span> 次。如果对于一个询问
+<span class="math inline">\(u\)</span>
+，我们一个哈希表一个哈希表的查，看 <span
+class="math inline">\(f_i(u)=f_i(v)\)</span> 是否满足 <span
+class="math inline">\(d(u,v)\le cr\)</span>。如果出现了 <span
+class="math inline">\(2L+1\)</span> 次错误就停止，宣布没有找到。</p>
+<hr />
+<p>我们有概率的保证：如果存在 <span
+class="math inline">\(r\)</span>-nearest neighbour，那我们将以 <span
+class="math inline">\(\ge \frac{1}{2}-\frac{1}{e}\)</span>
+的概率找到一个 <span class="math inline">\(cr\)</span>-nearest
+neighbour.</p>
+<blockquote>
+<p>part1 : 找了 <span class="math inline">\(2L+1\)</span>
+全部都是不合法的。</p>
+<p>考虑一个哈希表中，产生 <span class="math inline">\(\ge cr\)</span>
+的碰撞的期望次数。 <span class="math display">\[
+\begin{aligned}
+\E[\#f_i(u)=f_i(v)]=n\times q^k
+\end{aligned}
+\]</span> 我们此时，设置 <span
+class="math inline">\(k=\log_{q}{1/n}\)</span>，此时 <span
+class="math inline">\(\E[\#f_i(u)=f_i(v)]=1\)</span></p>
+<p>所以总共发生碰撞的次数 <span
+class="math inline">\(\E[\#...]=L\)</span>，根据马尔可夫不等式 <span
+class="math inline">\(\mathrm{Pr}(\#...\ge
+2L+1)\le\frac{L}{2L+1}&lt;\frac{1}{2}\)</span>。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>part2 : 如果存在 <span
+class="math inline">\(r\)</span>-nearest，我们没有找到的概率为： <span
+class="math display">\[
+\begin{aligned}
+\mathrm{Pr}=\left(1-p^k\right)^L\le \exp(-p^kL)
+\end{aligned}
+\]</span> 那么我们设 <span
+class="math inline">\(L=\frac{1}{p^k}\)</span>,我们就可以使得 <span
+class="math inline">\(\mathrm{Pr}\le \frac{1}{e}\)</span>。</p>
+</blockquote>
+<p>总的来说：<span class="math inline">\(k=\log_{q}1/n\)</span>,<span
+class="math inline">\(L=p^{-k}\)</span>，所以 <span
+class="math inline">\(L=n^{\frac{\ln(1/p)}{\ln(1/q)}}\)</span>.</p>
+<p>所以，结合 <strong><em>part1</em></strong> 与
+<strong><em>part2</em></strong> 与 union
+bound，我们最终得到成功的概率大于等于 <span
+class="math inline">\(1-\frac{1}{2}-\frac{1}{e}=\frac{1}{2}-\frac{1}{e}\)</span>。</p>
+<hr />
+<h3 id="ell_2-norm-lsh-family"><span
+class="math inline">\(\ell_2\)</span>-norm LSH family</h3>
+<p>我们定义（<span class="math inline">\(w\)</span> 是hyperhyper
+parameter))最开始确定好的）： <span class="math display">\[
+h(r,b)(x)=\left\lfloor\frac{\langle r,x\rangle+b}{w}\right\rfloor
+\]</span> 其中 <span class="math inline">\(r\sim \R^d\)</span> Gaussian,
+<span class="math inline">\(b\sim
+\mathrm{Unif}[0,w)\)</span>。这样的一个 <span
+class="math inline">\(\mathcal{H}_w\)</span> 就是一个 LSH family。</p>
+<h3 id="proof">Proof:</h3>
+<p>我们先证明 <span class="math inline">\(w=1\)</span> 的 cases，此时
+<span class="math inline">\(h_{r,b}(x)=\lfloor\langle r,x
+\rangle+b\rfloor\)</span>。</p>
+<p>假设此时 <span class="math inline">\(\|x-y\|_2=1\)</span> 考虑枚举
+<span class="math inline">\(u:=\langle
+r,x-y\rangle\)</span>，我们可以得知 <span
+class="math inline">\(u\)</span> 服从于 Gaussian 分布。</p>
+<p>首先，只有 <span class="math inline">\(|u|\le 1\)</span> 时，<span
+class="math inline">\(x,y\)</span> 才有可能在同一个 buckets 里。 <span
+class="math display">\[
+\begin{aligned}
+\int_{-1}^1f_p(u)(1-|u|)\mathrm{d}u=2\int_{0}^1 f_p(u)(1-u)\mathrm{d}u
+\end{aligned}
+\]</span> 这里的 <span class="math inline">\(f_p(u)\)</span> 是 Gaussian
+Density。</p>
+<hr />
+<p>接下来假设 <span class="math inline">\(\|x-y\|_2=c\)</span>，我们考察
+<span class="math inline">\(w\not=1\)</span> 时的贡献。</p>
+<p><span class="math inline">\(u:=\langle r,x-y\rangle\)</span> 服从于
+<span class="math inline">\(c\)</span> 倍的 Gaussian。 <span
+class="math display">\[
+\begin{aligned}
+\int_{-\frac{w}{c}}^{\frac{w}{c}}f(u)\frac{(w-cu)}{w}\mathrm{d}u=\int_{-w}^w
+f\left(\frac{u}{c}\right)\frac{w-u}{w}\mathrm{d}{\frac{u}{c}}=\frac{2}{c}\int_{0}^wf\left(\frac{u}{c}\right)\left(1-\frac{u}{w}\right)\mathrm{d}
+u
+\end{aligned}
+\]</span> 我们声明，或者说我们可以发现，当 <span
+class="math inline">\(w\)</span> fix 的时候 <span
+class="math inline">\(c\)</span> 增大的时候，这个概率单调减。</p>
+<p>我们考虑第一个式子：<span
+class="math inline">\(\displaystyle\int_{-\frac{w}{c}}^{\frac{w}{c}}f(u)\frac{(w-cu)}{w}\mathrm{d}u\)</span>。</p>
+<p><img src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20241228214607413.png" srcset="/img/loading.gif" lazyload alt="image-20241228214607413" style="zoom:50%;" /></p>
+<p>考虑当 <span class="math inline">\(c\)</span>
+减小时，相当于向右侧推进。这样单调增/减就算显然的了。（依照橙色概率分布，积分
+<span class="math inline">\(AB\)</span> 这条直线。）</p>
+<h2 id="t-sne">t-SNE</h2>
+<p>降维算法，一般线性算法，PCA，MDS（classical multidimensional
+scaling） 关注的是“方差”，也就是原本不相近的点 <span
+class="math inline">\(x,y\)</span> 在映射之后 <span
+class="math inline">\(f(x),f(y)\)</span> 也不相近。</p>
+<p>而 t-SNE
+作为非线性算法关注的<strong>重点</strong>是：原本相近的点在映射后依然相近。</p>
+<p>SNE 算法将距离转化为概率分布，即定义 similarity between <span
+class="math inline">\(x_i,x_j\)</span>。 <span class="math display">\[
+\begin{aligned}
+p_{j\mid
+i}=\frac{\exp\left(-\frac{\|x_i-x_j\|^2}{2\sigma_i^2}\right)}{\sum_{k\not=i}\exp\left(-\frac{\|x_i-x_k\|^2}{2\sigma_i^2}\right)}
+\end{aligned}
+\]</span> 只关心两两间的信息，所以把 <span
+class="math inline">\(p_{i|i}\)</span> 特殊定义成 0（分母没有 <span
+class="math inline">\(p_{i|i}\)</span>）。我们可以看成，在 <span
+class="math inline">\(i\)</span> 的先验下的 <span
+class="math inline">\(j\)</span> 取值分布。 <span
+class="math display">\[
+\begin{aligned}
+q_{j|i}=\frac{\exp(-\|y_i-y_j\|^2)}{\sum_{k\not =i}\exp(-\|
+y_i-y_k\|^2)}
+\end{aligned}
+\]</span> 我们定义 loss function 为 KL divergences : <span
+class="math display">\[
+\begin{aligned}
+\sum_{i=1}
+KL(P_i|Q_i)=\sum_{i=1}\sum_{j\not=i}p_{j|i}\frac{\log{p_{j|i}}}{\log
+q_{j|i}}
+\end{aligned}
+\]</span></p>
+<hr />
+<p>那我们该如何确定 <span class="math inline">\(\sigma_i\)</span>
+呢，我们定义一个超参 Perplexity <span
+class="math inline">\(Perp\)</span>，我们希望对于每一个 <span
+class="math inline">\(i\)</span>: <span class="math display">\[
+\begin{aligned}
+\mathrm{Perp}=2^{H(P_i)},H(P_i)=-\sum_{j}p_{j|i}\log p_{j|i}
+\end{aligned}
+\]</span> 其中 <span class="math inline">\(H\)</span> 也就是香农熵。
+Perplexity 其实就是我们希望设定一个类似“每个点的 <span
+class="math inline">\(r\)</span> 近邻居的数量大约是 perplexity
+个”，<span class="math inline">\(r\)</span> 近这个东西是通过 <span
+class="math inline">\(\sigma_i\)</span> 描述的。</p>
+<p>当 <span class="math inline">\(\sigma_i\to 0\)</span> 时，实际上是
+softmax 而 <span class="math inline">\(\sigma_i\to \infty\)</span> 是是
+uniform distribution，所以我们可以二分出一个合适的 <span
+class="math inline">\(\sigma_i\)</span>。</p>
+<h3 id="t-sne-1">t-SNE</h3>
+<p>我们首先将 <span class="math inline">\(p_{j|i}\)</span> 转化成一个
+概率分布（之前是一个先验分布）：<span
+class="math inline">\(p_{i,j}=\frac{p_{i|j}+p_{j|i}}{2n}\)</span>。</p>
+<p>然后我们将在高维的 <span class="math inline">\(q\)</span>
+分布是高斯分布，而在映射后的空间是 student-t 是一个 Heavy tail
+distribution. <span class="math display">\[
+\begin{aligned}
+p_{i,j}=\frac{(1+\|x_i-x_j\|^2)^{-1}}{\sum_{a\not=b}(1+\|x_a-x_b\|^2)^{-1}},\sum_{i,j}p_{i,j}=1
+\end{aligned}
+\]</span> 然后 Loss function 即为 <span
+class="math inline">\(KL(p,q)\)</span>。（因为此时是已经是概率分布）</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

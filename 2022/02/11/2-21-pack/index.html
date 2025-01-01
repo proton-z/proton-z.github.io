@@ -24,7 +24,7 @@
 <meta property="og:description" content="contest-2022-2-6 T1 题意简述：求树上最长回文串的长度,字符集大小为1000。 大概二分+点分治。 如果光二分，那么我们其实不好判断。 如果光点分治，那么我们也不好确定回文中心的位置。 那么就结合起来。 我们点分治的时候，dfs如果到达点 \(x\) ，那么我们记录下 \(x\) 是否有可能成为经过分治中心的回文串。 就大概如果长度 \(&gt;mid\) 那">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-13T15:23:20.307Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.671Z">
 <meta property="article:author" content="Imitators">
 <meta property="article:tag" content="binary search">
 <meta property="article:tag" content="点分治">
@@ -278,7 +278,7 @@ class="math inline">\(x\)</span>
 <hr />
 <p>先说 <a
 target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/145/problem/3">T3</a></p>
-<p>题意，<span class="math inline">\(S\sub \mathbb{P}\)</span>,<span
+<p>题意，<span class="math inline">\(S\subset \mathbb{P}\)</span>,<span
 class="math inline">\(f(S)\)</span> 表示从 <span
 class="math inline">\(p\in S\)</span> 的 <span
 class="math inline">\(\leq n\)</span>

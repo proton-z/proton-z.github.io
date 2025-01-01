@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="密码xoi。 因为前几周太摆了。所以题解从后往前写。  11-12 T1 euclid 根号分治，值得注意的是复杂度形式为： \[ \sum_{p,q} \frac{n}{\max(p,q)}&#x3D;\sum_{p} \frac{n}{p}*p \] 很是神奇。 T2 euclid dp。 首先考虑 \(dp\)，我们发现如果记录 \(m!\) 的顺序的信息其实很亏。 那么很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="~11-13 部分题解。">
+<meta property="og:url" content="https://proton-z.github.io/2022/11/13/AA1113/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="密码xoi。 因为前几周太摆了。所以题解从后往前写。  11-12 T1 euclid 根号分治，值得注意的是复杂度形式为： \[ \sum_{p,q} \frac{n}{\max(p,q)}&#x3D;\sum_{p} \frac{n}{p}*p \] 很是神奇。 T2 euclid dp。 首先考虑 \(dp\)，我们发现如果记录 \(m!\) 的顺序的信息其实很亏。 那么很">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-13T15:27:00.000Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.672Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>~11-13 部分题解。 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/11/02/uc8plC6ewhzOrYn.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="~11-13 部分题解。">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-11-13 23:27" pubdate>
+        星期日, 十一月 13日 2022, 11:27 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">~11-13 部分题解。</h1>
+            
+            <div class="markdown-body">
+              <p>密码xoi。</p>
+<p>因为前几周太摆了。所以题解从后往前写。</p>
+<hr />
+<h1 id="section"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/281">11-12</a></h1>
+<h2 id="t1-euclid">T1 euclid</h2>
+<p>根号分治，值得注意的是复杂度形式为：</p>
+<p><span class="math display">\[
+\sum_{p,q} \frac{n}{\max(p,q)}=\sum_{p} \frac{n}{p}*p
+\]</span></p>
+<p>很是神奇。</p>
+<h2 id="t2-euclid">T2 euclid</h2>
+<p>dp。</p>
+<p>首先考虑 <span class="math inline">\(dp\)</span>，我们发现如果记录
+<span class="math inline">\(m!\)</span> 的顺序的信息其实很亏。</p>
+<p>那么很经典的拆贡献，考虑 <span class="math inline">\(x\)</span>
+会在那些地方产生贡献。</p>
+<p>如果当前这个位置大于等于 <span class="math inline">\(x\)</span>
+的集合为 <span class="math inline">\(s\)</span>，那么 <span
+class="math inline">\(x\)</span> 会在 <span
+class="math inline">\(u\subset s,x\in u\)</span> 的集合产生贡献。</p>
+<p>考场时我直接对于每一个 <span class="math inline">\(x\)</span>
+开了个mask。</p>
+<p>实际上这个可以直接差分一下，在 <span class="math inline">\(s\)</span>
+处加， <span class="math inline">\(s-x\)</span>
+处减。这样再次计算超集和的就是真实答案了。</p>
+<h2 id="t3-euclid">T3 euclid</h2>
+<div class="note note-primary">
+            <p>to do</p>
+          </div>
+<p>我是傻逼考场时候还在“建图”，，没看直接转移。。</p>
+<p>首先发现有用的只有这样的向量 <span
+class="math inline">\((0,x),(x,0)\)</span>。</p>
+<p>然后我们对每一个位置计算最右覆盖他的矩形，最下覆盖他的矩形。</p>
+<p>这里你可以发现适当顺序的扫描线可以每次区间取max，全局询问，这样是
+<span class="math inline">\(\sum nm+q\log n\)</span> 的。</p>
+<p>然后转移呢？转移形如区间Max和区间=Max的数。这个可以单调队列来做。。。很是震撼。没想到。。</p>
+<p>代码没时间写呀/kk</p>
+<h2 id="t4-keter">T4 keter</h2>
+<div class="note note-primary">
+            <p>to do</p>
+          </div>
+<p>hall 定理，但是没倒出空想。。</p>
+<hr />
+<h1 id="section-1"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/280">11-11</a></h1>
+<h2 id="t1-safe">T1 safe</h2>
+<p>进行了几步转化，首先考虑什么情况不合法？</p>
+<p>yy了一下，可以感受到存在四元环是充分必要的，证明不难。</p>
+<p>然后看给你了 <span class="math inline">\(p\)</span> 那我就把 <span
+class="math inline">\(p\)</span> 给排成 <span
+class="math inline">\([1,2,\cdot n]\)</span> 的。</p>
+<p>然后发现从大往下插入 <span class="math inline">\(q\)</span>
+的数，那么每次操作变成了选择一个位置，然后决策是选上还是选下，然后选上就是强制让后面的也选上了。</p>
+<p>然后发现我们可以只对
+有效的“伸出来的”计数。然后从大往下，从后往前的dp就好了。</p>
+<p>（对于阶段的前缀和）。</p>
+<h2 id="t2-keter">T2 keter?</h2>
+<p>没写呀，很懵逼的一个构造题。</p>
+<p>正解。。。每次随机若干个前面的小的数，然后用剩余的凑出 <span
+class="math inline">\(0\)</span>。</p>
+<p>话是这么说，大概是前面的那些组成的情况，很有可能背包出来询问？不太懂。</p>
+<p>一个比较让我眼前一亮的做法是：设 <span
+class="math inline">\(w(s)\)</span> 为 <span
+class="math inline">\(s\)</span> 的答案。</p>
+<p>那么 <span class="math inline">\(w(ks_1+s_2)=w(s_1)\times
+w(s_2)\)</span> 。感觉很有道理呀。</p>
+<p>然后每次乘法，加法，，，，类推。。。</p>
+<h2 id="t3-safe">T3 safe</h2>
+<p>比较萌萌的一个题，可以边跑边记录答案，可是有点难写。</p>
+<p>所以最后popc分块做的。<span class="math inline">\(2\log\)</span>
+的。</p>
+<h2 id="t4-safe">T4 safe?</h2>
+<p>没写。考虑求出 <span class="math inline">\((a,b)\to (a+1,b)\)</span>
+这样相邻的能走过去的最大宽度。</p>
+<p>然后大概就是最小生成树了？</p>
+<h1 id="section-2"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/279">11-10</a></h1>
+<h2 id="t3">T3</h2>
+<p>数学题。不知道如何想到最最最key的point。</p>
+<p>单位元三角形的内心=将角分线延长后，与圆的交点形成的三角形的垂心。</p>
+<p>然后典中典垂心坐标 <span
+class="math inline">\(\alpha+\beta+\gamma\)</span>。</p>
+<p>然后角分线对应的单位复数就是 <span
+class="math inline">\(\sqrt{(\alpha\beta)}\)</span>
+（角分线同样将弧也分成两半）。</p>
+<p>然后发现很好拆贡献，完事了。</p>
+<h2 id="t4">T4</h2>
+<p>未写</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1517G">CF1517G</a></p>
+<p>只能说这个题太牛逼了，我也不太知道是怎么想到的。</p>
+<p>这样有限制的题，我们就要去考虑描述限制。</p>
+<p>网络流的最小割模型就是可以理解成，选择割的边云云。</p>
+<p>这个题呢？乍一看，如果直接转成集合的话，那也太难了。</p>
+<p>考虑一条边平行于 <span class="math inline">\(x\)</span>
+轴的平四可以被描述成啥。当时我考场时候在想染色，可惜呀没想到最后的。</p>
+<p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/George1123/p/14703306.html">George1123
+哥哥对染色说的很明白</a></p>
+<p>然后？？你会发现我现在要删点呀，那我就<strong>拆点</strong>，连权值的边，割掉就表示选择，如果选择，那么平四的限制也就没了。。。</p>
+<p>所以就是一个分层然后最小割。</p>
+<h1 id="section-3"><a
+target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/278">11-8</a></h1>
+<h2 id="t1-safe-1">T1 safe?</h2>
+<p>基础dp？</p>
+<p>还是考虑双射，对于每一个结束状态，我们考虑如何得到这个状态的。</p>
+<p>我们强制让这个按顺序得到。</p>
+<p>这样限制变成了，这个数不小于前一个数。所以记录一下前一个数加了多少就好了。</p>
+<h2 id="t2-safe">T2 safe?</h2>
+<p>还是考虑最终情况。运输过程肯定形成一颗有向树。</p>
+<p>并且我们希望对于一个集合，如果他们的需要，真实值差大于最小生成树就能合法。</p>
+<p>原因大概就是对于每条树边，左右必有一个集合权值大于0（因为加和减去这条边边权后大于0）.然后变成更小的子问题。归纳就行。</p>
+<p>然后找到所有合法的集合，SOSdp合并。</p>
+<h2 id="t3-euclid-1">T3 euclid</h2>
+<p>感觉很经典的题呀，还是没有考场做出来，</p>
+<p>首先考虑让一个点合法的区间，大概发现是一个 <code>L</code>
+字型的。</p>
+<p>然后每次加上的贡献就是这个区间内的。</p>
+<p>其实就不难发现这样这可以看成二维平面，然后扫描线。</p>
+<p>我当时以为 <span class="math inline">\(dp\)</span>
+这样不规范的更改就做不了，现在发现确实很好做。</p>
+<h2 id="t4-keter-1">T4 keter。</h2>
+<p>首先二分，判定性问题就是贪心，把 <span class="math inline">\(\le
+mid/2\)</span> 的全选，剩下的在区间里选一个最小的。</p>
+<p>很有趣的一点是我们确实可以随便选，但是选最小的的确更好刻画。</p>
+<p>然后 <span class="math inline">\(2\log\)</span> 不难了。</p>
+<p>然后熊熊说要转化一下限制，一个中间的点合法当且仅当，他的上一个比它小的数，下一个比它小的数和他加起来小于
+<span class="math inline">\(k\)</span>。</p>
+<p>现在更加神奇的事情发生了，我们找到了一种判据，或者说每个点的“属性”。</p>
+<p>这样通过整体二分，就能 <span
+class="math inline">\(1\log\)</span>。</p>
+<p>实际上发现如果信息可以减去的话，我们的整体二分，每次可以看成每次向左走，集合分裂，信息不变；向右走，集合分裂，信息与向左走的合并。</p>
+<p>如图： <a href="\img\2022-11-13.png">img1</a> ----</p>
+<p>一个更加精妙的做法是，现在问题就是多少个判据&lt;=mid
+这种，我们甚至可以不二分，转化为查询区间 <span
+class="math inline">\(k\)</span> 大这种问题。 很是厉害。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/13/AA1114/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">11-13~ 部分题解。</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/11-2(to%20be%20merged)/">
+                        <span class="hidden-mobile">？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

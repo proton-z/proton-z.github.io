@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="620 T1简单。 T3需要注意到n,q并不同阶。那么说明不预处理亏大了。 另外的，两种转化：  将 |a-b| 转化成枚举分界点或者说 \(\sum_{}pre_i\times suf_{i+1}\) 会不重不漏算出。 事实上你也可以直接把111,11111 异或一下看popc。\(5-3&#x3D;popcount(11111\mathrm{xor}111)\).  真的要记住预处理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://proton-z.github.io/2022/06/22/620/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="620 T1简单。 T3需要注意到n,q并不同阶。那么说明不预处理亏大了。 另外的，两种转化：  将 |a-b| 转化成枚举分界点或者说 \(\sum_{}pre_i\times suf_{i+1}\) 会不重不漏算出。 事实上你也可以直接把111,11111 异或一下看popc。\(5-3&#x3D;popcount(11111\mathrm{xor}111)\).  真的要记住预处理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-22T15:12:42.000Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.671Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-22 23:12" pubdate>
+        星期三, 六月 22日 2022, 11:12 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <p>620</p>
+<p>T1简单。</p>
+<p>T3需要注意到n,q并不同阶。那么说明不预处理亏大了。</p>
+<p>另外的，两种转化：</p>
+<ol type="1">
+<li><p>将 |a-b| 转化成枚举分界点或者说 <span
+class="math inline">\(\sum_{}pre_i\times suf_{i+1}\)</span>
+会不重不漏算出。</p></li>
+<li><p>事实上你也可以直接把111,11111 异或一下看popc。<span
+class="math inline">\(5-3=popcount(11111\mathrm{xor}111)\)</span>.</p></li>
+</ol>
+<p>真的要记住预处理。</p>
+<p>621</p>
+<p>先写博客在写代码是好习惯（不是）</p>
+<p>如何评价？本来以为肯定爆蛋了，但是实际上要是把T1乞丐分写了也没太爆蛋/ch</p>
+<p>还是想切题。。。这个T1好厉害，想不到呀。。。。。</p>
+<p>6.22 写题解。。。</p>
+<p>首先第一题。。。。暴力很简单。</p>
+<p>实际上你可以观察到实际上我们每次枚举所有边会有很多不合法的。</p>
+<p>所以可以想到对于部分分，设定阈值超过阈值的选最小的就好。这样容易得到
+<span class="math inline">\(sn+n\log^2 n\)</span> 的算法。</p>
+<p>这是不够的，但是据说可以用法数据结构，分块等优化这个。</p>
+<p>题解很巧妙呀（可能是很常见）。就是如果任意一边都没有到达这条边的一半，那么不可能选这条边。</p>
+<p>但是我们每次枚举到一般这样的优化效果太有限了。</p>
+<p>于是考虑实际上如果任意一条边到达了一半，那么把这条边减去delta后，一定除二。</p>
+<p>所以我们可以动态维护每条边距离 <span
+class="math inline">\(w_i\)</span>
+的大小，如果和上一次更改比delta达到了一半，那么我们就 check
+合不合法，合法就删掉，不合法就重新更新w，和delta。 <span
+class="math display">\[
+\begin{aligned}
+\frac{exp}{2}\le w_{now}-w_0\\
+\frac{exp}{2}+w_0\le w_{now}\\
+\end{aligned}
+\]</span></p>
+<p>提一嘴，这个 <span class="math inline">\(lim\)</span>
+大于一半想说的是增加量大于一半。</p>
+<p>如果当前做到了一条边的话，说明<strong>他的两边的增长量</strong>都小于
+<span class="math inline">\(lim/2\)</span>。</p>
+<p>这样就很有道理了！。</p>
+<p><a href="wating">参考代码</a></p>
+<hr />
+<p>第二题，构造题，题意很模糊</p>
+<p><a href="wating">链接</a></p>
+<p>我们可以想到 <span class="math inline">\(\mathrm{1212}\)</span>
+这样的匹配可以让四个全部覆盖。</p>
+<p>那么空位也可以很 naiive 的用一个匹配给盖住，这样就一定进不去了。</p>
+<p>被盖住的里面的我们让他们互相匹配。</p>
+<p>剩下的用 <span class="math inline">\(\mathrm{1212}\)</span>
+就好。</p>
+<p>这个当然是充分的，但是不必要。也就是说我们不能把这样构造不出来的就
+-1。</p>
+<p>于是很自然能想到，我们不能构造出来的只有一种情况也就是剩下的 <span
+class="math inline">\(\bmod4  = 2\)</span> 的</p>
+<p>我们观察，可以发现 <span
+class="math inline">\(\mathrm{123132}\)</span>
+这样的可以让我们原先不合法的，给出合法构造。</p>
+<p>于是把这个和上述构造方法拼起来就行了。</p>
+<p>具体的我们找到一对相邻的“极长的空位”，然后把他们外面，里面两两匹配，然后把左面开始的pre匹配到右面开始的pre。</p>
+<p>结束了。</p>
+<hr />
+<p><a href="牛逼waiting">T3</a></p>
+<p>给出一个（两个结论）都不会证，会口胡其中一个。</p>
+<p>首先是有限小数，结论是每次选二进制小数的lowbit。</p>
+<p>为什么？选一次 <span class="math inline">\(S\)</span> 肯定是不优于
+选两次 <span class="math inline">\(A|B=S\)</span>
+的。李子豪说对就对。</p>
+<p>那为啥是Low Bit ，因为如果不选 low
+那么选比low高的不管寄不寄都选不了这位了，那就浪费了。</p>
+<hr />
+<p>容易得到dp。 <span class="math display">\[
+\begin{aligned}
+\mathrm{dp}[i][0]=\mathrm{dp[i-1][1]}+hdqijwoijvoihjvaoivsa\\
+\mathrm{dp}[i][1]=\mathrm{dp[i-1][1]}+hdqijwoijvoihjvaoivsa
+\end{aligned}
+\]</span> 不管具体是啥了，反正是<span class="math inline">\(i-1\)</span>
+的线性组合，可以写成矩阵。</p>
+<p>无穷小数，因为有理一定有循环节。</p>
+<p>那么实际上只需要求出循环节矩阵的无线次幂的收敛结果，就能转移了。</p>
+<p>那就解方程 <span class="math inline">\(CB=C\)</span> <span
+class="math inline">\(C\)</span> 不满秩，解方程。</p>
+<p>应该能做。</p>
+<hr />
+<p>ls告诉我可以把线性变换看成函数复合。。。。。。</p>
+<p>然后就写成 <span class="math inline">\(kx+b\)</span>
+一次函数一直复合，显然复合后还是一次函数。</p>
+<p>那么变成了有理数无穷级数，也可以做。</p>
+<hr />
+<p>ljs告诉我实际上决策是不需要管每次递增的。</p>
+<p>随机决策有如下结论，如果小于一半all in 。否则赌 <span
+class="math inline">\(1-x\)</span> 。</p>
+<p>不知道为啥对。你妈的</p>
+<p>这样你会发现 <span class="math inline">\(a/b\)</span>
+块钱，我们只会选 <span class="math inline">\(x/b\)</span> 的赌，可以整数
+<span class="math inline">\(\mathrm{dp}\)</span> 真牛逼。</p>
+<h2 id="updated-upstream">&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated
+upstream</h2>
+<p>补。</p>
+<p>7.1号</p>
+<p>T1 写的 50实际上这个东西的决策会被分为子问题。所以可SG。</p>
+<p>T2 实数题，很离谱。。就挺普通的 <span
+class="math inline">\(f_{s,i,sum}\)</span> 这样 dp 可以做到 <span
+class="math inline">\(O(2^nm^2n)\)</span>，但是这样是过不去的。。。</p>
+<p>实际上这dp的<span class="math inline">\(sum\)</span>
+想想都没啥大用，所以直接去掉一维，含义变成从前面没选的选出选出减去。</p>
+<p>剩下的就是EGF的卷积。</p>
+<p>T3不是很会。</p>
+<hr />
+<p>7.4</p>
+<p>T1 直接求出后缀数组二分哈希。。。。</p>
+<p>这样的话复杂度是2log的，需要单哈希不取模卡一卡。</p>
+<p>但是可能需要注意啥二分上界 ，无解判断。</p>
+<h3
+id="特别的哈希不能将a的值设成0负责aaaa和a完全一样了"><strong>特别的。哈希不能将a的值设成0，负责aaaa和a完全一样了！！</strong></h3>
+<p>不是很懂T2润润润</p>
+<p>T3 <span class="math display">\[
+f_i=1/2 f_{i-1} + 1/4f_{i-2}+1/8f_{i-3}\\
+1+\frac{1}{2}+\frac{1}{4}+\cdots+\frac{}{}
+\]</span> ======= -----------------------------</p>
+<p>咕咕咕了几天的？</p>
+<p>7-1</p>
+<p>T1
+我没发现奇偶互不影响/kk,然后对于一个颜色实际上就是分成子问题，这样可以SG加法了。</p>
+<p>要是真想做出来就，这种没有明确策略的博弈一定要想一想能不能SG和。。。。</p>
+<p>T2 感觉是厉害题，考场时候写了个 <span
+class="math inline">\(O(2^nm^2n)\)</span> 的WA+TLE了。/。。。。。。</p>
+<p>实际上还好，，，，，首先能想到这个人运气很差，一个都打不死的概率，这个大概就是有上界背包，实际上EGF二项卷积就好。</p>
+<p>这个是极其容易计算的。。。。</p>
+<p>这样就不难想到把杀死的和活下来的分开考虑。这样我们记录死了的状态，沿着<span
+class="math inline">\(m\)</span> 一个一个填入。</p>
+<p>多 <span class="math inline">\(m\)</span> 的做法是设状态 <span
+class="math inline">\(dp_{sta,sum}\)</span> 表示我们能打 <span
+class="math inline">\(sum\)</span> 次，（能打死人），并且 sta
+这些人全死了。</p>
+<p>转移平凡 <span class="math inline">\(2^nm^2n\)</span>
+，然后我们只需要 <span class="math inline">\(dp_{sta,0}\)</span> 和EGF
+乘起来就行。</p>
+<p>这样你会发现实际上你这个 <span class="math inline">\(sum\)</span>
+描述的不是很清楚，并且最后只需要一项的值，那不妨考虑删去 <span
+class="math inline">\(sum\)</span>
+维，你发现实际上我们没必要钦定他呀。</p>
+<p>T3 咕咕咕</p>
+<hr />
+<p>7.4的T1 是个简单字符串题，这个拼接实际上就可以直接二分哈希了。</p>
+<p>这样2log需要卡常， &gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/12/bzoj3569/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">bzoj3569</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/22/FUCKTHEPEOBELM/">
+                        <span class="hidden-mobile">1695E</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="2022-8-29            1. NOI2022T1 (euclid) 事实上我考试时候发现如果按序列分治，从下合并的话，主元素指挥出现在其中一个区间里。 事实上，按值域分治的话吗，使用值域线段树的话，从上向下找到位置的话，也只会进入其中一个区间。 那么在一棵线段树的话可以 \(O(\log v)\) 求出主元素。\(m\) 课线段树类似可以">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2022-8-14 ~ 2022-8-?">
+<meta property="og:url" content="https://proton-z.github.io/tasks/new/2022-8-29/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2022-8-29            1. NOI2022T1 (euclid) 事实上我考试时候发现如果按序列分治，从下合并的话，主元素指挥出现在其中一个区间里。 事实上，按值域分治的话吗，使用值域线段树的话，从上向下找到位置的话，也只会进入其中一个区间。 那么在一棵线段树的话可以 \(O(\log v)\) 求出主元素。\(m\) 课线段树类似可以">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-19T14:36:20.712Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.712Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>2022-8-14 ~ 2022-8-? - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/proton-z/cdn@3.2/2233/wallhaven-8o83zj.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2022-8-14 ~ 2022-8-?">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <div class="note note-success">
+            <h3 id="section">2022-8-29</h3>
+          </div>
+<h3 id="noi2022t1-euclid">1. <a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8496">NOI2022T1</a>
+(euclid)</h3>
+<p>事实上我考试时候发现如果按序列分治，从下合并的话，主元素指挥出现在其中一个区间里。</p>
+<p>事实上，按值域分治的话吗，使用值域线段树的话，从上向下找到位置的话，也只会进入其中一个区间。</p>
+<p>那么在一棵线段树的话可以 <span class="math inline">\(O(\log
+v)\)</span> 求出主元素。<span class="math inline">\(m\)</span>
+课线段树类似可以 <span class="math inline">\(O(m\log v)\)</span>
+求出。</p>
+<p>主要开始学网络流了/kk</p>
+<h3 id="f-euclid">2. <a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1721/F">1721F</a>
+(euclid)</h3>
+<p>是个edu的F，我不会。这个题想想还蛮神奇的，真的。</p>
+<p>给你一个二分图，每次删一个点使得最大匹配减一。</p>
+<p>说实话当时真的觉得这个和那个“二分图博弈”很像，也去想独立集了，但是无果，自己好像啥子。</p>
+<p>因为 最大匹配=最小割=最小点覆盖=N-最大独立集。</p>
+<p>所以如果删点最大匹配减小，说明最大独立集不变。</p>
+<p>同时很显然，删点不会导致最大独立集变大，所以一直维持一个独立集即可。</p>
+<p>事实上我们删的是点覆盖里的点，点覆盖的构造是对于每一个最大匹配只取一边的，所以一定能找到另一边在独立集里的匹配。</p>
+<p>好神奇。。。。。。。。。。。。。。</p>
+<h3 id="板子-safe">3.<a
+target="_blank" rel="noopener" href="http://www.accoders.com/problem.php?cid=2714&amp;pid=0">板子</a>
+(safe)</h3>
+<p>没啥好说的。</p>
+<h3 id="farm-tour-safe">4.<a
+target="_blank" rel="noopener" href="http://www.accoders.com/problem.php?cid=2714&amp;pid=1">Farm
+Tour</a> (safe)</h3>
+<p>让你找每条边最多走过1次，从 <span class="math inline">\(s\)</span> 到
+<span class="math inline">\(t\)</span> 的两条路径。</p>
+<p>直接Maxflows=2,Mincost 费用流即可。</p>
+<h3 id="spop-safe">5.<a
+target="_blank" rel="noopener" href="http://www.accoders.com/problem.php?cid=2714&amp;pid=2">SPoP</a>
+(safe)</h3>
+<p>每个点最多走1次，那就拆点，中间连1流的边限制流量即可。</p>
+<hr />
+<div class="note note-success">
+            <h3 id="section">2022-8-30</h3>
+          </div>
+<h3 id="cqoi2015-safe">1.<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3171">CQOI2015</a> (safe)</h3>
+<p>很神秘的题意，最后是先建出 dag 然后，Max-flows.....</p>
+<p>太神秘了。</p>
+<h3 id="狼捉兔子-safe">2.<a
+target="_blank" rel="noopener" href="http://www.accoders.com/problem.php?cid=2720&amp;pid=6">狼捉兔子</a>
+(safe)</h3>
+<p>还是比较不懂平面图这吊东西的，我打算问问平面图判定啥的咋搞，真也不知道这东西有啥性质，但是这东西的min-cut真的很形象。</p>
+<p>还有什么有向边旋转90°，不知道为啥，什么逻辑。。。</p>
+<h3 id="海拔-euclid">3.<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2046">海拔</a> (euclid)</h3>
+<p>首先肯定0,1然后0,1一定是俩连通块，否则，，，，一定不优。</p>
+<p>那就是要找分割线。很simple，当时不太会怎么判断有向边的贡献方向，但实际上可以根据右手扶墙这种感觉，把这个轮廓线描述出来，恰好是旋转90°，很神秘。</p>
+<p>Addition:
+感觉这时候学的平面图-&gt;对偶图有点naiive，现在感觉用左（右）手摸墙会更好解释的。在下面有提到。</p>
+<h3 id="简单题-euclid">4.<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4148">简单题</a> (euclid)</h3>
+<p>树套树 <span class="math inline">\(\log^2\)</span>
+不难，但是空间也会多 <span
+class="math inline">\(\log^2,\log\)</span>。</p>
+<p>又不喜欢 K-DT。还被lxl说的划分树骗了。。。。。。</p>
+<p>可以分块平衡树做到空间 <span class="math inline">\(O(n)\)</span>,时间
+<span class="math inline">\(O(n\sqrt n\log
+n)\)</span>，冲不过去，然后有一个神秘做法是，分块，然后对散块继续分块，这样可以平衡成更小的复杂度的。</p>
+<p>yhw告诉我，这个本质是多叉线段树，很有道理！！</p>
+<hr />
+<div class="note note-success">
+            <h3 id="月竟然有31号-2022-9-1">2022-8-31 (8月竟然有31号) &amp;2022-9-1</h3>
+          </div>
+<p>实现了一下 <a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4148">简单题</a> 。</p>
+<p>感觉写的很高兴呀。</p>
+<p>有点摆、</p>
+<h3 id="平面图-euclid">1.<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4073">平面图</a> (euclid)</h3>
+<p>这吊题，我最开始不是很会转对偶图，出现了很多错误。。。</p>
+<p>我当时以为直接像点定位那样转就好。。。但没想到事实上会有巨多细节，我也不确定是否真的能做出来。。。。。</p>
+<p>我们本质上是要区分平面上的闭合&amp;不闭合区间的。</p>
+<p>考虑区分一个区间我们可以左手摸墙走，就是到达一个点，找到<strong>当前朝向</strong>的第一条边，实际上就是在模拟摸墙走路的过程。</p>
+<p>同时如果我们统一“左”，“右”手，我们就能确认方向。</p>
+<p>这样你会发现一条边分开的两个区域是不会用同一种方向走的（左手呀）。所以可以看成无向边拆成俩有向边。</p>
+<p>这样就可以区分闭合平面了。</p>
+<p>不闭合平面的话、、、、我才知道凹多边形竟然也可以直接点积算面积，还是太naiive了。</p>
+<p>注意一个无面积图形内外是区分不开的，直接丢掉。（我甚至以为是精度问题）</p>
+<p>另外我知道了极角排序用叉积的话可以先比象限然后叉积。</p>
+<p>点定位的话，，，很simple的找头上那条边就行，因为左手摸墙方向必然确定。</p>
+<h3 id="poi2009lyz-ice-skates-euclid">2.<a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3488">[POI2009]LYZ-Ice
+Skates</a> (euclid)</h3>
+<p>吐槽为啥这几天做题感觉这么多的 (euclid)
+级别的。。。可能是人太菜了。。。。</p>
+<p>感觉hall定理很有东西呀，我觉得是挺精妙的数据结构题。</p>
+<p>obs 1. 若可以被拆成不交集合，那莫不如只考虑其中某个。</p>
+<p>obs 2. 若同时选 <span class="math inline">\(l&lt;r\)</span> 那 <span
+class="math inline">\(x\in(l,r)\)</span> 选上不劣。</p>
+<p>然后我们就是要找到 <span class="math inline">\((l+d)k-\sum
+w_i\)</span> 的最小值。</p>
+<p>有修改那我们就考虑线段树，线段树赛高♥（我线段树维护子区间可是很强的哦）</p>
+<p>一个节点维护的信息就是他的子区间答案情况，合并的时候考虑左区间对右区间的影响。这样就可以按照经典维护子区间那样维护
+lv,rv，来合并。</p>
+<p>摆死了。真正的颓狗</p>
+<hr />
+<div class="note note-success">
+            <h3 id="section">2022-9-2</h3>
+          </div>
+<h3 id="圆桌会议-safe"><a
+target="_blank" rel="noopener" href="http://www.accoders.com/problem.php?cid=2720&amp;pid=16">圆桌会议</a>
+(safe)</h3>
+<p>hall定理，但是成环。</p>
+<p>先想想不成环怎么搞？我们枚举另外一边的区间，然后看这边有多少区间是他的子区间。</p>
+<p>你发现要是不紧贴边界都不优，所以直接离散化了。</p>
+<p>然后我们扫描线扫 <span class="math inline">\(r\)</span>，维护 <span
+class="math inline">\(l\)</span> 表示区间 <span
+class="math inline">\([l,r]\)</span> 的子区间贡献。</p>
+<p>每次加入就是区间加。查询全局查。</p>
+<p>环大概就是断环成链，就是把没有跨过 0 这个点的复制一遍。</p>
+<p>这样我们只需要统计这个序列长度=m的子段即可。全局查变成了区间查。。</p>
+<p>值得注意的是，事实上如果我把这个环全选的话，这个并不能被长度 = m
+的子段表示出来，但也仅此而已了。</p>
+<p>（就是说如果不是全选的话，不会发现包含两段同一区间使他们能拼起来。）</p>
+<hr />
+<h3 id="线段树-keter"><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3352">线段树</a> (keter)</h3>
+<p>尽管想到了许多，但是最终没做出来，沦为了 keter 级别。</p>
+<p>首先看第 <span class="math inline">\(p\)</span> 个位置最后值成 <span
+class="math inline">\(k\)</span> 的概率。</p>
+<p><span class="math inline">\(=\)</span> 不好做，但是 <span
+class="math inline">\(\geq\)</span>
+好做，所以变成了0,1的，我们只关心第一个在他前后即可。</p>
+<p>这样有 dp[i][j][k] 表示已经限制到 <span
+class="math inline">\([1,i]+[j,n]\)</span> 了，使用了 <span
+class="math inline">\(k\)</span> 步。</p>
+<p>然后怎么看这个复杂度都爆炸，，，，转移当然简单O(1)，，，然后我开始想数据随机是不是保证笛卡尔树不高什么的，感觉有个
+<span class="math inline">\(O(n^4\log n)\)</span> 的臭暴力。。。。。</p>
+<p>看来题解恍然大悟，实际上我们枚举这个 <span
+class="math inline">\(p\)</span>
+是没啥大用的，我们只需要关心0的连续段足够了！！！这样就算暴力做一次全部的，也只需要
+<span class="math inline">\(n^3\)</span> 的代价！！！！</p>
+<p>同时仔细思考，不难发现如果我们模拟从大往小加入数的过程，本质上是把一个0的连续段断开，这样似乎暴力复杂度就是
+<span class="math inline">\(n^3\)</span> 不会多 <span
+class="math inline">\(n\)</span> 也不会多 <span
+class="math inline">\(\log\)</span> 但其实我不太会说明。。。。。</p>
+<p>较为正确的做法是，我们本来算的是 <span
+class="math inline">\(\geq\)</span>
+的概率，现在我们直接算带权概率（期望啥的）。</p>
+<p>这样就不用每次减东西，而变成简单的求和罢了，这样 <span
+class="math inline">\(n\)</span> 次的 dp
+我们可以只关心初始值，把初始值相加，做一次dp。</p>
+<p>各种意义上这道题都很有启示性。（像容斥一样把系数放入一起算）。</p>
+<hr />
+<h3 id="p5336-thusc2016成绩单-safe"><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5336">P5336
+[THUSC2016]成绩单</a> (safe)</h3>
+<p>感觉蛮简单的？可能是以前讲过？</p>
+<p>反正这是子段删除呀，肯定区间dp。</p>
+<p>第一次忘记了可以删很多，然后一起删一次，假40分了。</p>
+<p>然后发现大概就是对区间划分，划分成这一次删的简单，多记录 <span
+class="math inline">\(\min,\max\)</span> 就可以 <span
+class="math inline">\(O(1)\)</span>
+转移。剩下的就不得不枚举上一个了，这样需要 <span
+class="math inline">\(O(n)\)</span> 转移。</p>
+<p>最开始我像个憨批一样带着 <span class="math inline">\(k\)</span> 来
+<span class="math inline">\(dp\)</span> 复杂度直接多两个 <span
+class="math inline">\(n\)</span>.......</p>
+<p>直接记录 <span
+class="math inline">\(\mathrm{dp}[l][r][mn][mx]\)</span>
+表示这段还没算贡献的最小值。 （此时[l,r]一定有没算贡献的数）</p>
+<p>往前，后加单个数都是 <span
+class="math inline">\(O(1)\)</span>,加整段我们只能加不超过当前区间dp长度的区间。</p>
+<p>这样会产生问题就是我们转移实际上不是很全。但也没啥关系，我们可以钦定每种合法状态都是最长整段转移出来的。</p>
+<p>代码上我们只需要补一个整段，前后+不算贡献的即可。</p>
+<hr />
+<h3 id="p3687-zjoi2017仙人掌-safe"><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3687">P3687 [ZJOI2017]仙人掌</a>
+(safe)</h3>
+<p>既然是要加边，那么我们直接把仙人掌中的环断开，成子问题了。</p>
+<p>那么我们就是要对一堆树dp。大概的你考虑本质上我们在选若干条链，而从一个子树上来的至多有1个。</p>
+<p>所以设 <span class="math inline">\(\mathrm{dp}[x][sta]\)</span> 表示
+<span class="math inline">\(x\)</span> 子树内上来 <span
+class="math inline">\(sta\)</span> 个的方案数。</p>
+<p>本来我以为每个点都只在一个简单环里面，然后只可能连上 <span
+class="math inline">\([0,1]\)</span>
+两种，但实际上能连上去好多条呀！！！</p>
+<p>那也不慌，写出生成函数：我们可以选择加入匹配到别的地方的点，不加，或者只加匹配到根的点。</p>
+<p><span
+class="math inline">\((\mathrm{dp}[y][1]x+(\mathrm{dp}[y][0]+\mathrm{dp}[y][1]-\mathrm{dp[y][0]}))\)</span>。</p>
+<p><span
+class="math inline">\(\mathrm{dp}[y][1]-\mathrm{dp}[y][0]\)</span>
+的含义就是能连回来的减去，型为重边的。发现非常的AmaZing呀，这个就是
+<span class="math inline">\(\mathrm{dp}[x][1](1+x)\)</span>
+然后我们要奇数项，或者偶数项都是 <span
+class="math inline">\(2^{siz-1}\)</span>
+了。（<del>现在想想不行单位根反演也能做</del>）</p>
+<p>这样做完了。</p>
+<div class="note note-primary">
+            <p>感觉上还是要写的欢乐一点，要不然根本没啥读下去的兴致。</p>
+          </div>
+<hr />
+<p>前几天太摆了，现在得补救一下。</p>
+<div class="note note-success">
+            <h3 id="section">2022-9-3</h3>
+          </div>
+<p>周六我当时大概写了下周五的edu，然后写了个 Solitaire
+，然后没了晚上写了2个abc。</p>
+<p>几乎可以说啥也没干，效率低下，这就是在家。</p>
+<h3 id="f">1.<a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1717/F">1717F</a></h3>
+<p>就一基础网络流。</p>
+<p>首先不要看错题意，你的操作是必须 <span
+class="math inline">\(u_i,v_i\)</span> 其中某一个恰好 <span
+class="math inline">\(+1\)</span>，另外的恰好 <span
+class="math inline">\(-1\)</span> 的。</p>
+<p>如果可以任意次数加，那对于一个连通块我就可以在可以取到负数那个作为源，一条一条给每个点加上。</p>
+<p>但是恰好，有加有减不太好搞，所以我先把 <span
+class="math inline">\(+1,-1\)</span> 看成最开始都 <span
+class="math inline">\(-1\)</span>，然后选择一个 <span
+class="math inline">\(+2\)</span>。</p>
+<p>对于两边都是有限制的，那你就是新建一个点吗，原点流向他 <span
+class="math inline">\(1\)</span> 表示，然后他向 <span
+class="math inline">\(u_i,v_i\)</span> 各连 <span
+class="math inline">\(1\)</span> 表示选择其一加。</p>
+<p>其中一边有限制的，就不太好搞呀，因为有一个可以随便流的，我又求的是MaxFlows，所以不太好搞。</p>
+<p>我最开始不太会，就只会有上下界做。</p>
+<p>但实际上你想一想，我们都知道最开始的总流量了，到随便流的流量就是剩下的，我们也知道。</p>
+<p>所以我们可以让随便流的也流向源点，只不过我们要限制他最多流量。</p>
+<p>这样任何一个方案都可以被表示出来。就好了。</p>
+<p>edu剩下的都不难。</p>
+<hr />
+<h3 id="solitaire"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc068/tasks/arc068_d">Solitaire</a></h3>
+<p>老朋友了可以说是。</p>
+<p>双端队列是吧，问你有多少种删除方式，使得 <span
+class="math inline">\(1\)</span> 是第 <span
+class="math inline">\(k\)</span> 个删的。</p>
+<p>也其实挺妙的。</p>
+<p>我们考虑如果一次我们没取 <span
+class="math inline">\(mx\)</span>，而取了 <span
+class="math inline">\(x\)</span>，说明了 <span
+class="math inline">\([x+1,mx]\)</span> 都在另一侧。</p>
+<p>如果当前我们打算，且能取 <span
+class="math inline">\(mx\)</span>,那么实际上左右是对称的。</p>
+<p>所以我们更改一下我们对其叙述方式，如果另一侧有剩余，我们取那个集合最大的，否则我们选择一下这侧取到了什么，把中间的放到另一侧。</p>
+<p>注意最精彩的地方是，我们不需要知道另一侧实际上是啥，只需要知道他的大小，因为我们知道每次必然取最大的。</p>
+<p>同时如果知道我们成功取走了多少，以及取到的最小值的话，我们就能知道另一侧剩下的！</p>
+<p>所以可以直接设 <span class="math inline">\(f[x][k]\)</span>
+表示当前取到了 <span class="math inline">\(x\)</span> ，成功取 <span
+class="math inline">\(k\)</span> 个了，可以转移到 <span
+class="math inline">\(f[x][k+1]\)</span> 和 <span
+class="math inline">\(f[x+c][k+c-1]\)</span>。可以前缀和什么的。</p>
+<p>最后把 <span class="math inline">\(1\)</span>
+取完后，对于任意一个状态，我们外层都是不一样的，所以里层任意选取都行，也就是每次
+<span class="math inline">\(pop\)</span> <span
+class="math inline">\(front\)</span> 或者 <span
+class="math inline">\(back\)</span>。简单的 <span
+class="math inline">\(2^{left-1}\)</span>。</p>
+<p>这样 <span class="math inline">\(O(n^2)\)</span> 做完。</p>
+<hr />
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc267/tasks/abc267_g">abc267g</a></p>
+<p>这个题好烦呀。首先肯定是一个数一个数加入。</p>
+<p><span class="math inline">\(f[x][y]\)</span> 表示长度是 <span
+class="math inline">\(x\)</span> 个上升 <span
+class="math inline">\(y\)</span> 次。</p>
+<p>我是这样想的，我能枚举成功插入的个数，不成功插入的个数。（个数的定义是区间段数）</p>
+<p>然后把 <span class="math inline">\(s\)</span>
+个数放进来，简单插板，就完了！！！！，大概贡献形式三个组合数，交换一下求和号就可以范德蒙德卷积了！！！然后两个
+<span class="math inline">\(\sum\)</span> 看起来是 <span
+class="math inline">\(n^3\)</span> 的，但实际上 <span
+class="math inline">\(\sum len=n\)</span>
+的多项式乘法鸣宝告诉过我复杂度是 <span
+class="math inline">\(O(n^2)\)</span>。</p>
+<p><span
+class="math inline">\(\sum_{i}\binom{a}{i}\binom{b}{c-i}=\binom{a+b}{c}\)</span></p>
+<hr />
+<p>然后说这玩意如果是排列是欧拉数，真吊呀。</p>
+<p>因为是排列每次只能加入一个数，然后 <span
+class="math inline">\(f[x][y]=(y+1)f[x-1][y]+(x-y)f[x-1][y-1]\)</span>.</p>
+<p>...........</p>
+<p>好简洁。</p>
+<hr />
+<div class="note note-success">
+            <h3 id="section">2022-9-4</h3>
+          </div>
+<p>真实的摆了一天。上午tg被校长反杀，下午arc,acm被杀的体无完肤。</p>
+<p>输麻人。</p>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc147/tasks/arc147_c">arc147_c</a></p>
+<p>其实也蛮神秘的。 我一定可以找到一个 Mid 使得全体目光向 <span
+class="math inline">\(Mid\)</span> 看齐。</p>
+<p>那我就去找嘛，就好了，扫描线就完事了。</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

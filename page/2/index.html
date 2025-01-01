@@ -204,40 +204,24 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/23/records-on/" target="_self">
-          records on
+        <a href="/2023/01/14/wc2023-hhz-part/" target="_self">
+          hhz 杂题选讲。
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/23/records-on/" target="_self">
+        <a href="/2023/01/14/wc2023-hhz-part/" target="_self">
           
           
             
           
-          
-Records on
-
-
-妄图使用数学方法解决组合问题的的人类，
-
-
-悔改吧,组合意义蕴含的能量远超你想象
-
-实际上，如同 title 所说的，从现在开始，将要开始记录。
-
-也正如那些古老的石碑，存在的意义不是证明，而只是记录
-
-
-属于我的故事开始了。
-
-
-
-img
-
-2022-3-24
-T1
-发现了，如果是合法解的话，那么一定可以拆分成下图这样的。
+          IOI2023 最罕见的昆虫
+我们考虑最小值具有什么性质。
+将权值列出直方图，发现最小值下的数的个数都是 \(k\tiems num\)
+种，这是最大值并且取到的。
+实际上，这个是在说明最小值信息具有单调性。
+那首先考虑问出种类数，我们可以一个一个加入并查询众数。这需要 \(n\) 次询问。
+然后二分最小值，这也可以通过一个一个加入查询众数来计算出现 \(\le mid\) 次的点的个
         </a>
       </p>
 
@@ -245,19 +229,12 @@ T1
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-23 12:36" pubdate>
-              2022-03-23
+            <time datetime="2023-01-14 14:27" pubdate>
+              2023-01-14
             </time>
           </div>
         
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/record/">record</a>
-            
-          </div>
         
       </div>
     </article>
@@ -269,28 +246,29 @@ T1
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/11/2-21-pack/" target="_self">
-          模拟赛补题解
+        <a href="/2022/12/21/A-Afujian/" target="_self">
+          复建记录
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/11/2-21-pack/" target="_self">
+        <a href="/2022/12/21/A-Afujian/" target="_self">
           
           
             
           
-          contest-2022-2-6
-T1
-题意简述：求树上最长回文串的长度,字符集大小为1000。
-大概二分+点分治。
-如果光二分，那么我们其实不好判断。
-如果光点分治，那么我们也不好确定回文中心的位置。
-那么就结合起来。
-我们点分治的时候，dfs如果到达点 \(x\) ，那么我们记录下 \(x\)
-是否有可能成为经过分治中心的回文串。
-就大概如果长度 \(&gt;mid\)
-那
+          真实的复建记录。真实的啥也不会。
+[NOI2009] 二叉查找树
+题意：给你一个treap，你可以花 \(k\)
+任意改变一个点的堆权值。让你最小化 代价+深度*出现次数。
+
+
+题解
+
+先不考虑出现次数。给你一颗树，怎么计算最少花费的代价。
+发现因为任意改变（实数），那肯定能改的数只有 \(O(n)\)。
+所以从底到顶dp即可。
+原问题发现可以类似做，总复杂度 \(n^4\)
         </a>
       </p>
 
@@ -298,71 +276,8 @@ T1
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-11 00:00" pubdate>
-              2022-02-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B/">模拟赛</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/binary-search/">binary search</a>
-            
-              <a href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/">点分治</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/07/burnside-simple-thoughts/" target="_self">
-          burnside
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/07/burnside-simple-thoughts/" target="_self">
-          
-          
-            
-          
-          cmd讲的真的不是很清楚。
-看soulist 的博客把，。
-soulist NB!!!
-LINK
-拉格朗日定理
-首先对于两个群 \(H\subset G\)。
-那么 \(|H|\) 是 \(|G|\) 的因数。
-考虑给 \(H\) 添 \(g\in G\)，得到的 \(gH\) 不相同时，不可能有交。
-于是乎给 \(gH\)
-就是相当于平移（可能不是平的，就是移动）。
-
-轨迹
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-07 23:12" pubdate>
-              2022-02-07
+            <time datetime="2022-12-21 11:00" pubdate>
+              2022-12-21
             </time>
           </div>
         
@@ -385,18 +300,18 @@ LINK
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/06/generating-fuc-notes/" target="_self">
-          生成函数做题做题记录
+        <a href="/2022/12/15/flows-simple-thought/" target="_self">
+          网络流一些基础建模
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/06/generating-fuc-notes/" target="_self">
+        <a href="/2022/12/15/flows-simple-thought/" target="_self">
           
           
             
           
-          生成函数记录。
+          萌新入门网络流。
         </a>
       </p>
 
@@ -404,8 +319,61 @@ LINK
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-06 00:54" pubdate>
-              2022-02-06
+            <time datetime="2022-12-15 11:00" pubdate>
+              2022-12-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/12/02/5e10-black-pieces/" target="_self">
+          5e10的小石子
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/12/02/5e10-black-pieces/" target="_self">
+          
+          
+            
+          
+          5e10的小黑子
+感谢qiu老师的长期连载系列让我入门整式递推/bx/bx
+part1 基础推导
+首先观察到我们每一行必须有 \(2\)
+个数，然后每一列之多两个数。
+我们把同一行的连边，同一列的连边。
+不难发现每个点的度数 \(\le2\)
+连出的一定就是环或者链。
+那么考虑实际上他本质上是一个二元egf（需要同时分配行列）。
+考虑一个 \(n\times n\)
+矩阵嵌入环
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-12-02 14:45" pubdate>
+              2022-12-02
             </time>
           </div>
         
@@ -428,37 +396,33 @@ LINK
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/05/uoj-goodbye2021/" target="_self">
-          Goodbye Xinchou
+        <a href="/2022/11/28/noip2022/" target="_self">
+          noip2022 完全失败。
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/05/uoj-goodbye2021/" target="_self">
+        <a href="/2022/11/28/noip2022/" target="_self">
           
           
             
           
-          .只写了A,B,C.
-A是个trivial的题。
-B
-张飞卷精兵。
-大概就是考虑到这个 \(2^n\)
-恰好形成了一个 \(n\) 层的满二叉树。
-考虑我们如果钦定左儿子胜利的话，那么我们本质上确定了每个的符号。
-但是如何才能合法呢？
-如下图，这是一颗决策树。
+          很失败，被构造题搞了。
+所以就拿这个博客来记一记构造题把。
+
+noip2022t2
+题意，你每次按顺序把 \(m\) 个数放入
+\(n\) 个栈里。
+如果两个栈栈底相等，可以删掉这两个数。
+如果有相邻两个数相等也可以将这两个数删掉。
+一共只有 \(2n-1\) 种数。
 
 
-img1
 
-每个节点最后应该是一直走左儿子得到的。
-如图：
+题解
 
-
-img2
-
-既然我们已经订好了这
+菜死，不会构造。 首先 \(k=2n-2\)
+的是怎么做的呢？ 相邻匹配最后形成的串是
         </a>
       </p>
 
@@ -466,8 +430,8 @@ img2
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-05 19:13" pubdate>
-              2022-02-05
+            <time datetime="2022-11-28 09:27" pubdate>
+              2022-11-28
             </time>
           </div>
         
@@ -483,26 +447,20 @@ img2
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/12/ORZORZ-probelm/" target="_self">
-          一道神仙题
+        <a href="/2022/11/13/AA1114/" target="_self">
+          11-13~ 部分题解。
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/12/ORZORZ-probelm/" target="_self">
+        <a href="/2022/11/13/AA1114/" target="_self">
           
           
             
           
-          神仙神仙题。
-LINK
-非常的NB，首先，考虑答案的上界。
-上界
-考虑大概就是这么一个情况，我们不希望过多的“小”的最后剩下了，使得出现不得不放置&gt;=3个的。
-而小的和小的很可能达不到 \(\mathrm{sum}/A\)
-，所以考虑我们可以取出最大的和最小的。
-由于平均数的特性，大的加小的一定在平均数之上，我们删去最小的，和最大的部分，转化为子问题。
-所以不难发现我们构造出
+          密码xoi。
+太摆了。所以题解从前往后写。
+
         </a>
       </p>
 
@@ -510,21 +468,12 @@ LINK
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-12 12:35" pubdate>
-              2022-01-12
+            <time datetime="2022-11-13 23:27" pubdate>
+              2022-11-13
             </time>
           </div>
         
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
-            
-              <a href="/tags/simple-thoughts/">simple thoughts</a>
-            
-          </div>
         
       </div>
     </article>
@@ -536,18 +485,32 @@ LINK
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/24/link-cut-tree-simple-thoughts/" target="_self">
-          link-cut-tree
+        <a href="/2022/11/13/AA1113/" target="_self">
+          ~11-13 部分题解。
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/24/link-cut-tree-simple-thoughts/" target="_self">
+        <a href="/2022/11/13/AA1113/" target="_self">
           
           
             
           
-          主要写一写今天写的两个题目总结。
+          密码xoi。
+因为前几周太摆了。所以题解从后往前写。
+
+11-12
+T1 euclid
+根号分治，值得注意的是复杂度形式为：
+\[
+\sum_{p,q} \frac{n}{\max(p,q)}=\sum_{p} \frac{n}{p}*p
+\]
+很是神奇。
+T2 euclid
+dp。
+首先考虑 \(dp\)，我们发现如果记录
+\(m!\) 的顺序的信息其实很亏。
+那么很
         </a>
       </p>
 
@@ -555,8 +518,53 @@ LINK
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-24 18:12" pubdate>
-              2021-12-24
+            <time datetime="2022-11-13 23:27" pubdate>
+              2022-11-13
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/02/11-2(to%20be%20merged)/" target="_self">
+          ？
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/11/02/11-2(to%20be%20merged)/" target="_self">
+          
+          
+            
+          
+          胡策 R14？T3
+不用vscode写了。
+旋转是线性变换。镜像也是线性变换。
+那么对点可以直接维护矩阵乘积（没有修改的情况）。
+如果是对变换矩阵的修改呢？发现可以看成对空间的变换，实际上我们在改变基。那么可以使用基变换。
+（考场时候想的是转置，而实际上就是逆。）
+一个线性变换 \(A\)
+,一个对基的线性变换矩阵 \(E\)。
+正常一个列向量 \(v\)
+经过这个线性变换后得到
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-02 14:45" pubdate>
+              2022-11-02
             </time>
           </div>
         
@@ -564,19 +572,10 @@ LINK
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
             
           </div>
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/simple-thoughts/">simple thoughts</a>
-            
-              <a href="/tags/link-cut-tree/">link cut tree</a>
-            
-          </div>
         
       </div>
     </article>
@@ -588,27 +587,24 @@ LINK
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/22/cf1610F/" target="_self">
-          cf1610F
+        <a href="/2022/11/01/A-huce/" target="_self">
+          胡策部分题解
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/22/cf1610F/" target="_self">
+        <a href="/2022/11/01/A-huce/" target="_self">
           
           
             
           
-          更加牛逼的大佬的题解！
-link
-我朝，这个题解太牛逼了。
-当然官方题解也有很多值得学的地方，但是这个第二个大佬的题解更接近我现在的思维模式。
-先说大佬的方法
-首先考虑一个点当且仅当 \(\sum
-w_{u,v}\) 是奇数是才有机会是。
-当然这样的点有偶数个（考虑一条边俩贡献）。
-所以欧拉回路的想法油然而生，我们希望所有。
-但是我们是带权的，所以直接跑不行，那么最牛逼的地方来了
+          R1
+T1
+题目大意：将 \(0/1\)
+串分成若干段，任意拼接，最后的lis最短长度。
+推一波式子：\(\max_{i}(A_i+s_b-(i-A_i))=\max_{i}(2A_i-i)+s_b\)。
+也就是看成 \(A_i=0\) 有 \(1\) 的贡献 \(A_i=1\) 有 \(-1\) 的贡献。
+我需要拆成若干子区间，一个区间的权值是上面说的和 \(0\) 取 \(max\
         </a>
       </p>
 
@@ -616,19 +612,12 @@ w_{u,v}\) 是奇数是才有机会是。
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-22 23:35" pubdate>
-              2021-12-22
+            <time datetime="2022-11-01 09:27" pubdate>
+              2022-11-01
             </time>
           </div>
         
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
-            
-          </div>
         
       </div>
     </article>
@@ -640,19 +629,24 @@ w_{u,v}\) 是奇数是才有机会是。
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/22/Minkowski-addition-simple-thoughts/" target="_self">
-          闵可夫斯基和
+        <a href="/2022/10/27/CF506E/" target="_self">
+          CF506E
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/22/Minkowski-addition-simple-thoughts/" target="_self">
+        <a href="/2022/10/27/CF506E/" target="_self">
           
           
             
           
-          闵可夫斯基和。[正在施工]
-一般人都是由这样一个例题引入学习的，那我们也用这个例题引入，记录。
+          link
+首先 \(nl^2\) 的 dp。
+我们可以记录状态 \(\mathrm{dp[k][l][r]}\),表示当前加入了 \(k\) 个数，前缀匹配到 \(l\),后缀匹配到了 \(r\)。
+update at 10-27
+很抱歉我真的不知道这个从头到尾的想法是如何得到的。
+我只能得到一个丑陋无比的DP，复杂看不出逻辑的自动机，以及无穷无尽的口胡。
+大体思路是这样的，我们建出来
         </a>
       </p>
 
@@ -660,68 +654,26 @@ w_{u,v}\) 是奇数是才有机会是。
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-22 16:10" pubdate>
-              2021-12-22
+            <time datetime="2022-10-27 00:00" pubdate>
+              2022-10-27
             </time>
           </div>
         
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/simple-thoughts/">simple thoughts</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/20/seive-simple-thoughts/" target="_self">
-          min25筛法，powerful number 筛法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/20/seive-simple-thoughts/" target="_self">
-          
-          
-            
-          
-          Min25筛法，以及PN筛的不完全理解。
-Min25 筛法
-个人感觉这种筛法挺暴力的。
-我现在还记得lxn跟我说这种筛法最重要的部分是筛素数前缀和。
-\(F(n)=\sum_{p\in\mathbb{P},p\leq
-n}f(p)\)。
-这个该怎么做呢？？？容斥就好了，我们第一次把所有的都算进去 \(\sum_{p\leq
-n}f(p)\)，然后从小往大枚举质数，一个一个筛去。
-也
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-20 12:35" pubdate>
-              2021-12-20
-            </time>
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/dp/">dp</a>
+            
           </div>
-        
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/simple-thoughts/">simple thoughts</a>
+              <a href="/tags/dp/">dp</a>
+            
+              <a href="/tags/%E7%A5%9E%E4%BB%99%E9%A2%98/">神仙题</a>
             
           </div>
         
@@ -733,7 +685,7 @@ n}f(p)\)，然后从小往大枚举质数，一个一个筛去。
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

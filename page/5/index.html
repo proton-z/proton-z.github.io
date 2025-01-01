@@ -204,30 +204,27 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/09/03/abc213G/" target="_self">
-          Connectivity 2
+        <a href="/2022/04/14/draft/" target="_self">
+          
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/09/03/abc213G/" target="_self">
+        <a href="/2022/04/14/draft/" target="_self">
           
           
             
           
-          题意
-Link
-题解
-比较有趣。
-如果从单纯的做题角度，这个题似乎就没有那么有趣了，对我而言。
-大意，给你个图，每条边都可以保留或切断，问有多少种方式，使得最终
-\(1,k\) 联通。
+          \[
+M\mid x(x-A)\Longrightarrow d_0\mid x,d_1\mid (x-A),(d_0\mid M,d_1\mid
+M,M\mid d_0d_1)
+\]
+\[
+g=\gcd(x,n)\\
+\gcd(g,x/g)=1,\gcd(g,n/g)=1\\
+x^{k^t-1}=1 \pmod {n/\gcd(n,x)}
+\]
 
-\(n\leq 17\)
-很容易想到bitmask(状压)。
-如果对于边的状压，不好处理连通性，也有太多状态。
-那么就从连通性直接状压。
-\(f(S)\) 表示提取 \(S\) 点集，在 
         </a>
       </p>
 
@@ -235,28 +232,12 @@ Link
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-03 22:01" pubdate>
-              2021-09-03
+            <time datetime="2022-04-14 20:01" pubdate>
+              2022-04-14
             </time>
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
-            
-              <a href="/tags/bitmask/">bitmask</a>
-            
-          </div>
         
       </div>
     </article>
@@ -268,23 +249,18 @@ Link
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/31/abc210F/" target="_self">
-          Coprime Solitaire
+        <a href="/2022/04/11/generating-fuc-notes/" target="_self">
+          生成函数做题做题记录
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/31/abc210F/" target="_self">
+        <a href="/2022/04/11/generating-fuc-notes/" target="_self">
           
           
             
           
-          现在很晚了，但是这个神必题卡了我真的好久好久。。。。。(before noi
-until present).........
-（你可以通过我被这个SB题卡发现我真是个菜B)
-题意
-题解
-显然 naive 的连边，如果 \(\gcd(a_i,a_j)\),\(a_i \rightarrow b_j\) 那么如果选 \(a_i\) 必须不能选 \(a_j\) ,显然应该选 \(b_j\) 。
+          生成函数记录。
         </a>
       </p>
 
@@ -292,8 +268,8 @@ until present).........
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-31 23:25" pubdate>
-              2021-08-31
+            <time datetime="2022-04-11 22:08" pubdate>
+              2022-04-11
             </time>
           </div>
         
@@ -305,15 +281,6 @@ until present).........
             
           </div>
         
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a>
-            
-              <a href="/tags/2-sat/">2-sat</a>
-            
-          </div>
         
       </div>
     </article>
@@ -325,20 +292,25 @@ until present).........
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">
-          stirling number
+        <a href="/2022/04/11/lgv-matrixtree-simple-thought/" target="_self">
+          lgv引理矩阵树
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/19/stirling-number-simple-thoughts/" target="_self">
+        <a href="/2022/04/11/lgv-matrixtree-simple-thought/" target="_self">
           
           
             
           
-          斯特林数。
-感觉斯特林数从构造角度能更好理解吧。
-未更新完毕，待更新。
+          1。哭哭，不是很会线代。。。
+真的瞎说属于是了。。
+lgv
+lgv讲的是你有一个dag（有权），并且钦定了 \(n\) 个源，\(n\) 个汇。
+路径权值定义成了边权的乘积。
+你要先匹配路径端点，也就是对于 \((i,p_i)\) 含义就是 \(i\) 号源，匹配到 \(p_i%\) 号汇。
+你要计算的是 ，对于每一种匹配方式，大小为 \(|n|\)
+的路径的集合，使得集合中路径两两
         </a>
       </p>
 
@@ -346,8 +318,8 @@ until present).........
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-19 15:13" pubdate>
-              2021-08-19
+            <time datetime="2022-04-11 00:00" pubdate>
+              2022-04-11
             </time>
           </div>
         
@@ -355,7 +327,7 @@ until present).........
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+              <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
             
           </div>
         
@@ -365,9 +337,7 @@ until present).........
             
               <a href="/tags/simple-thoughts/">simple thoughts</a>
             
-              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
-            
-              <a href="/tags/stirling-number/">stirling number</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
             
           </div>
         
@@ -381,19 +351,40 @@ until present).........
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/19/review-sam/" target="_self">
-          SAM
+        <a href="/2022/03/23/records-on/" target="_self">
+          records on
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/19/review-sam/" target="_self">
+        <a href="/2022/03/23/records-on/" target="_self">
           
           
             
           
-          sam，后缀自动机复习。
-待更新。
+          
+Records on
+
+
+妄图使用数学方法解决组合问题的的人类，
+
+
+悔改吧,组合意义蕴含的能量远超你想象
+
+实际上，如同 title 所说的，从现在开始，将要开始记录。
+
+也正如那些古老的石碑，存在的意义不是证明，而只是记录
+
+
+属于我的故事开始了。
+
+
+
+img
+
+2022-3-24
+T1
+发现了，如果是合法解的话，那么一定可以拆分成下图这样的。
         </a>
       </p>
 
@@ -401,116 +392,8 @@ until present).........
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-19 15:13" pubdate>
-              2021-08-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/sam/">sam</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/19/basic-number-theory/" target="_self">
-          基本数论
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/19/basic-number-theory/" target="_self">
-          
-          
-            
-          
-          说一下一些基本数论算法的实现和简洁证明。
-持续更新中。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-19 15:13" pubdate>
-              2021-08-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">分解质因数</a>
-            
-              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
-            
-              <a href="/tags/miller-rabin/">miller-rabin</a>
-            
-              <a href="/tags/pollard-rho/">pollard-rho</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/10/thought-in-8-10/" target="_self">
-          一些想法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/10/thought-in-8-10/" target="_self">
-          
-          
-            
-          
-          分享一点 OI 相关想法。
-本来打算这篇文章是面向同学，大家写的，可是鄙人实在是文笔不济，想了想，还是以这样一种说闲话的方式写一些吧。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-10 02:15" pubdate>
-              2021-08-10
+            <time datetime="2022-03-23 12:36" pubdate>
+              2022-03-23
             </time>
           </div>
         
@@ -519,7 +402,7 @@ until present).........
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%9B%9E%E5%BF%86/">回忆</a>
+              <a href="/tags/record/">record</a>
             
           </div>
         
@@ -533,23 +416,28 @@ until present).........
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/06/bzoj5348/" target="_self">
-          bzoj5348
+        <a href="/2022/02/11/2-21-pack/" target="_self">
+          模拟赛补题解
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/06/bzoj5348/" target="_self">
+        <a href="/2022/02/11/2-21-pack/" target="_self">
           
           
             
           
-          题意：
-你有一个随机数生成器，最初给定一个 \(0\leq
-x\leq n-1\) 的整数作为随机种子.
-这个随机数生成器会每次输出 \(x\)
-并将 \(x^k \bmod n\) 作为新的 \(x\)。
-你很快发现这个随机数生成器很渣。为了证明它很渣，你想要求出有多少个随机种子，使得这个随机数生成器会输出初始种子无穷多次。
+          contest-2022-2-6
+T1
+题意简述：求树上最长回文串的长度,字符集大小为1000。
+大概二分+点分治。
+如果光二分，那么我们其实不好判断。
+如果光点分治，那么我们也不好确定回文中心的位置。
+那么就结合起来。
+我们点分治的时候，dfs如果到达点 \(x\) ，那么我们记录下 \(x\)
+是否有可能成为经过分治中心的回文串。
+就大概如果长度 \(&gt;mid\)
+那
         </a>
       </p>
 
@@ -557,8 +445,8 @@ x\leq n-1\) 的整数作为随机种子.
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-06 23:53" pubdate>
-              2021-08-06
+            <time datetime="2022-02-11 00:00" pubdate>
+              2022-02-11
             </time>
           </div>
         
@@ -566,132 +454,7 @@ x\leq n-1\) 的整数作为随机种子.
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
-            
-              <a href="/tags/pollard-rho/">pollard-rho</a>
-            
-              <a href="/tags/%E9%98%B6/">阶</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/05/arc122E/" target="_self">
-          arc122D
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/05/arc122E/" target="_self">
-          
-          
-            
-          
-          题意
-Link
-sol
-贪心思路显然，我们先把选一定没事的放在后面，接下来化归成子问题。
-什么时候选一定没事，也就是 \(a_i\)
-具有一个质因子 \(p\),使得 \(p\) 在 \(a_i\) 中次数最高。
-形式化表示：设 \(a_i=\prod_{k}p_k^{\alpha_{i,k}}\)。
-那么 \(a_i\) 选一定没事，当且仅当
-存在 \(k\) , \(\fora
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-05 10:28" pubdate>
-              2021-08-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E8%AE%BA/">数论</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/04/arc116E/" target="_self">
-          arc116E
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/04/arc116E/" target="_self">
-          
-          
-            
-          
-          题意
-Link
-
-题解
-答案显然具有单调性。
-二分，对于 \(mid\)
-我们计算最少需要几个点使得可以全部覆盖整个树。
-我们有一个显然的贪心，对于以 \(u\)
-为跟的子树，我们选 \(u\)
-当且仅当子树内最深的到 \(u\)
-的距离恰好为 \(mid\)。
-如何证明？
-考虑如果不是这样，我们找到最深的一个选的 \(u\) 不满足上述贪心策略。
-跳 \(u\) 父亲，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-04 14:52" pubdate>
-              2021-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%B4%AA%E5%BF%83/">贪心</a>
+              <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B/">模拟赛</a>
             
           </div>
         
@@ -701,9 +464,7 @@ Link
             
               <a href="/tags/binary-search/">binary search</a>
             
-              <a href="/tags/idea%E9%A2%98/">idea题</a>
-            
-              <a href="/tags/greedy/">greedy</a>
+              <a href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/">点分治</a>
             
           </div>
         
@@ -717,20 +478,29 @@ Link
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/04/arc116D/" target="_self">
-          arc116D
+        <a href="/2022/02/07/burnside-simple-thoughts/" target="_self">
+          burnside
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/04/arc116D/" target="_self">
+        <a href="/2022/02/07/burnside-simple-thoughts/" target="_self">
           
           
             
           
-          题意很简洁。
-让你求有多少个长度为 \(N\) 的序列
-\(A\)，使得 \(\sum_{i=1}^{n}A_i=m,\sum_{\oplus}A_i=0\).
+          cmd讲的真的不是很清楚。
+看soulist 的博客把，。
+soulist NB!!!
+LINK
+拉格朗日定理
+首先对于两个群 \(H\subset G\)。
+那么 \(|H|\) 是 \(|G|\) 的因数。
+考虑给 \(H\) 添 \(g\in G\)，得到的 \(gH\) 不相同时，不可能有交。
+于是乎给 \(gH\)
+就是相当于平移（可能不是平的，就是移动）。
+
+轨迹
         </a>
       </p>
 
@@ -738,8 +508,159 @@ Link
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-04 10:02" pubdate>
-              2021-08-04
+            <time datetime="2022-02-07 23:12" pubdate>
+              2022-02-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/05/uoj-goodbye2021/" target="_self">
+          Goodbye Xinchou
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/05/uoj-goodbye2021/" target="_self">
+          
+          
+            
+          
+          .只写了A,B,C.
+A是个trivial的题。
+B
+张飞卷精兵。
+大概就是考虑到这个 \(2^n\)
+恰好形成了一个 \(n\) 层的满二叉树。
+考虑我们如果钦定左儿子胜利的话，那么我们本质上确定了每个的符号。
+但是如何才能合法呢？
+如下图，这是一颗决策树。
+
+
+img1
+
+每个节点最后应该是一直走左儿子得到的。
+如图：
+
+
+img2
+
+既然我们已经订好了这
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-05 19:13" pubdate>
+              2022-02-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/12/ORZORZ-probelm/" target="_self">
+          一道神仙题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/12/ORZORZ-probelm/" target="_self">
+          
+          
+            
+          
+          神仙神仙题。
+LINK
+非常的NB，首先，考虑答案的上界。
+上界
+考虑大概就是这么一个情况，我们不希望过多的“小”的最后剩下了，使得出现不得不放置&gt;=3个的。
+而小的和小的很可能达不到 \(\mathrm{sum}/A\)
+，所以考虑我们可以取出最大的和最小的。
+由于平均数的特性，大的加小的一定在平均数之上，我们删去最小的，和最大的部分，转化为子问题。
+所以不难发现我们构造出
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-12 12:35" pubdate>
+              2022-01-12
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/idea%E9%A2%98/">idea题</a>
+            
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/24/link-cut-tree-simple-thoughts/" target="_self">
+          link-cut-tree
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/24/link-cut-tree-simple-thoughts/" target="_self">
+          
+          
+            
+          
+          主要写一写今天写的两个题目总结。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-24 18:12" pubdate>
+              2021-12-24
             </time>
           </div>
         
@@ -747,7 +668,7 @@ Link
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/dp/">dp</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
             
           </div>
         
@@ -755,9 +676,61 @@ Link
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/dp/">dp</a>
+              <a href="/tags/simple-thoughts/">simple thoughts</a>
             
-              <a href="/tags/%E5%B0%8Fidea/">小idea</a>
+              <a href="/tags/link-cut-tree/">link cut tree</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/22/cf1610F/" target="_self">
+          cf1610F
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/22/cf1610F/" target="_self">
+          
+          
+            
+          
+          更加牛逼的大佬的题解！
+link
+我朝，这个题解太牛逼了。
+当然官方题解也有很多值得学的地方，但是这个第二个大佬的题解更接近我现在的思维模式。
+先说大佬的方法
+首先考虑一个点当且仅当 \(\sum
+w_{u,v}\) 是奇数是才有机会是。
+当然这样的点有偶数个（考虑一条边俩贡献）。
+所以欧拉回路的想法油然而生，我们希望所有。
+但是我们是带权的，所以直接跑不行，那么最牛逼的地方来了
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-22 23:35" pubdate>
+              2021-12-22
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/idea%E9%A2%98/">idea题</a>
             
           </div>
         
@@ -769,7 +742,7 @@ Link
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

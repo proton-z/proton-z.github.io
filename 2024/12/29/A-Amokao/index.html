@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="2022-12-31 2022 的我最后一天。 比赛链接 T1 题意是啥？考虑有多少个区间的和是 \(2^i\) 并且每个位置的数是 \(2^k\)。 考虑这样，如果 \(a_i\) 是最大值的话，那么最后的答案只可能是 \(a_i,a_i+1,\cdots a_i+\log n\) 这 \(\log n\) 种答案。 直接分治，然后每次计算最大值在这边（左&#x2F;右）的答案，另外一边指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模考.md">
+<meta property="og:url" content="https://proton-z.github.io/2024/12/29/A-Amokao/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2022-12-31 2022 的我最后一天。 比赛链接 T1 题意是啥？考虑有多少个区间的和是 \(2^i\) 并且每个位置的数是 \(2^k\)。 考虑这样，如果 \(a_i\) 是最大值的话，那么最后的答案只可能是 \(a_i,a_i+1,\cdots a_i+\log n\) 这 \(\log n\) 种答案。 直接分治，然后每次计算最大值在这边（左&#x2F;右）的答案，另外一边指针">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-28T16:28:14.992Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.672Z">
+<meta property="article:author" content="Imitators">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>模考.md - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/11/02/CQU7d2pvxrbE3Tf.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="模考.md">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-12-29 00:28" pubdate>
+        星期日, 十二月 29日 2024, 12:28 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">模考.md</h1>
+            
+            <div class="markdown-body">
+              <h1 id="section">2022-12-31</h1>
+<p>2022 的我最后一天。</p>
+<p><a target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/299">比赛链接</a></p>
+<h2 id="t1">T1</h2>
+<p>题意是啥？考虑有多少个区间的和是 <span
+class="math inline">\(2^i\)</span> 并且每个位置的数是 <span
+class="math inline">\(2^k\)</span>。</p>
+<p>考虑这样，如果 <span class="math inline">\(a_i\)</span>
+是最大值的话，那么最后的答案只可能是 <span
+class="math inline">\(a_i,a_i+1,\cdots a_i+\log n\)</span> 这 <span
+class="math inline">\(\log n\)</span> 种答案。</p>
+<p>直接分治，然后每次计算最大值在这边（左/右）的答案，另外一边指针移动。然后我们每次查询
+<span class="math inline">\(\log n\)</span>
+个值，那么直接进行哈希查询即可。</p>
+<p>复杂度是 <span class="math inline">\(n\log^2 n\)</span>。</p>
+<h2 id="t2">T2</h2>
+<p>对于每一个 <span class="math inline">\(k\)</span> 计算 <span
+class="math inline">\(\sum_{i=1}^n\binom{a_i+b_i-k}{a_i}\)</span></p>
+<p>那么写出生成函数</p>
+<p><span class="math display">\[
+\begin{aligned}
+\binom{a_i+b_i-k}{a_i}&amp;=\binom{a_i+b_i-(n-k)}{a_i}\\
+&amp;=[x^{b_i-n+k}]\frac{1}{(1-x)^{a_i+1}}=[x^k]\frac{x^{n-b_i}}{(1-x)^{a_i+1}}
+\end{aligned}
+\]</span></p>
+<p>发现实际上要计算的是若干个 <span
+class="math inline">\(\frac{f(x)}{(1-x)^a}\)</span> 的和。</p>
+<p>如果 <span class="math inline">\(f(x)\)</span>
+都是低次多项式，那么我们可以在 <span class="math inline">\(n\log^2
+n\)</span> 的复杂度算出答案。</p>
+<p>我们按 <span class="math inline">\(a\)</span> 从大到小排序。每 <span
+class="math inline">\(B\)</span> 个多项式算一次。</p>
+<p><span
+class="math inline">\(G(x)=(F(x)+H_i(x))\frac{1}{(1-x)^{B}}\)</span></p>
+<p>现在我们只需要的快速计算 <span
+class="math inline">\(H_i(x)\)</span>。</p>
+<p>考虑 <span
+class="math inline">\(H_i(x)=\sum_{i}f_i(x)(1-x)^{B-i}\)</span>
+这类的，我们一次多项式乘法复杂度是 <span
+class="math inline">\(O(Bq)\)</span>，然后 <span
+class="math inline">\(\sum q=n\)</span> 这样总复杂度自然是 <span
+class="math inline">\(O(Bn)\)</span>。</p>
+<p>乘一次 <span class="math inline">\(\frac{1}{(1-x)^B}\)</span>
+的复杂度自然是 <span class="math inline">\(n\log
+n\)</span>，我们总共需要计算 <span class="math inline">\(n/B\)</span>
+次，所以复杂度就是 <span class="math inline">\(O(Bn+n/B*n\log
+n)\)</span>。</p>
+<p>可能给我的启示就是多项式其实也可以分块算这样的？</p>
+<h2 id="t3">T3</h2>
+<p>题意，对于每一个排列 <span class="math inline">\(p(n)\)</span>
+计算，最大权匹配。</p>
+<p><span
+class="math inline">\(e(i,j)=\max_{k=i}^{j-1}(p_k)\)</span>。</p>
+<p>我们考虑如果给我们一个图，我想计算他的最大权匹配，怎么计算？</p>
+<p>如果当前的最大值是 <span
+class="math inline">\(p_i\)</span>，那么我们一定要尽可能让匹配经过 <span
+class="math inline">\(p_i\)</span>，也就是我们呢一定会产出 <span
+class="math inline">\(\min(i,n-i)\)</span>
+个。接下来确实变成了子问题。</p>
+<p>那么我们什么时候会停止呢？我们建立出笛卡尔树，每次如果子树大小 <span
+class="math inline">\(\le n/2\)</span>
+那么一定会停止。因为如果我们至少可以让子树内匹配子树外。</p>
+<p>也就是说我们只会让子树 <span class="math inline">\(x\ge n/2\)</span>
+的节点产生贡献。</p>
+<p>我们考虑 <span class="math inline">\(a_i\)</span> 的子树大小为 <span
+class="math inline">\(j\)</span> 的的笛卡尔树（排列生成的）个数。</p>
+<p>记 <span class="math inline">\(g(j)\)</span> 表示大小为 <span
+class="math inline">\(j\)</span> 的子树能产生答案的总和。</p>
+<p><span class="math display">\[
+g(j)=\sum_{i=0}^{j-1} \min(\min(i+1,j-i),j-n/2)
+\]</span></p>
+<p>最后的 <span class="math inline">\(j-n/2\)</span> 的含义是，外面有
+<span class="math inline">\((n+1-(j+1))\)</span>，内部最多产生 <span
+class="math inline">\(\frac{(j+1)-(n+1-(j+1))}{2}=j-[n/2]\)</span>。</p>
+<p>考虑如何生成的一颗笛卡尔树。我们从大向小一一插入，这样我们只需要每次插入在叶子的位置就是合法的。</p>
+<p>可以对于大小为 <span class="math inline">\(x\)</span>
+的笛卡尔树，一定有 <span class="math inline">\(x+1\)</span>
+个可以插入的位置。</p>
+<p>记 <span class="math inline">\(f(n)=n!\)</span> 为大小为 <span
+class="math inline">\(n\)</span> 的排列数，我们写出来答案：</p>
+<p><span class="math display">\[
+\begin{aligned}
+[f(i-1)\times i]\times [f(j-1)\times g(j)\times \binom{n}{j-1}]\times
+(i-1)\times (i)\times (i+1)\times \cdots
+\end{aligned}
+\]</span></p>
+<p>第一部分是说我们大于 <span class="math inline">\(a_i\)</span> 的
+<span class="math inline">\(i-1\)</span>
+个数可以任意选择，然后我们选择一次 <span
+class="math inline">\(i\)</span> 把这大小为 <span
+class="math inline">\(j\)</span>
+的子树发到这个位置，接下来剩下的数都可以任意插入。</p>
+<p>考虑能这样做的一个原因是 <span class="math inline">\(\ge n/2\)</span>
+的节点必定会形成一条链。</p>
+<p>然后发现最后可以写成卷积形式。就好了。</p>
+<hr />
+<h1 id="section-1">2022-12-28</h1>
+<p><a target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/298">比赛链接</a></p>
+<h2 id="t1-1">T1</h2>
+<p>简要题意，给定一个网格，起初每个位置都有无限多的水，我们可以进行
+<span class="math inline">\(k\)</span>
+次吸水。每次吸水会把所有能到达这个位置的水吸走，问每次剩余水的最小值。</p>
+<p>这个问题我也觉得很迷惑呀，真心感觉“吸水”这个定义很诡异。</p>
+<p>如果是一维的情况，那么最高的位置上面的水一定会全部消失。然后左右变成子问题，而另一个区间就完全无关了。</p>
+<p>我们考虑实际上是<strong>每次删去一个区间的全部贡献</strong>这样的，那么可以建出笛卡尔树，设置好对应的权值，每次操作相当于覆盖一条到根的链。这个问题可以用长链剖分解决。（原因是我们必定选长链（反证然后调整），接下来变成子问题）</p>
+<p>那么二维情况也是类似的。如果我们删除当前最高后，连通性未改变的话，这个相当于递归到了只有一种情况的子问题。就删点，判联通。反着做变成了加点判联通，妥妥的并查集。</p>
+<p>我不是很懂。</p>
+<h2 id="t2-1">T2</h2>
+<p>简要题意：定义一个 <span class="math inline">\(n\times m\)</span>
+的01矩阵合法，当且仅当不存在另外一个矩阵他们的一行一列1的个数都相等。</p>
+<p>考虑如果存在一对1 <span
+class="math inline">\((a,b),(c,d)\)</span>，若可以进行交换 <span
+class="math inline">\((a,d),(c,b)\)</span>。</p>
+<p>我们按列进行考虑，记每一列的状态是 <span
+class="math inline">\(s_i\)</span>,如果存在 <span
+class="math inline">\(s_i\not\subset s_j,s_j\not \subset s_i\)</span>
+的情况，那么必定可以交换。</p>
+<p>我们按 <span class="math inline">\(|s_i|\)</span>
+排序后一定会得到，<span class="math inline">\(s_i\subset
+s_{i+1}\)</span>。</p>
+<p>对于一个排好序的 <span class="math inline">\(|s_i|\)</span>
+序列，答案是：</p>
+<p><span class="math display">\[
+\prod \binom{n-s_{i-1}}{s_i-s_{i-1}}=\prod
+\frac{(n-s_{i-1})!}{(n-s_i)!(s_i-s_{i-1})!}=n! \prod
+\frac{1}{(s_i-s_{i-1})!}
+\]</span></p>
+<p>那么我们有多少种序列呢？</p>
+<p>当然 <span class="math inline">\(n!\prod
+\frac{1}{d_i!}\)</span>。</p>
+<p>如果记 <span class="math inline">\(f_i\)</span> 表示分成 <span
+class="math inline">\(i\)</span> 段序列的个数，<span
+class="math inline">\(g_i\)</span> 表示分成 <span
+class="math inline">\(i\)</span> 段上述答案。</p>
+<p>那么总答案就是 <span class="math inline">\(\sum f_i\times
+g_i\)</span>。</p>
+<p><span class="math display">\[
+\begin{aligned}
+f_i&amp;=[x^n](e^x-1)^i=[x^n]\sum_{k=0}^i \binom{i}{k}(-1)^{i-k}e^{kx}\\
+&amp;=i!\sum_{k}\frac{(-1)^{i-k}}{(i-k)!}\frac{k^n}{k!}
+\end{aligned}
+\]</span></p>
+<p>ntt。</p>
+<p><span class="math inline">\(g\)</span> 与 <span
+class="math inline">\(f\)</span>
+不同的就只有他多了两项（首项，尾项）可以为0的。</p>
+<p><span class="math inline">\(g_i=[x^n](e^x-1)^{i-1}(e^x)^2\)</span>
+类似卷积即可。</p>
+<h2 id="t3......">T3......</h2>
+<p>(解方程？主元个数有限。)</p>
+<hr />
+<h1 id="section-2">1-2</h1>
+<p><a target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/300">比赛链接</a></p>
+<p>两个菜题都不太想写sol。</p>
+<p>（那么cage,cage为什么还没有都切掉的？那答案只能是cage也菜呀！）</p>
+<h2 id="t1-2">T1</h2>
+<p>题意，定义一个排列进行如下操作，从前往后枚举元素，随意放前/后，生成的序列为可到达的。给你
+<span class="math inline">\(n\)</span> 个长度 <span
+class="math inline">\(m\)</span>
+的排列，问他们共同可到达的排列个数，以及字典序最小的。</p>
+<p>很简单，考虑最后一个位置，如果相同，那么我可以任意放前/后，否则我们就有两种数，这样是对称的。</p>
+<p>我们发现接下来的决策是固定的。所以可以直接往下推，直到他们匹配的位置再次对齐。</p>
+<p>这样还是子问题。递归解决。</p>
+<h2 id="t2-2">T2</h2>
+<p>题意：给你 <span class="math inline">\(2(n-1)\)</span>
+个数，分别表示点的父亲，点到父亲边的权值。问你对于所有的 <span
+class="math inline">\(k\)</span> 点 <span
+class="math inline">\(1\)</span> 到点 <span
+class="math inline">\(n\)</span> 间有 <span
+class="math inline">\(k\)</span> 条边的最大路径权。</p>
+<p>考虑我们选出来 <span class="math inline">\(k\)</span>
+个递增的点在什么情况不合法，当然是除去他们构不成树的情况。</p>
+<p>所以问题变成如何判断点集能构成树，这个当且仅当 <span
+class="math inline">\(\sum [a_i\le k]\ge k\)</span>。</p>
+<p>因为 <span class="math inline">\(2,\cdots k+1\)</span>
+的父亲都小于等于 <span class="math inline">\(k\)</span>。</p>
+<p>然后我们发现我们删除一些点几乎所有点都会因为有一个 <span
+class="math inline">\(1\)</span> 被删除，而限制变紧1。除了 <span
+class="math inline">\(a_{k+1}\)</span>
+被删除的，他们限制保持不变（因为多减去一个 <span
+class="math inline">\(k+1\)</span> 抵消）。</p>
+<p>所以如果最开始就有不合法的，那么一定全无解。</p>
+<p>否则我们可以通过选择 <span class="math inline">\(k+1\)</span> 让
+<span class="math inline">\(k\)</span> 合法。</p>
+<p>所以贪心策略是，我们先选择所有的 <span class="math inline">\(\sum
+[a_i\le k]= k\)</span>
+的，然后从小向大选择，发现这个过程是单调的，所以直接做就是 <span
+class="math inline">\(O(n)+O(n\log n)\)</span>
+的，似乎可以直接桶排，就没有 <span class="math inline">\(\log n\)</span>
+了。</p>
+<h2 id="t3-1">T3</h2>
+<p>waiting.</p>
+<hr />
+<h1 id="section-3">1-3</h1>
+<p><a target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/301">比赛链接</a></p>
+<h2 id="t1-3">T1</h2>
+<h2 id="t2-3">T2</h2>
+<p>很厉害，很厉害，很厉害。</p>
+<p>决策单调性就直接考虑四边形不等式会多出来一段贡献。</p>
+<p>然后呢？我们肯定不能动态区间逆序对的把。这个做到了 <span
+class="math inline">\(\sqrt{m}\)</span>
+但是我们的空间是开不下的，所以实际效果跑起来很慢。</p>
+<p>所以这种在线卷积，我们肯定可以用队列维护，但是这样我们没有很好的性质。</p>
+<p>考虑cdq之后离线分治的决策单调性的结构很好。在这个题里面，如果我们使用分治来求解的话，那么指针的移动距离只有
+<span class="math inline">\(n\log n\)</span> 次，lxl.jpg。</p>
+<p>拿BIT维护就是 <span class="math inline">\(n\log^3n\)</span>
+的。感觉最近好久不做cdq了。根本想不到。看来还是要多加训练分治的！！！</p>
+<h2 id="t3-2">T3</h2>
+<p>数据随机=可能为解的个数= <span
+class="math inline">\(n^2/B\)</span>，然后 <span
+class="math inline">\(B\)</span> 开大点就好了。</p>
+<hr />
+<h1 id="section-4">2023-01-11</h1>
+<p><a target="_blank" rel="noopener" href="http://47.92.197.167:5283/contest/306">比赛链接</a></p>
+<h2 id="t1-4">T1</h2>
+<p>简单的连续段dp,不展开说明了。</p>
+<h2 id="t2-4">T2 *</h2>
+<p><a href="">link</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/29/FMT-simple-thought/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">FMT</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/29/A-gizmo/">
+                        <span class="hidden-mobile">随记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

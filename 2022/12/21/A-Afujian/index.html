@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#333333">
+  <meta name="description" content="这一切都是stein;gates的选择吧">
+  <meta name="author" content="Imitators">
+  <meta name="keywords" content="">
+  <meta name="description" content="真实的复建记录。真实的啥也不会。 [NOI2009] 二叉查找树 题意：给你一个treap，你可以花 \(k\) 任意改变一个点的堆权值。让你最小化 代价+深度*出现次数。   题解  先不考虑出现次数。给你一颗树，怎么计算最少花费的代价。 发现因为任意改变（实数），那肯定能改的数只有 \(O(n)\)。 所以从底到顶dp即可。 原问题发现可以类似做，总复杂度 \(n^4\)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复建记录">
+<meta property="og:url" content="https://proton-z.github.io/2022/12/21/A-Afujian/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="真实的复建记录。真实的啥也不会。 [NOI2009] 二叉查找树 题意：给你一个treap，你可以花 \(k\) 任意改变一个点的堆权值。让你最小化 代价+深度*出现次数。   题解  先不考虑出现次数。给你一颗树，怎么计算最少花费的代价。 发现因为任意改变（实数），那肯定能改的数只有 \(O(n)\)。 所以从底到顶dp即可。 原问题发现可以类似做，总复杂度 \(n^4\)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://proton-z.github.io/img/2022-12-27.png">
+<meta property="article:published_time" content="2022-12-21T03:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-19T14:36:20.671Z">
+<meta property="article:author" content="Imitators">
+<meta property="article:tag" content="simple thoughts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://proton-z.github.io/img/2022-12-27.png">
+  
+  <title>复建记录 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/color-brewer.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"proton-z.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 90vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>My blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s2.loli.net/2022/12/21/BzJ3jEoyQHCMtqW.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="复建记录">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-12-21 11:00" pubdate>
+        星期三, 十二月 21日 2022, 11:00 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">复建记录</h1>
+            
+            <div class="markdown-body">
+              <p>真实的复建记录。真实的啥也不会。</p>
+<p>[NOI2009] 二叉查找树</p>
+<p>题意：给你一个treap，你可以花 <span class="math inline">\(k\)</span>
+任意改变一个点的堆权值。让你最小化 代价+深度*出现次数。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>先不考虑出现次数。给你一颗树，怎么计算最少花费的代价。</p>
+<p>发现因为任意改变（实数），那肯定能改的数只有 <span
+class="math inline">\(O(n)\)</span>。</p>
+<p>所以从底到顶dp即可。</p>
+原问题发现可以类似做，总复杂度 <span class="math inline">\(n^4\)</span>
+</details>
+<hr />
+<p>[AGC020E] Encoding Subsets</p>
+<p>题意：一次加密形如将 <span class="math inline">\(aaaaa\to(a\times
+b)\)</span>。</p>
+<p><code>001001001</code> -&gt;
+<code>001001001、00(1(0x2)x2)1、(001x3)</code>。</p>
+<p>问一个0,1字符串的所有<strong>子集</strong>可能加密方案和。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>很奇妙，实际上考虑对于单串和子集，实际上是差不多的。</p>
+<p>我们设 <span class="math inline">\(f_i\)</span> 表示做到了 <span
+class="math inline">\(i\)</span>。每次往后加入一个<strong>最简</strong>的串，进行更新。最简的串就是有括号的或者单字符。</p>
+<p>子集和单串的差距就在这里。</p>
+然后直接dp就好了，但是状态数可能很多。
+</details>
+<details>
+<summary>
+状态数分析
+</summary>
+<p>考虑长度小的 <span class="math inline">\(&lt;=12\)</span> 只可能有
+<span class="math inline">\(2^i\)</span>。</p>
+<p>同时长度长的也一定是<strong>有限的</strong>原本的串按位与得到的。</p>
+<p>我们考虑对于长度 <span class="math inline">\(l\)</span> 位于 <span
+class="math inline">\([x,y]\)</span> 的串，任何一个按顺序分解的 <span
+class="math inline">\(d,d\times l\le N\)</span>
+的都对应一个可能的情况。</p>
+这并不多，总共只有 <span class="math inline">\(O(n^2)\)</span> 个串。
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF765F">Souvenirs</a>*</p>
+<p>题意多次询问 <span class="math inline">\([l,r]\)</span> 求出 <span
+class="math inline">\(i,j\in[l,r]\)</span> 最小的 <span
+class="math inline">\(\mid a_i-a_j\mid\)</span>.</p>
+<details>
+<summary>
+题解ds
+</summary>
+<p>很有趣的一道Ds题。</p>
+<p>尝试直接进行扫描线，不劣，这一点我们必须要注意到。</p>
+<p>如果当前 <span class="math inline">\(a_i-a_j,a_i&gt;a_j\)</span>
+为最小值，那么发现，事实上如果 <span class="math inline">\(a_j &lt; a_k
+&lt;(a_i+a_j)/2\)</span> 的是没有贡献的。</p>
+<p>这启示了我们，事实上每次有用的更新会使值域折半，这样我们就可以暴力的去更新了。
+总复杂度 <span class="math inline">\(n\log^2n\)</span></p>
+</details>
+<details>
+<summary>
+题解sqrt
+</summary>
+<p>很是震撼这种莫队。</p>
+<p>首先直接回滚，确实我们很好删除，但是我们计算不了答案。</p>
+<p>这时，竟然可以我们先删光，此时知道加入的顺序，我们在加入是算答案。</p>
+<p>这个真的好鈟，我超。</p>
+<p>具体来讲，我们回滚两次分别计算贡献。或者说，我们先计算 <span
+class="math inline">\([b,r]\)</span>
+移动右端点这段的贡献，然后计算块内贡献，与块内和 <span
+class="math inline">\([b,r]\)</span> 产生的贡献。</p>
+（这样做似乎和分块神似了）同时不要忘记了分块，很经典的，我们统计大块到小块，小快到小块，小块到大块这些贡献。
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1034D">Intervals of
+Intervals</a>*</p>
+<p>题意，我们记区间 <span class="math inline">\([l,r]\)</span> 的权值为
+<span class="math inline">\(i\in[l,r]\)</span> 的并。问前 <span
+class="math inline">\(k\)</span> 个区间的权值和是什么。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>我真的想过二分，可是真的不知道二分有啥用/kk</p>
+<p>二分真的有用。</p>
+<p>但二分前，我们还是要考虑如何解决一次区间查询。</p>
+<p>考虑从左向右进行扫描线。当然，这时候我们优先让后来的覆盖之前的。（这里仍然体现的是不劣思想，因为我们是向右扫描线，所以要保留的尽量靠右。）</p>
+<p>考虑我们将数轴上每个位置标上现在最靠右的好处是什么。显然能发现，如果现在左端点达到了这个点，才会产生贡献，否则不会。</p>
+<p>此时贡献变成若干二维数点形状的东西。</p>
+<p>事实上，总共上我们只会有 <span class="math inline">\(O(n)\)</span>
+种不同的区间。</p>
+<p>这样便可以较为容易的 <span class="math inline">\(O(n\logn)\)</span>
+的求一个区间的答案了。</p>
+<p>考虑由于并是由单调性的，所以合法的区间一定是一个前缀之类的。此时二分即可。</p>
+这样的复杂度是 <span class="math inline">\(n\log^2n\)</span>
+有点差，考虑修改都是形如前缀加，我们可以直接转化为全局加，后缀加，考虑我们移动方向都是向右，所以可以直接维护后缀和数组。
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1761G">Centroid
+Guess</a>*</p>
+<p>又是一道猜重心的题呢。这次我们需要在 <span
+class="math inline">\(n=7.5\times 10^4\)</span> 个点中，问 <span
+class="math inline">\(m=2\times 10^5\)</span>
+次两点间距离，猜到重心。</p>
+<p>500组数据。</p>
+<hr />
+<details>
+<summary>
+题解
+</summary>
+<p>互测那个题如果我们知道一条覆盖了重心的链的话，这时候猜重心是很简单的。</p>
+<p>那这个题呢？分析一下，确实如果我们<strong>确定</strong>重心所在的一条链上的话，可以用
+<span class="math inline">\(2n\)</span> 次询问问出来重心。</p>
+<p>我当时没有去想如何找到这条链，而是去想如何优化这 <span
+class="math inline">\(2n\)</span> 次，所以一点都没想到。
+我们要去找到这条链。</p>
+<p>考虑我们维护一条链，随机选若干个点，计算出他们到链两端的距离。</p>
+<p>我们选取这条链上最重的点那个集合，把链的一段改为这个集合中
+<strong>任意</strong> 一个点。 我们改的一端是较轻的一端。</p>
+<p>考虑如果我们现在重心在链上，却被我们抛弃的概率是什么？这当且仅当重心落在了较轻的一端，发现较轻的一段最多有
+<span class="math inline">\(s/4\)</span> 个点，概率为 <span
+class="math inline">\(\frac{\binom{n/2}{s/4}\binom{n/2}{s-s/4}}{\binom{n}{s}}\)</span>
+这个离中心太远了，带入数据算一算可以发现这个概率极低。</p>
+<p>所以我们就可以大概可以理解成我们每次有一定的概率把重心放入链中，有一个很小的概率把重心扔掉。</p>
+最重的集合包含重心的概率为 <span
+class="math inline">\(\frac{\sum_{i=s/2}^s\binom{n/2}{i}\binom{n/2}{s-i}}{\binom{n}{s}}\)</span>
+然后包含重心的概率为 <span
+class="math inline">\(1/2\)</span>。我们相信迭代次数够多的情况下，几乎一定能得到重心。（看起来这个概率不会低于
+<span class="math inline">\(1/4\)</span>，那么期望四次）
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1491G">Switch and
+Flip</a></p>
+<p>每次交换 <span class="math inline">\(a_i,a_j\)</span> 并且交换后变成
+<span class="math inline">\(-a_i,-a_j\)</span>，给你一个排列，构造一组
+<span class="math inline">\(\le n+1\)</span> 次的。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>首先<strong>假如</strong>有负的那很开心呀，我们直接一次就可以让他归位，但是实际上没有负的。</p>
+<p>考虑每一个环的答案。通过打表我们很震撼的发现，我能找到一种构造的规律，但是最少也要
+<span class="math inline">\(n+1\)</span> 次，很伤心。</p>
+<p>所以我们考虑最简单的情况，两个环最少次数是多少，继续打表又发现竟然能做到
+<span class="math inline">\(n\)</span> 次。</p>
+这就启示我们，把环两两配对，然后每一对 <span
+class="math inline">\(n\)</span> 次，剩下的一个就可以直接暴力 <span
+class="math inline">\(n+1\)</span>
+次。构造也可以通过表看出来！！（因为我们大概上要每一次swap都有意义，这使得答案方案很可以推下去。）
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8906">USACO22pt-1</a>*</p>
+<p>把一个有向完全图删边，删一次问一次 <span
+class="math inline">\(1\leadsto n\)</span> 最短路。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>感觉std的做法很有道理，想不到真的菜的真实。（动态加点的spfa应该就是没有卡）</p>
+<p>当时其实也去想折半了，但人傻呀，单纯的以为我要枚举4个点，怎么看都不像好做的。</p>
+<p>还是考虑这个转移是分层的，直接考虑长度为 <span
+class="math inline">\(4\)</span> 不好做，但是考虑长度为 <span
+class="math inline">\(4\)</span> 的一定是从 <span
+class="math inline">\(1,2,3\)</span> 转移过来的。</p>
+<p>这样长度是 <span class="math inline">\(3\)</span>
+的<strong>新增转移</strong>一共只有 <span
+class="math inline">\(n^3\)</span> 个（如果连着 <span
+class="math inline">\(1\)</span> 的话，只有 <span
+class="math inline">\(n\)</span> 条 <span
+class="math inline">\(n^2\)</span>
+转移即可，否则只需要枚举一个点。）</p>
+但是长度是 <span class="math inline">\(4\)</span>
+的话，有一段是一条二元链，这样还是 <span
+class="math inline">\(n^4\)</span> 的。我们就考虑直接维护所有的 二元链
+即 <span class="math inline">\(A^2\)</span>。发现单点修改，一次影响量是
+<span class="math inline">\(n\)</span>
+的。（事实上静态若使用<strong>类似</strong>的做法，如果不预处理二元的情况，也不得不四次方。）
+</details>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8907">USACO22pt-2</a></p>
+<p>奶牛从 <span class="math inline">\(1,n\)</span> 编号，有 <span
+class="math inline">\(m\)</span> 对朋友，奶牛从 <span
+class="math inline">\(1,n\)</span>
+顺序离开，离开后他所有的朋友互相成为朋友，问新增的朋友对数。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>考虑我们一次修改，产生影响一定是他所有连的边的最小值出出现。</p>
+<p>这样考虑下去，我们每次向这个最小的点连边，最终一定产生一棵树。</p>
+现在相当于合并集合了，在树上自然可以启发式/线段树合并。做到 <span
+class="math inline">\(m\mathrm{polylog(n)}\)</span>。
+</details>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8908">USACO22pt-3</a></p>
+<p>题意，定义一个01串一个区间的权值 <span
+class="math inline">\(w(l,r)\)</span> 是把他变成回文串最少需要的 swap
+次数。问这个串所有区间权值和。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>一个区间权值怎么算？考虑我们依旧是需要保证相对顺序的。同时 <span
+class="math inline">\(l,r\)</span> 对称（回文）也必须保证 <span
+class="math inline">\(l+r=k\)</span> 这样的限制，所以每一对<span
+class="math inline">\(1,1\)</span> 的答案就形如 <span
+class="math inline">\(|a_i+a_j-k|\)</span> 这样的。</p>
+<p>我的做法是从最中间的一对 <span class="math inline">\(1,1\)</span>
+向外每次扩展两个 <span class="math inline">\(1\)</span> 算贡献的。</p>
+<p>考虑上次那对位置是 <span class="math inline">\((b,c)\)</span>
+这次这对是 <span
+class="math inline">\((a,d)\)</span>，那么所有可能的区间左右端点和为
+<span class="math inline">\([a+c,b+d]\)</span> 不难发现总共枚举两为
+<span class="math inline">\(d-c+b-a\)</span> 这恰好可以均摊程长度。</p>
+<p>如图所示 <img src="\img\2022-12-27.png" srcset="/img/loading.gif" lazyload alt="img" /></p>
+<p>我们上次的答案是橙黄色的，我们先将他移动到红色，再把它移动到蓝色位置，发现两次移动都是均摊的，所以总复杂度是
+<span class="math inline">\(n^2\)</span> 的。</p>
+（我当时询问查询搞反了，我把多次询问搞成了算贡献一次询问。真的蠢，最后变成了等差数列和，<span
+class="math inline">\(n^2log n\)</span> 还没跑过去。痛失AK）。
+</details>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5363">移动金币</a></p>
+<p>定义合法的序列为：Alice先手必胜，每次将一个棋子移动到他左面任意一个位置（棋子不能重叠，同时也不能跨过别的棋子。），问长
+<span class="math inline">\(n\)</span> ,<span
+class="math inline">\(m\)</span> 个棋子的序列有多少个。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>真实的菜，只能打表发现结论。</p>
+<p>就很朴素，我打了个表发现规律和棋子的奇偶性有关（奇数就是在最左边随便填一个，偶数就比较复杂，感觉像是异或了一个数）。</p>
+<p>然后我发现规律就是从右向左，奇数位xor=0的都是合法的，偶数位不用管。</p>
+<p>哇很神奇呀，写个dp就过了！！</p>
+<p>当然dp不是很困难，我们可以 <span class="math inline">\(nm\log
+n\)</span> 来做他也可以 <span class="math inline">\(m^2\log n\)</span>
+做。考虑单点查询，所以二进制拆分必须恰好符合，每次枚举这一位 <span
+class="math inline">\(1\)</span> 的个数在维护进位即可。</p>
+<p>但这个结论为啥对呢？</p>
+<p>考虑变成这样的一个放石子游戏，我们把序列差分-1，然后移动就相当于把棋子扔到下一个（右）堆里。</p>
+考虑在偶数位置的移动，先手不管怎么移动后手都可以重复移动相应数量转换先后手。同样的如果后手不按照这个方式移动，若他移动了奇数位我们就认为他仅仅在进行普通的nim，接着跟他玩就好，否则他移动偶数位我们就把他移动的给继续向下移动。
+</details>
+<hr />
+<p>1-2</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1770F">Koxia and
+Sequence</a>*</p>
+<p>题面不长，大概就是满足 <span class="math inline">\(\sum a_i=x,a_1\mid
+a_2\cdots \mid a_n=y\)</span> 的所有长度为 <span
+class="math inline">\(n\)</span> 数组 <span
+class="math inline">\(a\)</span> 的异或和。</p>
+<p>首先赛事的想法是，枚举 <span class="math inline">\(x\)</span>
+这个数出现次数，接下来组合数结果必须是奇数说明出现次数是 <span
+class="math inline">\(n\)</span>
+的子集，拆位算贡献，然后暴力记录进位情况，这只有 <span
+class="math inline">\(\log n\)</span> 种，然后转移即可。</p>
+<p>这是个 <span
+class="math inline">\(\mathrm{polylog(n)},\log^3(n)\)</span>? 的dp。</p>
+<p>可是我忽略了一件事，就是说我们计算的只不过是或起来是 <span
+class="math inline">\(y\)</span>
+的子集的答案。这是说明容斥是至关重要的，很可惜我在考试结束后才想到这一点。</p>
+<hr />
+<p>这样做是个 <span class="math inline">\(2^n\log^3(n)\)</span>
+的，似乎好像gyh老师写的类似？（<del>我不确定</del>）。没啥前途。</p>
+<hr />
+<p>正解很强大。既然<strong>容斥不可避免</strong>我们提前容斥，看接下来的做法会不会有变化。现在的限制形如
+<span class="math inline">\(a_i\subset y&#39;\)</span>。</p>
+<p>最神仙的一步是反用lucas <span class="math inline">\([a_i\subset
+y&#39;]=\binom{y&#39;}{a_i}\bmod
+2\)</span>。这一步，太厉害了。然后考虑此时答案变成了：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{\sum_{a_i}=x}\binom{y&#39;}{a_i}=[z^x]((1+z)^{y&#39;})^n=[z^x](1+z)^{y&#39;n}=\binom{y&#39;n}{x}
+\bmod 2=[x\subset y&#39;n]
+\end{aligned}
+\]</span></p>
+<p>结束了。 我们现在，已经得到了一个 <span
+class="math inline">\(O(1)\)</span>
+计算出现次数的方法。这样总的复杂度就是 <span
+class="math inline">\(O(y\log y)\)</span> 我不清楚是否可以做到 <span
+class="math inline">\(O(y)\)</span>
+（因为考场时候我的dp是可以和计算出现次数复杂度一样的计算xor）。</p>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4202">奥运物流</a></p>
+<p>题意，给你一颗有向基环树，定义权值为 <span
+class="math inline">\(r(i)=c_i+k\sum_{j\to i}r(j)\)</span>。</p>
+<p>现在你可以删除 <span class="math inline">\(m\)</span> 条边并且添加
+<span class="math inline">\(m\)</span> 条边，问你最大化 <span
+class="math inline">\(r(1)\)</span>，注意你不能删除 <span
+class="math inline">\(1\)</span> 的出边。</p>
+<details>
+<summary>
+题解
+</summary>
+<p>考虑给定的时候我们如何计算答案，考虑计算贡献，深度为 <span
+class="math inline">\(dep_i\)</span> 的点的贡献是 <span
+class="math inline">\(k^{dep_i}c_i\)</span>。如果根连向的点的深度是
+<span class="math inline">\(d\)</span> ，那么答案就应该是，<span
+class="math inline">\(\frac{\sum
+k^{dep_i}c_i}}{1-k^{d+1}}\)</span>。</p>
+</details>
+<hr />
+<p>哼啊啊啊啊啊啊，原来 <span class="math inline">\(\bmod [\sqrt
+n]\)</span> 值域也是 <span class="math inline">\([\sqrt n]\)</span>
+呀。。。。。</p>
+<p>那就说明 <span class="math inline">\(n-[\sqrt n]^2\)</span>
+也是这个范围的！！！！！！！！！！！ 如果不能删除 <span
+class="math inline">\(1\)</span>
+连想的边，那么他连向的点就是固定的。</p>
+<p>如果此时我们已经将树删成若干连通块的话，我们一定会将他们直接连向根。这样既最小化了
+<span class="math inline">\(dep\)</span> 也最小化了 <span
+class="math inline">\(d\)</span>。</p>
+<p>所以问题转化为我们要把树分成若干连通块，每一个贡献确定，同时记录
+<span class="math inline">\(to_x\)</span> 的深度。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/simple-thoughts/">simple thoughts</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/14/wc2023-hhz-part/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hhz 杂题选讲。</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/15/flows-simple-thought/">
+                        <span class="hidden-mobile">网络流一些基础建模</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appKey":"DlH5PmKDEOPuptEFP5FxLc7C","path":"window.location.pathname","placeholder":"欢迎评论(￣▽￣)/////","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"zDYcdMTHlyhvs0B9reABGqm3-gzGzoHsz","appkey":"DlH5PmKDEOPuptEFP5FxLc7C"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
