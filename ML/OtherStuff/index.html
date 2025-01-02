@@ -26,8 +26,9 @@
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102005517290.png">
 <meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102015028509.png">
+<meta property="og:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20250102141202846.png">
 <meta property="article:published_time" content="2024-12-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-01T18:01:19.724Z">
+<meta property="article:modified_time" content="2025-01-02T07:13:16.602Z">
 <meta property="article:author" content="Imitators">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="c:/Users/zhang/AppData/Roaming/Typora/typora-user-images/image-20241228160939956.png">
@@ -652,6 +653,166 @@ L}{\partial g_j}p_j(\delta_{i,j}-p_i)
 \]</span> Loss function 里有 <span class="math inline">\(g_i\)</span>
 所以直接假装 <span class="math inline">\(g_1,\cdots g_n\)</span>
 全是独立变量求导即可。</p>
+<hr />
+<h1 id="interpretability">Interpretability</h1>
+<p>我们希望模型去“解释”为什么会给出这样的输出。</p>
+<ul>
+<li>Lime</li>
+<li>Integrated gradients</li>
+<li>SHAP</li>
+</ul>
+<h2 id="lime">Lime</h2>
+<p>我们假设原先模型是 <span
+class="math inline">\(f\)</span>，我们希望找到一个“简单”（sparsity）
+的线性模型 <span class="math inline">\(g\)</span>，在基于一个概率分布
+<span class="math inline">\(\Pi_x\)</span> 下，loss function 较小。</p>
+<p>比如说，假设 <span class="math inline">\(Z\)</span> 是输入域，<span
+class="math inline">\(\Pi_x(z)=\exp\left(-\frac{\|x-z\|^2}{\sigma^2}\right)\)</span>：
+<span class="math display">\[
+\begin{aligned}
+L(f,g,\Pi_x)=\sum_{z\in Z}\Pi_x(z)(f(x)-g(x))^2
+\end{aligned}
+\]</span> 对于NLP <span class="math inline">\(x\)</span>
+可以是某一个“单词”；而对于图像识别，<span
+class="math inline">\(x\)</span>
+可以是一块图片（原照片被分成若干块）。</p>
+<p>可是 Lime 过于关注 local 的信息，导致一些重要 feature 被忽略。</p>
+<p>比如说 <span class="math inline">\(x\)</span> 是一个很重要的
+feature，但是 <span class="math inline">\(x\)</span> 产生的贡献是类似
+relu 的，我们对 <span class="math inline">\(x\)</span>
+微扰的时候不会产生任何改变，所以 lime 会忽略 <span
+class="math inline">\(x\)</span>。这当然不是我们所希望的。</p>
+<hr />
+<h3 id="解决方案">解决方案</h3>
+<p>找到一个baseline，使得这个照片（对于图像识别来说）、输入，是任何一个物品的概率都很低。</p>
+<p>我们将 baseline 和当前的照片 <span class="math inline">\(x\)</span>
+进行对比，我们希望模型找出是如何从 baseline 转到 <span
+class="math inline">\(x\)</span> 的，这是提取 <span
+class="math inline">\(x\)</span> 特征的关键步骤。</p>
+<p>选取 baseline 可以改善 lime 的 locality 问题。</p>
+<hr />
+<h2 id="特征的公理假设">特征的公理假设</h2>
+<p>我们成一个东西是特征，他需要满足如下性质：</p>
+<ul>
+<li><p>Sensitive</p>
+<ol type="1">
+<li>当 baseline 和一个有 label 的 <span class="math inline">\(x\)</span>
+只差一个 feature 时候，那这个 feature 的 attribution 不应为 0</li>
+<li>当一个函数不作用在某些 variables 上时，这些 variables' attribution
+应为 0.</li>
+</ol></li>
+<li><p>Implementation Invariance</p>
+<p>两个网络，如果输入，输出对应相同的话，我们应将他们视为相同的网络。</p>
+<p>i.e. : 链式法则：<span class="math inline">\(\frac{\partial
+f}{\partial g}=\frac{\partial f}{\partial h}\frac{\partial h}{\partial
+g}\)</span>，即把 <span class="math inline">\(f\)</span> 看成输出，<span
+class="math inline">\(g\)</span> 看成输入，<span
+class="math inline">\(f\)</span> 对 <span
+class="math inline">\(g\)</span> 的梯度不应与“实现” <span
+class="math inline">\(h\)</span> 相关。离散梯度并不满足。</p></li>
+<li><p>Completeness</p>
+<p>所有 attribution 的和，应该等于 <span
+class="math inline">\(F(x)-F(x_0)\)</span>, <span
+class="math inline">\(x_0\)</span> 时 baseline。</p></li>
+<li><p>Linearity</p>
+<p>两个模型的线性组合，<span class="math inline">\(af_1+bf_1\)</span>
+他们的 attribution 也应线性。</p></li>
+<li><p>Symmetry preserving</p>
+<p>如果 <span class="math inline">\(F(x,y)=F(y,x)\)</span> 即 <span
+class="math inline">\((x,y)\)</span> 对称，那他们应该有相同的
+attribution。</p></li>
+</ul>
+<h2 id="integrated-gradients">Integrated gradients</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{IG}_i(x)&amp;=(x_i-x_i&#39;)\int_{0}^1\frac{\partial
+F(x&#39;+\alpha(x-x&#39;))}{\partial x_i}\mathrm{d} \alpha\\
+\sum_{i=1}^n\mathrm{IG}_i(x)&amp;=F(x)-F(x&#39;)\\
+&amp;=\int_{0}^1\langle \nabla
+F(x&#39;+\alpha(x-x&#39;)),x-x&#39;\rangle\mathrm{d} \alpha=\mathrm{RHS}
+\end{aligned}
+\]</span></p>
+<p>可以发现他满足上述所有条件。</p>
+<p>同时可以去证明，把 <span class="math inline">\((x,x&#39;)\)</span>
+直线路径换成别的路径也会满足以上性质（出来 symmetry）</p>
+<hr />
+<h2 id="shapley">shapley</h2>
+<p>如果现在我们时离散变量的话，给定输入 <span
+class="math inline">\(x_1,\cdots,x_n\)</span> ，输出函数 <span
+class="math inline">\(f\)</span>。比如说 <span
+class="math inline">\(f\)</span> 接受一个 <span
+class="math inline">\(\{x\}\)</span> 的子集 <span
+class="math inline">\(s\)</span>，含义为 <span
+class="math inline">\(s\)</span> 这个集合的人去抢银行能分多少钱。</p>
+<p>其中 baseline: <span class="math inline">\(f(null)=0\)</span>。</p>
+<p>我们定义第 <span class="math inline">\(i\)</span> 个人的 shapley
+value: <span class="math display">\[
+\begin{aligned}
+\phi_i(f)=\sum_{s\subseteq[n]\{i\}}\frac{|s|!(n-|s|-1)!}{n!}(f(s\cup\{i\})-f(s))
+\end{aligned}
+\]</span> 我们可以证明： <span class="math display">\[
+\begin{aligned}
+\sum_{i=1}^n\phi_i(f)=f([n])
+\end{aligned}
+\]</span> 我们看成 <span class="math inline">\(n\)</span>
+个人随机排列，对于一个排列，我们看 <span
+class="math inline">\(i\)</span> 前面的人有谁，把它看成 <span
+class="math inline">\(s\)</span>
+，然后他前面，后面的人都可以随便排列，所以会有 <span
+class="math inline">\(|s|!(n-|s|-1)!\)</span> 的贡献，所以最终求和就是
+<span
+class="math inline">\(n!\times\frac{1}{n!}(f[n]-f(null))=f([n])\)</span>。</p>
+<p>SHAP 的缺点在于，他只给出了一个值，并没有给胡一个解释。</p>
+<p>比如说：</p>
+<p><img src="C:\Users\zhang\AppData\Roaming\Typora\typora-user-images\image-20250102141202846.png" srcset="/img/loading.gif" lazyload alt="image-20250102141202846" style="zoom: 50%;" /></p>
+<p>Very 的权值很高，但是把他删去之后，改变的量却没有那么大。</p>
+<hr />
+<h1 id="rectified-flow">Rectified Flow</h1>
+<p>我们有两个概率分布 <span class="math inline">\(\pi_0\)</span>,<span
+class="math inline">\(\pi_1\)</span>，以及两个 Observation：<span
+class="math inline">\(x_0\sim \pi_0\)</span>, <span
+class="math inline">\(x_1\sim P_1\)</span>。</p>
+<p>一般文中讲的 <span class="math inline">\((Z_0,Z_1)\)</span> 是将
+<span class="math inline">\(\pi_0,\pi_1\)</span>
+看成一个联合分布，所取出的内容，<span
+class="math inline">\(z_0\sim\pi_0,z_1=T(z_0)\)</span>。</p>
+<p>我们希望找到一个映射 <span
+class="math inline">\(T:\pi_0\to\pi_1\)</span>。以最小化： <span
+class="math display">\[
+\begin{aligned}
+\min_v\int_{0}^1\E_{x_0\sim
+\pi_0,x_1=T(x_0)}\|x_1-x_0-v(x_t,t)\|^2\mathrm{d}t
+\end{aligned}
+\]</span> 其中 <span class="math inline">\(v(x,t)\)</span> 表示在 <span
+class="math inline">\(t\)</span> 时刻在 <span
+class="math inline">\(x\)</span> 点的速度方向，<span
+class="math inline">\(x_t\)</span> 在此处表示的时 <span
+class="math inline">\(x_t=x_0(1-t)+x_1t\)</span>，也就是延直线走，第
+<span class="math inline">\(t\)</span> 时刻所在的位置。</p>
+<p>理论最优的 <span
+class="math inline">\(v(z,t)=\E[x_1-x_0|x_t=z]\)</span>，也就是所有可能在
+<span class="math inline">\(t\)</span> 时刻到达 <span
+class="math inline">\(z\)</span> 的路径的“平均方向”。</p>
+<hr />
+<p>最开始，我们的 <span class="math inline">\(T\)</span>
+是一个随机映射，每次训练完，我们要根据新的 <span
+class="math inline">\(v(z,t)\)</span> 来找到 <span
+class="math inline">\(x_0\)</span> 新对应的 <span
+class="math inline">\(x_1\)</span>，将这个映射看成新的 <span
+class="math inline">\(T&#39;\gets T\)</span>。</p>
+<p>随着进行的轮数增加，<span class="math inline">\(v\)</span>
+的表现会越来越像直线。</p>
+<hr />
+<h3 id="generalize-to-nonlinear">generalize to nonlinear</h3>
+<p>现在，<span class="math inline">\(x_0\)</span> 到 <span
+class="math inline">\(x_1\)</span> 不在一定是直线了，<span
+class="math inline">\(v(z,t)=\E[\dot{x_t}|x_t=z]\)</span>。</p>
+<p>loss function: <span class="math display">\[
+\begin{aligned}
+\min_v\int_0^1\E_{x_0\sim \pi_0,x_1\sim
+T(x_0)}\left[\|\dot{x}_t-v(x_t,t)\|^2\right]\mathrm{d}t
+\end{aligned}
+\]</span></p>
 
 
   
